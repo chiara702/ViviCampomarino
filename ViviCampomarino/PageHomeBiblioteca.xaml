@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vivicampomarino="clr-namespace:ViviCampomarino"
+             x:Class="ViviCampomarino.PageHomeBiblioteca" NavigationPage.HasNavigationBar="False" BackgroundColor="#3c3c3b">
+    <ContentPage.Content>
+        <Grid>
+            <!-- menù grid -->
+            <vivicampomarino:ViewMenuTop x:Name="MenuTop" MostraBell="True" ></vivicampomarino:ViewMenuTop>
+
+            <Grid Margin="20,100, 20, 20" ColumnSpacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+ 
+                <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio"  HeightRequest="180"  />
+
+                <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Margin="35,30,35,0" VerticalOptions="StartAndExpand" Spacing="30">
+                    <Button x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
+                    <Button x:Name="BtnAccount" Text="Account" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30" Clicked="BtnAccount_Clicked"  />
+                </StackLayout>
+                <BoxView Grid.Column="0" Grid.Row="2"  />
+                <Image  Grid.Column="0" Grid.Row="2" Source="LogoIstituzione" HeightRequest="40"  />
+                <Image Grid.Column="1" Grid.Row="2" Source="LogoComune" HeightRequest="40"  />
+
+
+            </Grid>
+
+
+
+
+
+            <!--Menu Laterale-->
+            <vivicampomarino:ViewMenuLaterale x:Name="MenuLaterale"></vivicampomarino:ViewMenuLaterale>
+            <!---->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

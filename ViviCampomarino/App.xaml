@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+
+            </Style>
+            <Style TargetType="Label" x:Key="LblSideMenu">
+                <Setter Property="TextColor" Value="#636159" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="LabReg">
+                <Setter Property="TextColor" Value="#3c3c3b" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="Margin" Value="15,0,0,0" />
+                <Setter Property="FontAttributes" Value="None" />
+            </Style>
+            <Style TargetType="Label" x:Key="LabRegRed">
+                <Setter Property="TextColor" Value="DarkRed" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+            <Style TargetType="Label" x:Key="LabNumeri">
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style TargetType="Label" x:Key="LabNumeriBig">
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style TargetType="Label" x:Key="NewFont">
+                <Setter Property="TextColor" Value="#7ca137" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontFamily" Value="SanzFont" />
+            </Style>
+            <Style TargetType="Label" x:Key="UserFont">
+                <Setter Property="TextColor" Value="#636159" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="FontFamily" Value="SanzFont" />
+            </Style>
+            <Style TargetType="Label" x:Key="UserFontGreen">
+                <Setter Property="TextColor" Value="#7ca137" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="SanzFont" />
+            </Style>
+            <Style TargetType="Label" x:Key="UserFontwhite">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="FontFamily" Value="SanzFont" />
+            </Style>
+            <Style TargetType="Label" x:Key="UserFontwhiteL">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="18" />
+
+            </Style>
+            <Style TargetType="Label" x:Key="MediumFont">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontFamily" Value="SanzFont" />
+            </Style>
+
+            <Style TargetType="Entry" x:Key="EntryReg">
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+                <Setter Property="TextColor" Value="#636159"  />
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+                <Setter Property="FontSize" Value="Medium"  />
+                <Setter Property="BackgroundColor" Value="White"  />
+            </Style>
+            <Style TargetType="Entry" x:Key="EntryDisable">
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+                <Setter Property="TextColor" Value="LightGray"  />
+                <Setter Property="PlaceholderColor" Value="LightGray" />
+                <Setter Property="FontSize" Value="Medium"  />
+                <Setter Property="BackgroundColor" Value="#f4f4f4"  />
+            </Style>
+
+       
+
+  
+
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

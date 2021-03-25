@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.PageHome" BackgroundColor="#3c3c3b" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content >
+        <Grid Margin="20,35, 20, 20" ColumnSpacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.ColumnSpan="2" Source="LogoViviCampomarino" HeightRequest="100" VerticalOptions="Start" />
+
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Margin="35,0,35,0" VerticalOptions="CenterAndExpand" Spacing="30">
+                <Button x:Name="BtnBiblioteca" Text="Biblioteca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="26" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnBiblioteca_Clicked" />
+                <Button x:Name="BtnEventi" Text="Eventi" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="26" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnEventi_Clicked" />
+            </StackLayout>
+            <BoxView Grid.Column="0" Grid.Row="2"  />
+            <Image  Grid.Column="0" Grid.Row="2" Source="LogoIstituzione" HeightRequest="40"  />
+                <Image Grid.Column="1" Grid.Row="2" Source="LogoComune" HeightRequest="40"  />
+           
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
