@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "847264193656",
+    "project_id": "vivi-campomarino",
+    "storage_bucket": "vivi-campomarino.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847264193656:android:2e9add1d171ab61e21218d",
+        "android_client_info": {
+          "package_name": "com.companyname.testfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847264193656-tcfi5u37iactrb514jpjvg8utq5kb22v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq4QSb_Bgtu3ZTQpiI4tdwIReIFIBHWhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847264193656-tcfi5u37iactrb514jpjvg8utq5kb22v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847264193656:android:bdbf71464b867fce21218d",
+        "android_client_info": {
+          "package_name": "com.companyname.vivicampomarino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847264193656-tcfi5u37iactrb514jpjvg8utq5kb22v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq4QSb_Bgtu3ZTQpiI4tdwIReIFIBHWhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847264193656-tcfi5u37iactrb514jpjvg8utq5kb22v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
