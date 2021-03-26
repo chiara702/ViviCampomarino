@@ -4,6 +4,10 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Plugin.Firebase.Android;
+using Plugin.Firebase.Auth;
+using Android.Content;
+using Plugin.Firebase.CloudMessaging;
 
 namespace ViviCampomarino.Droid
 {
@@ -16,6 +20,8 @@ namespace ViviCampomarino.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
+            //FirebaseCloudMessagingImplementation.OnNewIntent(this.Intent);
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -23,6 +29,15 @@ namespace ViviCampomarino.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data) {
+            base.OnActivityResult(requestCode, resultCode, data);
+            FirebaseAuthImplementation.HandleActivityResultAsync(requestCode, resultCode, data);
+        }
+        protected override void OnNewIntent(Intent intent) {
+            base.OnNewIntent(intent);
+            FirebaseCloudMessagingImplementation.OnNewIntent(intent);
+
         }
     }
 }
