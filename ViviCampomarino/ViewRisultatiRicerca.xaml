@@ -14,11 +14,11 @@
     </Grid.RowDefinitions>
 
     <Frame Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" CornerRadius="20"  Padding="0" Margin="0,0,10,0" BackgroundColor="pink">
-        <Image  Source="ImmagineLibro" HorizontalOptions="FillAndExpand" Aspect="AspectFill" VerticalOptions="FillAndExpand" />
+        <Image x:Name="ImgLibro" Source="ImmagineLibro" HorizontalOptions="FillAndExpand" Aspect="AspectFill" VerticalOptions="FillAndExpand" />
     </Frame>
-    <Label Grid.Row="0" Grid.Column="1" Text="Titolo del libro" TextColor="#3c3c3b"/>
-    <Label Grid.Row="1" Grid.Column="1"  Text="Nome autore" TextColor="#3c3c3b" />
-    <Label Grid.Row="2" Grid.Column="1"  Text="Disponibile" TextColor="#3c3c3b" />
+    <Label x:Name="LblTitolo" Grid.Row="0" Grid.Column="1" Text="Titolo del libro" TextColor="#3c3c3b"/>
+    <Label x:Name="LblAutori" Grid.Row="1" Grid.Column="1"  Text="Nome autore" TextColor="#3c3c3b" />
+    <Label x:Name="LblDisponibile" Grid.Row="2" Grid.Column="1"  Text="Disponibile" TextColor="#3c3c3b" />
     <Button Grid.Row="3" Grid.Column="1"  Margin="5, 5,5,5" x:Name="BtnPrenota" Text="PRENOTA" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="20"  />
 
 </Grid>

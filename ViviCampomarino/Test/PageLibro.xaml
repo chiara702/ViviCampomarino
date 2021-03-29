@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.Test.PageLibro">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label>Titolo</Label>
+                <Entry x:Name="TxtTitolo"/>
+                <Label>Autori</Label>
+                <Entry x:Name="TxtAutori"/>
+                <Label>Editore</Label>
+                <Entry x:Name="TxtEditore"/>
+                <Label>ISBN</Label>
+                <Entry x:Name="TxtIsbn"/>
+                <Button x:Name="BtnScanISBN"/>
+                <Label>Sommario</Label>
+                <Entry x:Name="TxtSommario"/>
+                <Label>DataPubblicazione</Label>
+                <Entry x:Name="TxtDataPubblicazione"/>
+                <Label>Pagine</Label>
+                <Entry x:Name="TxtPagine"/>
+                <Label>Generi</Label>
+                <Entry x:Name="TxtGeneri"/>
+                <Label>Image</Label>
+                <Image x:Name="ImgCopertina"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Annulla" TextColor="Black" x:Name="BtnAnnulla" Clicked="BtnAnnulla_Clicked"/>
+                    <Button Text="Salva" TextColor="Black" x:Name="BtnSalva" Clicked="BtnSalva_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

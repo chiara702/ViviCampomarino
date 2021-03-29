@@ -20,6 +20,8 @@ namespace ViviCampomarino {
             await MenuLaterale.Mostra();
         }
 
-        private void BtnCerca_Clicked(object sender, EventArgs e) => FrameRicerca.IsVisible = true;
+        private void BtnCerca_Clicked(object sender, EventArgs e) {
+            FrameRicerca.IsVisible = true;
+        }
     }
 }
