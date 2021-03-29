@@ -32,17 +32,22 @@ namespace ViviCampomarino {
         }
 
 
-        private void TapCercalibro_Tapped(object sender, EventArgs e) {
-            //Application.Current.MainPage = new PageSuperuser();
+        //private void TapCercalibro_Tapped(object sender, EventArgs e) {
+        //    //Application.Current.MainPage = new PageSuperuser();
 
-        }
+        //}
 
         private void TapCercaLibro_Tapped(object sender, EventArgs e) {
-
+            Navigation.PushAsync(new PageBibliotecaCerca());
         }
 
         private void TapAccount_Tapped(object sender, EventArgs e) {
+            Navigation.PushAsync(new PageAccount());
+        }
 
+
+        private void TapHome_Tapped(object sender, EventArgs e) {
+            Navigation.PushAsync(new PageHome());
         }
     }
 }

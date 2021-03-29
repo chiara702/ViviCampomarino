@@ -15,6 +15,7 @@ namespace ViviCampomarino.Test {
         }
         private List<ViewRisultatiRicerca> ListaView = new List<ViewRisultatiRicerca>();
         private async void BtnCerca_Clicked(object sender, EventArgs e) {
+            FrameRicerca.IsVisible = true;
             var db = new Database<Libro>();
             var coll=db.GetCollection("/Libri/");
             var query=coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo",TxtCerca.Text + "\uf8ff");

@@ -8,6 +8,7 @@ using Plugin.Firebase.Android;
 using Plugin.Firebase.Auth;
 using Android.Content;
 using Plugin.Firebase.CloudMessaging;
+using Android.Content.Res;
 
 namespace ViviCampomarino.Droid
 {
@@ -23,6 +24,14 @@ namespace ViviCampomarino.Droid
             CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
             //FirebaseCloudMessagingImplementation.OnNewIntent(this.Intent);
             LoadApplication(new App());
+        }
+
+        //aggiunto per i cellulari che hanno i font ingranditi
+        protected override void AttachBaseContext(Context @base) {
+            var configuration = new Configuration(@base.Resources.Configuration);
+            configuration.FontScale = 1.1f;
+            var config = Application.Context.CreateConfigurationContext(configuration);
+            base.AttachBaseContext(config);
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
