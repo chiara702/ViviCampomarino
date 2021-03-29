@@ -169,4 +169,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\LogoBiblio3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ImmagineLibro.png" />
+  </ItemGroup>
 </Project>

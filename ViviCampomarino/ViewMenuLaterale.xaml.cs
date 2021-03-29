@@ -40,5 +40,9 @@ namespace ViviCampomarino {
         private void TapCercaLibro_Tapped(object sender, EventArgs e) {
 
         }
+
+        private void TapAccount_Tapped(object sender, EventArgs e) {
+
+        }
     }
 }
