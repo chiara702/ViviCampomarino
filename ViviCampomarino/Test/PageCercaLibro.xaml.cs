@@ -15,7 +15,6 @@ namespace ViviCampomarino.Test {
         }
         private List<ViewRisultatiRicerca> ListaView = new List<ViewRisultatiRicerca>();
         private async void BtnCerca_Clicked(object sender, EventArgs e) {
-            FrameRicerca.IsVisible = true;
             var db = new Database<Libro>();
             var coll=db.GetCollection("/Libri/");
             var query=coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo",TxtCerca.Text + "\uf8ff");
@@ -26,6 +25,11 @@ namespace ViviCampomarino.Test {
                 StackView.Children.Add(el);
                 el.Titolo = "" + x.Data.Titolo;
                 el.Autori = "" + x.Data.Autori;
+                try {
+                    var url = await FirebaseStorage.DownloadUrlFromStorage("Libri/" + x.Data.ISBN + ".png");
+                    Device.BeginInvokeOnMainThread(()=>el.Image = ImageSource.FromUri(new Uri(url)));
+                } catch (Exception) { }
+                
                 el.Disponibile = "Bo";
             }
 

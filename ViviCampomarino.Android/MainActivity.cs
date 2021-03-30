@@ -24,6 +24,9 @@ namespace ViviCampomarino.Droid
             CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
             //FirebaseCloudMessagingImplementation.OnNewIntent(this.Intent);
             LoadApplication(new App());
+            //AndroidEnvironment.UnhandledExceptionRaiser += (sender, args) => {
+            //    var newExc = new ApplicationException("AndroidEnvironment_UnhandledExceptionRaiser", args.Exception);
+            //};
         }
 
         //aggiunto per i cellulari che hanno i font ingranditi
@@ -48,5 +51,6 @@ namespace ViviCampomarino.Droid
             FirebaseCloudMessagingImplementation.OnNewIntent(intent);
 
         }
+        
     }
 }

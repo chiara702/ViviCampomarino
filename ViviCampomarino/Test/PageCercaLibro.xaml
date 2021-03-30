@@ -25,7 +25,7 @@
                         <StackLayout  Margin="0,0,0,0" VerticalOptions="StartAndExpand" Spacing="0">
                             <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio3" Margin="5,30,5,30" />
                             <Label   FontFamily="" Style="{StaticResource LabReg}"  Text="Ricerca per titolo"/>
-                            <Entry x:Name="TxtCerca" TextTransform="Uppercase" Margin="10,1,10,20" Placeholder="Inserisci il titolo" Style="{StaticResource EntryReg}" />
+                            <Entry x:Name="TxtCerca" Margin="10,1,10,20" Placeholder="Inserisci il titolo" Style="{StaticResource EntryReg}" />
 
 
                             <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >

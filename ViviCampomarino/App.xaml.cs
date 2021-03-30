@@ -17,6 +17,7 @@ namespace ViviCampomarino {
             CrossFirebaseCloudMessaging.Current.Error += Current_Error;
             CrossFirebaseCloudMessaging.Current.TokenChanged += Current_TokenChanged;
             //CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
+            
         }
 
         private void Current_TokenChanged(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMTokenChangedEventArgs e) {
@@ -49,5 +50,6 @@ namespace ViviCampomarino {
 
         protected override void OnResume() {
         }
+        
     }
 }

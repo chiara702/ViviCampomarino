@@ -19,8 +19,8 @@ namespace ViviCampomarino {
         public String Disponibile {
             set { LblDisponibile.Text = value; }
         }
-        public String Image {
-            set {  }
+        public ImageSource Image {
+            set { ImgLibro.Source = value; }
         }
 
 
