@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace ViviCampomarino {
     public class Database<T> {
@@ -19,7 +20,29 @@ namespace ViviCampomarino {
         public ICollectionReference GetCollection(String Path) {
             return current.GetCollection(Path);
         }
+    }
 
+    class FirebaseStorage {
+        public static async Task DownloadFromStorage(String storagePath, String localPath) {
+            var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
+            var child = storage.GetRootReference().GetChild(storagePath);
+            await child.DownloadFile(localPath).AwaitAsync();
+        }
+        public static async Task<Stream> DownloadStreamFromStorage(String storagePath) {
+            var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
+            var child = storage.GetRootReference().GetChild(storagePath);
+            return await child.GetStreamAsync(10000);
+        }
+        public static Task<String> DownloadUrlFromStorage(String storagePath) {
+            var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
+            var child = storage.GetRootReference().GetChild(storagePath);
+            return child.GetDownloadUrlAsync();
+        }
+        public static async Task UploadToStorage(String storagePath, String localPath) {
+            var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
+            var child = storage.GetRootReference().GetChild(storagePath);
+            await child.PutFile(localPath).AwaitAsync();
+        }
 
     }
 
