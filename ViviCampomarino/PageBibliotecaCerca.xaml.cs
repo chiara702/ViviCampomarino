@@ -21,12 +21,14 @@ namespace ViviCampomarino {
         }
 
         private async void BtnCerca_Clicked(object sender, EventArgs e) {
+            TxtCerca.Text = "" + TxtCerca.Text;
             if (TxtCerca.Text == null) {
+                LblRicercaFallita.IsVisible = true;
                 return;
             }
             var db = new Database<Libro>();
             var coll = db.GetCollection("/Libri/");
-            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff");
+            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(5);
             var ListaLibri = await query.GetDocumentsAsync<Libro>();
             StackView.Children.Clear();
             foreach (var x in ListaLibri.Documents) {
@@ -34,9 +36,14 @@ namespace ViviCampomarino {
                 StackView.Children.Add(el);
                 el.Titolo = "" + x.Data.Titolo;
                 el.Autori = "" + x.Data.Autori;
+                try {
+                    var url = await FirebaseStorage.DownloadUrlFromStorage("Libri/" + x.Data.ISBN + ".png");
+                    Device.BeginInvokeOnMainThread(() => el.Image = ImageSource.FromUri(new Uri(url)));
+                } catch (Exception) { }
                 el.Disponibile = "Bo";
             }
-            if (ListaLibri == null) {
+            
+            if (ListaLibri.Count == 0) {
                 LblRicercaFallita.IsVisible = true;
             } else LblRicercaFallita.IsVisible = false;
             
@@ -44,6 +51,8 @@ namespace ViviCampomarino {
             FrameRicerca.IsVisible = true;
             StkCerca.IsVisible = false;
             BtnNuovaRicerca.IsVisible = true;
+
+           
         }
 
         private void BtnNuovaRicerca_Clicked(object sender, EventArgs e) {
