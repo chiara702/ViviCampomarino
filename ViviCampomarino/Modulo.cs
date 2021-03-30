@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+
 namespace ViviCampomarino {
     public class Database<T> {
         private IFirebaseFirestore current = CrossFirebaseFirestore.Current;
