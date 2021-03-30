@@ -23,6 +23,9 @@ namespace ViviCampomarino.Droid
             CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
             //FirebaseCloudMessagingImplementation.OnNewIntent(this.Intent);
             LoadApplication(new App());
+            //AndroidEnvironment.UnhandledExceptionRaiser += (sender, args) => {
+            //    var newExc = new ApplicationException("AndroidEnvironment_UnhandledExceptionRaiser", args.Exception);
+            //};
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
@@ -39,5 +42,6 @@ namespace ViviCampomarino.Droid
             FirebaseCloudMessagingImplementation.OnNewIntent(intent);
 
         }
+        
     }
 }
