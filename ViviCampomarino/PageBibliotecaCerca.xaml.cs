@@ -36,6 +36,11 @@ namespace ViviCampomarino {
                 el.Autori = "" + x.Data.Autori;
                 el.Disponibile = "Bo";
             }
+            if (ListaLibri == null) {
+                LblRicercaFallita.IsVisible = true;
+            } else LblRicercaFallita.IsVisible = false;
+            
+            
             FrameRicerca.IsVisible = true;
             StkCerca.IsVisible = false;
             BtnNuovaRicerca.IsVisible = true;
