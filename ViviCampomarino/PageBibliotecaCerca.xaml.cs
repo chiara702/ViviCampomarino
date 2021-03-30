@@ -20,8 +20,29 @@ namespace ViviCampomarino {
             await MenuLaterale.Mostra();
         }
 
-        private void BtnCerca_Clicked(object sender, EventArgs e) {
+        private async void BtnCerca_Clicked(object sender, EventArgs e) {
+            if (TxtCerca.Text == null) {
+                return;
+            }
+            var db = new Database<Libro>();
+            var coll = db.GetCollection("/Libri/");
+            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff");
+            var ListaLibri = await query.GetDocumentsAsync<Libro>();
+            StackView.Children.Clear();
+            foreach (var x in ListaLibri.Documents) {
+                var el = new ViewRisultatiRicerca();
+                StackView.Children.Add(el);
+                el.Titolo = "" + x.Data.Titolo;
+                el.Autori = "" + x.Data.Autori;
+                el.Disponibile = "Bo";
+            }
             FrameRicerca.IsVisible = true;
+            StkCerca.IsVisible = false;
+            BtnNuovaRicerca.IsVisible = true;
+        }
+
+        private void BtnNuovaRicerca_Clicked(object sender, EventArgs e) {
+            Navigation.PushAsync(new PageBibliotecaCerca());
         }
     }
 }
