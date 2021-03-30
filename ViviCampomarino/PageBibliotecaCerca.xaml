@@ -21,7 +21,7 @@
                
 
                 <Frame Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White" Margin="0,0,0,10" CornerRadius="15" Padding="0">
-                    <ScrollView Margin="0" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never"  >
+                    <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Margin="5,0,5,0" >
                         <StackLayout  Margin="10,10,10,10" VerticalOptions="StartAndExpand" Spacing="0">
                             <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio3" Margin="5,30,5,30" />
                             <StackLayout x:Name="StkCerca">

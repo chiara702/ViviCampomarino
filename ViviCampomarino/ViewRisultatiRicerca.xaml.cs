@@ -27,5 +27,9 @@ namespace ViviCampomarino {
         public ViewRisultatiRicerca() {
             InitializeComponent();
         }
+
+        private void BtnPrenota_Clicked(object sender, EventArgs e) {
+            Navigation.PushAsync(new PageDettaglioLibro());
+        }
     }
 }

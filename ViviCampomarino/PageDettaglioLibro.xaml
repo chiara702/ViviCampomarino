@@ -3,10 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ViviCampomarino.PageDettaglioLibro">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Frame>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Label Margin="0,10,0,0" x:Name="LblTitolo"  VerticalOptions="Center"  Text="Titolo del libro................................................." FontSize="16" FontAttributes="Bold" MaxLines="4"  TextColor="#3c3c3b"/>
+                        <Label Margin="0,10,0,0" x:Name="LblSottotitolo"  VerticalOptions="Center"  Text="Sottotitolo del libro................................................." FontSize="14" FontAttributes="Bold" MaxLines="4"   TextColor="#3c3c3b"/>
+                    </StackLayout>
+                        <Frame Grid.Row="1"  Grid.Column="0" CornerRadius="20"  Padding="0" Margin="0,10,10,0" >
+                    <Image x:Name="ImgLibro" Source="ImmagineLibro" HorizontalOptions="FillAndExpand" Aspect="AspectFill" VerticalOptions="FillAndExpand" />
+                </Frame>
+                <Label x:Name="LblAutori" Grid.Row="1"  Grid.Column="0"  VerticalOptions="Center"  Text="Nome autore" LineBreakMode="TailTruncation" FontSize="14" TextColor="#3c3c3b" />
+                <Label x:Name="LblDisponibile" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"  Text="Disponibile" TextColor="#3c3c3b" />
+
+
+            </Grid>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>
