@@ -56,5 +56,6 @@ namespace ViviCampomarino {
         [FirestoreProperty("Pagine")] public String Pagine { get; set; }
         [FirestoreProperty("Generi")] public String Generi { get; set; }
         [FirestoreProperty("Image")] public String Image { get; set; }
+        [FirestoreProperty("Descrizione")] public String Descrizione { get; set; }
     }
 }
