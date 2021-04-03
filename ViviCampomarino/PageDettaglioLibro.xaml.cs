@@ -11,7 +11,7 @@ namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageDettaglioLibro : ContentPage {
         private String idLibro;
-        
+
         public PageDettaglioLibro(String IdLibro) {
             InitializeComponent();
             idLibro = IdLibro;
@@ -20,12 +20,14 @@ namespace ViviCampomarino {
         public async void LeggiDaDb() {
             var db = new Database<Libro>();
             var Libro = await db.ReadDocument("/Libri/" + idLibro);
-            //var url = await FirebaseStorage.DownloadUrlFromStorage("Libri/" + Libro.ISBN + ".png");
+            try {
+                await FirebaseStorage.DownloadFromStorage("Libri/" + idLibro + ".png", System.IO.Path.GetTempPath() + idLibro + ".png");
+            } catch(Exception){}
             Device.BeginInvokeOnMainThread(() => {
                 LblAutori.Text = Funzioni.Antinull(Libro.Autori);
                 LblTitolo.Text = Funzioni.Antinull(Libro.Titolo);
                 LblSottotitolo.Text = Funzioni.Antinull(Libro.Sommario);
-                //ImgLibro.Source = ImageSource.FromUri(new Uri(url));
+                if (System.IO.File.Exists(System.IO.Path.GetTempPath() + idLibro + ".png") == true) ImgLibro.Source = ImageSource.FromFile(System.IO.Path.GetTempPath() + idLibro + ".png");
             });
         }
 

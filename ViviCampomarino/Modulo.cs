@@ -62,10 +62,23 @@ namespace ViviCampomarino {
         [FirestoreProperty("Image")] public String Image { get; set; }
         [FirestoreProperty("Descrizione")] public String Descrizione { get; set; }
         [FirestoreProperty("IdUtente")] public String IdUtente { get; set; }
-        [FirestoreProperty("DataPrenotato")] public DateTime DataPrenotato { get; set; }
+        [FirestoreProperty("DataPrenotato")] public DateTimeOffset DataPrenotato { get; set; }
         [FirestoreProperty("Disponibile")] public Boolean Disponibile { get; set; }
-        [FirestoreProperty("DataPrestito")] public DateTime DataPrestito { get; set; }
+        [FirestoreProperty("DataPrestito")] public DateTimeOffset DataPrestito { get; set; }
 
+        public enum _Disponibile {
+            Disponibile,
+            Prenotato,
+            Prestato
+        }
+        public _Disponibile LibroDisponibile() {
+            if (Disponibile == true) {
+                if (DataPrenotato == null) return _Disponibile.Disponibile;
+                if (System.DateTime.Now - DataPrenotato >= TimeSpan.FromDays(7)) return _Disponibile.Disponibile; else return _Disponibile.Prenotato;
+            } else {
+                return _Disponibile.Prestato;
+            }
+        }
 
     }
 

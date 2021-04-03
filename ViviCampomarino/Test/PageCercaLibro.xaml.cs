@@ -15,7 +15,7 @@ namespace ViviCampomarino.Test {
         }
         private List<ViewRisultatiRicerca> ListaView = new List<ViewRisultatiRicerca>();
         private async void BtnCerca_Clicked(object sender, EventArgs e) {
-            TxtCerca.Text = "" + TxtCerca.Text;
+            TxtCerca.Text = Funzioni.Antinull(TxtCerca.Text);
             var db = new Database<Libro>();
             var coll=db.GetCollection("/Libri/");
             var query=coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo",TxtCerca.Text + "\uf8ff").LimitedTo(100);
@@ -29,7 +29,7 @@ namespace ViviCampomarino.Test {
                 el.Titolo = Funzioni.Antinull(x.Data.Titolo);
                 el.Autori = Funzioni.Antinull(x.Data.Autori);
                 el.ISBN = Funzioni.Antinull(x.Data.ISBN);                
-                el.Disponibile = "Bo";
+                el.Disponibile = "";
                 StackView.Children.Add(el);
             }
             foreach (ViewRisultatiRicerca x in StackView.Children) {
