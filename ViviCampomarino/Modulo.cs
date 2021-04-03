@@ -61,6 +61,12 @@ namespace ViviCampomarino {
         [FirestoreProperty("Generi")] public String Generi { get; set; }
         [FirestoreProperty("Image")] public String Image { get; set; }
         [FirestoreProperty("Descrizione")] public String Descrizione { get; set; }
+        [FirestoreProperty("IdUtente")] public String IdUtente { get; set; }
+        [FirestoreProperty("DataPrenotato")] public DateTime DataPrenotato { get; set; }
+        [FirestoreProperty("Disponibile")] public Boolean Disponibile { get; set; }
+        [FirestoreProperty("DataPrestito")] public DateTime DataPrestito { get; set; }
+
+
     }
 
     public class Funzioni {

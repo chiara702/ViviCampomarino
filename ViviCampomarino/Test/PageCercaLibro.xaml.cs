@@ -18,38 +18,37 @@ namespace ViviCampomarino.Test {
             TxtCerca.Text = "" + TxtCerca.Text;
             var db = new Database<Libro>();
             var coll=db.GetCollection("/Libri/");
-            var query=coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo",TxtCerca.Text + "\uf8ff").LimitedTo(20);
+            var query=coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo",TxtCerca.Text + "\uf8ff").LimitedTo(100);
             var ListaLibri=await query.GetDocumentsAsync<Libro>();
+            var curr = Plugin.Firebase.Storage.CrossFirebaseStorage.Current.GetRootReference();
+            var listaFile=await curr.GetChild("Libri").ListAllAsync();
             StackView.Children.Clear();
             foreach (var x in ListaLibri.Documents) {
                 var el = new ViewRisultatiRicerca();
-                el.Titolo = "" + x.Data.Titolo;
-                el.Autori = "" + x.Data.Autori;
-                try {
-                    
-                    //Device.BeginInvokeOnMainThread(()=> {
-                        try {
-                        //el.Image = ImageSource.FromUri(new Uri(await FirebaseStorage.DownloadUrlFromStorage("Libri/" + x.Data.ISBN + ".png")));
-                        el.Image = ImageSource.FromStream(()=> {
-                            try {
-                                var t = FirebaseStorage.DownloadStreamFromStorage("Libri/" + x.Data.ISBN + ".png");
-                                t.Wait(1000);
-                                var byt=t.Result.ReadByte();
-                                return t.Result;
-                            }catch(Exception e) {
-                                Console.WriteLine("---" + e.Message);
-                                return null;
-                            }
-                            });
-                    } catch (Exception) { }
-                    //});
-
-                } catch (Exception) { }
-                
+                el.IdLibro = x.Reference.Id;
+                el.Titolo = Funzioni.Antinull(x.Data.Titolo);
+                el.Autori = Funzioni.Antinull(x.Data.Autori);
+                el.ISBN = Funzioni.Antinull(x.Data.ISBN);                
                 el.Disponibile = "Bo";
-                //await Task.Delay(100);
                 StackView.Children.Add(el);
             }
+            foreach (ViewRisultatiRicerca x in StackView.Children) {
+                try {
+                    var nomefile = x.IdLibro + ".png";
+                    var rifs = curr.GetChild("Libri/" + nomefile);
+                    var presente = false;
+                    foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
+                    if (presente == true) {
+                        var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
+                    }
+                    if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile)==true) x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
+                } catch (SystemException) { 
+                } catch (Exception err) {
+                    await DisplayAlert("", err.Message, "OK");
+                }
+
+            }
+
 
         }
     }

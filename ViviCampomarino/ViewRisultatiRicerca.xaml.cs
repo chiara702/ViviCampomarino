@@ -26,6 +26,10 @@ namespace ViviCampomarino {
         public ImageSource Image {
             set { ImgLibro.Source = value; }
         }
+        public String ISBN {
+            get;
+            set;
+        }
 
 
         public ViewRisultatiRicerca() {
