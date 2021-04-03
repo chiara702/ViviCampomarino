@@ -31,13 +31,15 @@ namespace ViviCampomarino {
         }
         public static async Task<Stream> DownloadStreamFromStorage(String storagePath) {
             var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
-            var child = storage.GetRootReference().GetChild(storagePath);
-            return await child.GetStreamAsync(10000);
+            //var child = storage.GetRootReference().GetChild(storagePath);
+            var rif=storage.GetReferenceFromPath(storagePath);
+            return await rif.GetStreamAsync(10000);
         }
         public static Task<String> DownloadUrlFromStorage(String storagePath) {
             var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
             var child = storage.GetRootReference().GetChild(storagePath);
-            return child.GetDownloadUrlAsync();
+            var urlTask = child.GetDownloadUrlAsync();
+            return urlTask;
         }
         public static async Task UploadToStorage(String storagePath, String localPath) {
             var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
