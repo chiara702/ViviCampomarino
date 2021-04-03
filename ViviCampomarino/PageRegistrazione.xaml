@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.PageRegistrazione" NavigationPage.HasNavigationBar="False" BackgroundColor="#3c3c3b">
+    <ContentPage.Content>
+        <ScrollView Margin="10,10,10,10" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+            <Frame  BackgroundColor="White" Margin="0,0,0,10" CornerRadius="15" Padding="0">
+                <StackLayout Margin="10,50,10,0">
+                    <Label Margin="10,0,0,20" Text="Registrazione" HorizontalTextAlignment="Start" TextTransform="None" FontAttributes="Bold" FontSize="18" BackgroundColor="Transparent"  TextColor="#3c3c3b" />
+                    <Label Text="Nome" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
+                <Entry x:Name="TxtNome" Margin="10,1,10,20" Placeholder="Nome" Style="{StaticResource EntryReg}" />
+                    <Label Text="Cognome" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
+                <Entry x:Name="TxtCognome" Margin="10,1,10,20" Placeholder="Cognome" Style="{StaticResource EntryReg}" />
+                    <Label Text="Nome" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
+                <Entry x:Name="TxtPaese" Margin="10,1,10,20" Placeholder="Paese" Style="{StaticResource EntryReg}" />
+                    <Label Text="Nome" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
+                <Entry x:Name="TxtTelefono" Margin="10,1,10,20" Placeholder="Recapito telefonico" Style="{StaticResource EntryReg}" />
+                    <Label Text="Nome" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
+                <Entry x:Name="TxtEmail" Margin="10,1,10,20" Placeholder="E-mail" Style="{StaticResource EntryReg}" />
+                    <Label Text="Password" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
+                <Entry x:Name="TxtPassword" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" />
+                    <Label Text="Immetti nuovamente la password" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
+                <Entry x:Name="TxtPassword2" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" />
+                
+                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >
+                    <CheckBox x:Name="CheckPrivacy" Margin="10, 5,1,0" CheckedChanged="CheckPrivacy_CheckedChanged" Color="#a4182f" />
+                        <Label VerticalOptions="Start" Text="Ho letto l'informativa sulla privacy e accetto le condizioni generali d'uso dell'app"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="#3c3c3b" FontSize="16" WidthRequest="310">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="LinkPrivacy" Tapped="LinkPrivacy_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+                <Button Margin="20,20,20,35" x:Name="BtnRegistrati" Text="REGISTRATI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30"  Clicked="BtnRegistrati_Clicked" />
+
+
+                </StackLayout>
+                </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

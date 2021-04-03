@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.PageLogin" NavigationPage.HasNavigationBar="False" BackgroundColor="#3c3c3b">
+    <ContentPage.Content>
+        <Grid Margin="20,70, 20, 20" ColumnSpacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Margin="0,0,0,25" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio"  HeightRequest="120"  />
+            <ScrollView Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" >
+                <StackLayout  VerticalOptions="StartAndExpand" Spacing="5">
+                    <Label Text="Indirizzo e-mail" Style="{StaticResource LabReg}" TextColor="White"/>
+                    <Entry x:Name="TxtEmail" Margin="10,1,10,20" Placeholder="E-mail" Style="{StaticResource EntryReg}" />
+                    <Label Text="Password" Style="{StaticResource LabReg}" TextColor="White"/>
+                    <Entry x:Name="TxtPassword" Margin="10,1,10,30" Placeholder="Password" Style="{StaticResource EntryReg}" />
+
+                    <Button Margin="20,1,20,15" x:Name="BtnAccedi" Text="ACCEDI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="26" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAccedi_Clicked" />
+                    <Button Margin="20,1,20,30" x:Name="BtnRegistrati" Text="REGISTRATI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30"  Clicked="BtnRegistrati_Clicked" />
+                </StackLayout>
+            </ScrollView>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
