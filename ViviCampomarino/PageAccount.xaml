@@ -1,12 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ViviCampomarino.PageAccount">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vivicampomarino="clr-namespace:ViviCampomarino"
+             x:Class="ViviCampomarino.PageAccount" NavigationPage.HasNavigationBar="False" BackgroundColor="#3c3c3b">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <!-- menù grid -->
+            <vivicampomarino:ViewMenuTop x:Name="MenuTop" MostraBell="True" ></vivicampomarino:ViewMenuTop>
+
+            <Grid Margin="20,100, 20, 20" ColumnSpacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" BackgroundColor="White" Margin="0,0,0,10" CornerRadius="15" Padding="0">
+                      <StackLayout>
+                        <Label  Margin="15, 25,15,10" HorizontalOptions="Start" Text="Account" TextTransform="None" FontSize="20" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold" />
+
+                        <Label  Margin="15, 15,15,0" HorizontalOptions="Start" Text="E-mail" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#3c3c3b" FontAttributes="Bold" />
+                        <Label  Margin="15, 5,15,10" HorizontalOptions="Start" Text="E-mail@mmmm.com" TextTransform="None" FontSize="16" BackgroundColor="Transparent"  TextColor="#3c3c3b"  />
+                        
+                        <Label  Margin="15, 15,15,10" HorizontalOptions="Start" Text="Libri in prestito" TextTransform="None" FontSize="20" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold" />
+                        <Label x:Name="LblNoPrestito" Margin="15, 5,15,10" HorizontalOptions="Start" Text="Non è stato preso in prestito nessun libro. " TextTransform="None" FontSize="16" BackgroundColor="Transparent"  TextColor="#3c3c3b"  />
+
+                        <Label  Margin="15, 5,15,10" HorizontalOptions="Start" Text="Stando a uno studio dell'Università del Sussex (UK), leggere un libro o un giornale in silenzio per soli sei minuti rallenta la frequenza cardiaca e la tensione muscolare, abbassando i livelli di stress del 68%, superando in questo altre attività, come passeggiare (42%), sorseggiare un tè (54%) o ascoltare musica (61%)." TextTransform="Default" FontAttributes="Italic" FontSize="14" BackgroundColor="Transparent"  TextColor="Gray"  />
+
+                    </StackLayout>
+                </Frame>
+
+                <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40"   />
+                <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40"  />
+
+            </Grid>
+
+
+
+
+
+            <!--Menu Laterale-->
+            <vivicampomarino:ViewMenuLaterale x:Name="MenuLaterale"></vivicampomarino:ViewMenuLaterale>
+            <!---->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

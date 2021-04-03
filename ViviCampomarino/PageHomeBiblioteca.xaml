@@ -24,9 +24,9 @@
                     <Button x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
                     <Button x:Name="BtnAccount" Text="Account" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30" Clicked="BtnAccount_Clicked"  />
                 </StackLayout>
-                <BoxView Grid.Column="0" Grid.Row="2"  />
-                <Image  Grid.Column="0" Grid.Row="2" Source="LogoIstituzione" HeightRequest="40"  />
-                <Image Grid.Column="1" Grid.Row="2" Source="LogoComune" HeightRequest="40"  />
+               
+                <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40"   />
+                <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40"  />
 
 
             </Grid>

@@ -7,7 +7,7 @@
             <!-- menù grid -->
             <vivicampomarino:ViewMenuTop x:Name="MenuTop" MostraBell="True" ></vivicampomarino:ViewMenuTop>
 
-            <Grid Margin="20,70, 20, 20" ColumnSpacing="20" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid Margin="10,70, 10, 20" ColumnSpacing="20" RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
@@ -21,11 +21,11 @@
                
 
                 <Frame Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White" Margin="0,0,0,10" CornerRadius="15" Padding="0">
-                    <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Margin="5,0,5,0" >
+                    <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Margin="0,0,0,0" >
                         <StackLayout  Margin="10,10,10,10" VerticalOptions="StartAndExpand" Spacing="0">
-                            <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio3" Margin="5,30,5,30" />
+                            <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio3" Margin="5,35,5,35" />
                             <StackLayout x:Name="StkCerca">
-                                <Label   FontFamily="" Style="{StaticResource LabReg}"  Text="Ricerca"/>
+                                <Label   FontFamily="" Style="{StaticResource LabReg}"  Text="Ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold"/>
                                 <Entry x:Name="TxtCerca" Margin="10,1,10,20" Placeholder="Inserisci titolo o autore, ecc" Style="{StaticResource EntryReg}" />
                                     <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >
                                         <CheckBox x:Name="CheckSoloDisponibili" Margin="10, 5,1,0"  Color="#a4182f"  />
@@ -49,10 +49,9 @@
                         </StackLayout>
                     </ScrollView>
                 </Frame>
-                
-                <BoxView Grid.Column="0" Grid.Row="2"  />
-                <Image  Grid.Column="0" Grid.Row="2" Source="LogoIstituzione" HeightRequest="40"  />
-                <Image Grid.Column="1" Grid.Row="2" Source="LogoComune" HeightRequest="40"  />
+
+                <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40"   />
+                <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40"  />
 
 
             </Grid>

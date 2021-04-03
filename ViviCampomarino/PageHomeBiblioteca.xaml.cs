@@ -25,7 +25,7 @@ namespace ViviCampomarino {
         }
 
         async void BtnAccount_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new PageBibliotecaCerca());
+            await Navigation.PushAsync(new PageAccount());
         }
     }
 }

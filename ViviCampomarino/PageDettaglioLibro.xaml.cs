@@ -20,12 +20,12 @@ namespace ViviCampomarino {
         public async void LeggiDaDb() {
             var db = new Database<Libro>();
             var Libro = await db.ReadDocument("/Libri/" + idLibro);
-            var url = await FirebaseStorage.DownloadUrlFromStorage("Libri/" + Libro.ISBN + ".png");
+            //var url = await FirebaseStorage.DownloadUrlFromStorage("Libri/" + Libro.ISBN + ".png");
             Device.BeginInvokeOnMainThread(() => {
                 LblAutori.Text = Funzioni.Antinull(Libro.Autori);
                 LblTitolo.Text = Funzioni.Antinull(Libro.Titolo);
                 LblSottotitolo.Text = Funzioni.Antinull(Libro.Sommario);
-                ImgLibro.Source = ImageSource.FromUri(new Uri(url));
+                //ImgLibro.Source = ImageSource.FromUri(new Uri(url));
             });
         }
 
