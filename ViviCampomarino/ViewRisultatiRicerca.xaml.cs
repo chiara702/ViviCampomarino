@@ -10,6 +10,10 @@ using Xamarin.Forms.Xaml;
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewRisultatiRicerca : Grid {
+        public String IdLibro {
+            get;
+            set;
+        }
         public String Titolo {
             set { LblTitolo.Text = value; }
         }
@@ -29,7 +33,7 @@ namespace ViviCampomarino {
         }
 
         private void BtnPrenota_Clicked(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageDettaglioLibro());
+             Navigation.PushAsync(new PageDettaglioLibro(IdLibro));
         }
     }
 }

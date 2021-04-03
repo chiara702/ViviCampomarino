@@ -43,6 +43,7 @@
                                     <Label x:Name="LblRicercaFallita" IsVisible="false"  FontFamily="" Style="{StaticResource LabReg}"  Text="Ci spiace, non abbiamo trovato questo libro!"/>
 
                                     <Button  Margin="25, 15,25,15" x:Name="BtnNuovaRicerca" IsVisible="false" Text="Effettua una nuova ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold"  Clicked="BtnNuovaRicerca_Clicked" />
+                                   
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

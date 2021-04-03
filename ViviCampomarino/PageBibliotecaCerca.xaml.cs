@@ -36,6 +36,7 @@ namespace ViviCampomarino {
                 StackView.Children.Add(el);
                 el.Titolo = "" + x.Data.Titolo;
                 el.Autori = "" + x.Data.Autori;
+                el.IdLibro = x.Reference.Id;
                 try {
                     var url = await FirebaseStorage.DownloadUrlFromStorage("Libri/" + x.Data.ISBN + ".png");
                     Device.BeginInvokeOnMainThread(() => el.Image = ImageSource.FromUri(new Uri(url)));
