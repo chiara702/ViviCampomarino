@@ -1,15 +1,17 @@
 ﻿using Plugin.Firebase.CloudMessaging;
 using System;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ViviCampomarino {
     public partial class App : Application {
 
+        public static String LoginUidAuth = "";
+        public static Login login=null;
         public App() {
             InitializeComponent();
-
+            LeggiImpostazioni();
             var home = new PageHome();
             Application.Current.MainPage = new NavigationPage(home);
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
@@ -18,6 +20,12 @@ namespace ViviCampomarino {
             CrossFirebaseCloudMessaging.Current.TokenChanged += Current_TokenChanged;
             //CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
             
+        }
+        public static void SalvaImpostazioni() {
+            Preferences.Set("LoginUidAuth", LoginUidAuth);
+        }
+        public static void LeggiImpostazioni() {
+            Preferences.Get("LoginUidAuth", "");
         }
 
         private void Current_TokenChanged(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMTokenChangedEventArgs e) {
