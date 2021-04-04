@@ -52,23 +52,24 @@ namespace ViviCampomarino {
                 }
                 StackView.Children.Add(el);
             }
-            foreach (ViewRisultatiRicerca x in StackView.Children) {
-                try {
-                    var nomefile = x.IdLibro + ".png";
-                    var rifs = curStorage.GetChild("Libri/" + nomefile);
-                    var presente = false;
-                    foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
-                    if (presente == true) {
-                        var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
+            _ = Task.Run(() => {
+                foreach (ViewRisultatiRicerca x in StackView.Children) {
+                    try {
+                        var nomefile = x.IdLibro + ".png";
+                        var rifs = curStorage.GetChild("Libri/" + nomefile);
+                        var presente = false;
+                        foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
+                        if (presente == true) {
+                            var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
+                            a.AwaitAsync().Wait();
+                        }
+                        if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
+                    } catch (SystemException) {
+                    } catch (Exception err) {
                     }
-                    if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
-                } catch (SystemException) {
-                } catch (Exception err) {
-                    await DisplayAlert("", err.Message, "OK");
+
                 }
-
-            }
-
+            });
             if (ListaLibri.Count == 0) {
                 LblRicercaFallita.IsVisible = true;
             } else LblRicercaFallita.IsVisible = false;

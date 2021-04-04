@@ -81,6 +81,15 @@ namespace ViviCampomarino {
         }
 
     }
+    public class Login {
+        [FirestoreProperty("UidAuth")] public String UidAuth { get; set; }
+        [FirestoreProperty("Cognome")] public String Cognome { get; set; }
+        [FirestoreProperty("Nome")] public String Nome { get; set; }
+        [FirestoreProperty("Email")] public String Email { get; set; }
+        [FirestoreProperty("Password")] public String Password { get; set; }
+        [FirestoreProperty("Telefono")] public String Telefono { get; set; }
+        [FirestoreProperty("Paese")] public String Paese { get; set; }
+    }
 
     public class Funzioni {
 

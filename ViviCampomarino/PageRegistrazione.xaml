@@ -16,11 +16,11 @@
                     <Label Text="Nome" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
                 <Entry x:Name="TxtTelefono" Margin="10,1,10,20" Placeholder="Recapito telefonico" Style="{StaticResource EntryReg}" />
                     <Label Text="Nome" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
-                <Entry x:Name="TxtEmail" Margin="10,1,10,20" Placeholder="E-mail" Style="{StaticResource EntryReg}" />
+                <Entry x:Name="TxtEmail" Margin="10,1,10,20" Placeholder="E-mail" Style="{StaticResource EntryReg}" Unfocused="TxtEmail_Unfocused" />
                     <Label Text="Password" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
-                <Entry x:Name="TxtPassword" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" />
+                <Entry x:Name="TxtPassword" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" Unfocused="TxtPassword_Unfocused" />
                     <Label Text="Immetti nuovamente la password" Style="{StaticResource LabReg}" TextColor="#3c3c3b"/>
-                <Entry x:Name="TxtPassword2" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" />
+                <Entry x:Name="TxtPassword2" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" Unfocused="TxtPassword2_Unfocused" />
                 
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >
                     <CheckBox x:Name="CheckPrivacy" Margin="10, 5,1,0" CheckedChanged="CheckPrivacy_CheckedChanged" Color="#a4182f" />
