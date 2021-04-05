@@ -90,6 +90,13 @@ namespace ViviCampomarino {
         [FirestoreProperty("Telefono")] public String Telefono { get; set; }
         [FirestoreProperty("Paese")] public String Paese { get; set; }
     }
+    public class NotificheGenerali {
+        [FirestoreProperty("Data")] public DateTimeOffset Data { get; set; }
+        [FirestoreProperty("Titolo")] public String Titolo { get; set; }
+        [FirestoreProperty("Descrizione")] public String Descrizione { get; set; }
+        [FirestoreProperty("Link")] public String Link { get; set; }
+        [FirestoreProperty("DataEnd")] public DateTimeOffset DataEnd { get; set; }
+    }
 
     public class Funzioni {
 

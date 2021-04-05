@@ -9,9 +9,13 @@ using Xamarin.Forms.Xaml;
 
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage {
-        public Page1() {
+    public partial class ViewNotifica : Grid {
+        public ViewNotifica() {
             InitializeComponent();
+        }
+        
+        public String Descrizione {
+            set { LblDescrizione.Text = value; }
         }
     }
 }

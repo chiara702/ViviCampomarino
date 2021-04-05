@@ -9,9 +9,11 @@ namespace ViviCampomarino {
 
         public static String LoginUidAuth = "";
         public static Login login=null;
+        public static SqlLiteDatabase IstanzaSqlLite;
         public App() {
             InitializeComponent();
             LeggiImpostazioni();
+            IstanzaSqlLite = new SqlLiteDatabase();
             var home = new PageHome();
             MainPage = new NavigationPage(home);
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
@@ -44,6 +46,13 @@ namespace ViviCampomarino {
         }
 
         private void Current_NotificationReceived(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationReceivedEventArgs e) {
+            //Memorizza Notifica su Sql Lite
+            var Notifica = new SqlLiteNotifiche();
+            Notifica.Data = DateTime.Now;
+            Notifica.Descrizione = e.Notification.Body;
+            Notifica.Letta = false;
+            SqlLiteDatabase.Connessione.Insert(Notifica);
+
             Device.BeginInvokeOnMainThread(() => {
                 Application.Current.MainPage.DisplayAlert("Received", e.Notification.Body, "OK");
             });
