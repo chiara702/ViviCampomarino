@@ -34,8 +34,8 @@ namespace ViviCampomarino {
                 App.SalvaImpostazioni();
                 var db = new Database<Login>();
                 App.login = await db.ReadDocument("Login/" + App.LoginUidAuth);
-                await Navigation.PopToRootAsync();
-                await Navigation.PushAsync(new PageHome());
+                await App.Current.MainPage.Navigation.PopToRootAsync();
+                await App.Current.MainPage.Navigation.PushAsync(new PageHome());
             }catch (Exception err) { //FirebaseAuthInvalidCredentialsException
                 if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!","Ok");
                 else await DisplayAlert("Login", "Errore generale: " + err.Message, "Ok");
@@ -45,7 +45,7 @@ namespace ViviCampomarino {
         }
 
         private void BtnRegistrati_Clicked(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageRegistrazione());
+            App.Current.MainPage.Navigation.PushAsync(new PageRegistrazione());
         }
     }
 }

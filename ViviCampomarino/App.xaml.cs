@@ -13,7 +13,7 @@ namespace ViviCampomarino {
             InitializeComponent();
             LeggiImpostazioni();
             var home = new PageHome();
-            Application.Current.MainPage = new NavigationPage(home);
+            MainPage = new NavigationPage(home);
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
             CrossFirebaseCloudMessaging.Current.NotificationTapped += Current_NotificationTapped;
             CrossFirebaseCloudMessaging.Current.Error += Current_Error;

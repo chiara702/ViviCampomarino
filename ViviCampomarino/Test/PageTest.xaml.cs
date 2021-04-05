@@ -15,11 +15,11 @@ namespace ViviCampomarino.Test {
         }
 
         private void Button_Clicked(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageLibro(0));
+            App.Current.MainPage.Navigation.PushAsync(new PageLibro(0));
         }
 
         private void Button_Clicked_1(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageCercaLibro());
+            App.Current.MainPage.Navigation.PushAsync(new PageCercaLibro());
         }
     }
 }

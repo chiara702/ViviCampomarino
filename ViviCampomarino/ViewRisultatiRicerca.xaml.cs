@@ -36,8 +36,8 @@ namespace ViviCampomarino {
             InitializeComponent();
         }
 
-        private void BtnPrenota_Clicked(object sender, EventArgs e) {
-             Navigation.PushAsync(new PageDettaglioLibro(IdLibro));
+        private async void BtnPrenota_Clicked(object sender, EventArgs e) {
+             await App.Current.MainPage.Navigation.PushAsync(new PageDettaglioLibro(IdLibro));
         }
     }
 }

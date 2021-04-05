@@ -13,6 +13,7 @@ namespace ViviCampomarino {
         public PageBibliotecaCerca() {
             InitializeComponent();
             MenuTop.MenuLaterale = MenuLaterale;
+            StkCerca.IsVisible = true;
         }
 
         private async void ImgMenu_Tapped(object sender, EventArgs e) {
@@ -28,10 +29,10 @@ namespace ViviCampomarino {
             }
             var db = new Database<Libro>();
             var coll = db.GetCollection("/Libri/");
-            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(20);
+            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(50);
             var ListaLibri = await query.GetDocumentsAsync<Libro>();
             var curStorage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current.GetRootReference();
-            var listaFile = await curStorage.GetChild("Libri").ListAllAsync();
+            //var listaFile = await curStorage.GetChild("Libri").ListAllAsync();
             StackView.Children.Clear();
             foreach (var x in ListaLibri.Documents) {
                 var el = new ViewRisultatiRicerca();
@@ -52,24 +53,24 @@ namespace ViviCampomarino {
                 }
                 StackView.Children.Add(el);
             }
-            _ = Task.Run(() => {
+            //await Task.Run(() => {
                 foreach (ViewRisultatiRicerca x in StackView.Children) {
                     try {
                         var nomefile = x.IdLibro + ".png";
                         var rifs = curStorage.GetChild("Libri/" + nomefile);
-                        var presente = false;
-                        foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
-                        if (presente == true) {
+                        //var presente = false;
+                        //foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
+                        //if (presente == true) {
                             var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
-                            a.AwaitAsync().Wait();
-                        }
+                            await a.AwaitAsync();
+                        //}
                         if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
                     } catch (SystemException) {
                     } catch (Exception err) {
                     }
 
                 }
-            });
+            //});
             if (ListaLibri.Count == 0) {
                 LblRicercaFallita.IsVisible = true;
             } else LblRicercaFallita.IsVisible = false;
@@ -84,7 +85,11 @@ namespace ViviCampomarino {
         }
 
         private void BtnNuovaRicerca_Clicked(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageBibliotecaCerca());
+            //await Navigation.PushAsync(new PageBibliotecaCerca());
+            FrameRicerca.IsVisible = false;
+            StkCerca.IsVisible = true;
+            BtnNuovaRicerca.IsVisible = false;
+            TxtCerca.Text = "";
             StackView.IsVisible = false;
         }
 

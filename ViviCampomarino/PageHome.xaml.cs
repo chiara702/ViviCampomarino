@@ -15,17 +15,17 @@ namespace ViviCampomarino {
         }
 
         async void BtnBiblioteca_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new PageHomeBiblioteca());
+            await App.Current.MainPage.Navigation.PushAsync(new PageHomeBiblioteca());
 
 
         }
 
         async void BtnEventi_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new PageEventiHome());
+            await App.Current.MainPage.Navigation.PushAsync(new PageEventiHome());
         }
 
         async void BtnTest_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new Test.PageTest());
+            await App.Current.MainPage.Navigation.PushAsync(new Test.PageTest());
         }
     }
 }

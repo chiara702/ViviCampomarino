@@ -20,13 +20,13 @@ namespace ViviCampomarino {
             await MenuLaterale.Mostra();
         }
 
-        async void BtnCerca_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new PageBibliotecaCerca());
+        private async void BtnCerca_Clicked(object sender, EventArgs e) {
+            await App.Current.MainPage.Navigation.PushAsync(new PageBibliotecaCerca());
         }
 
-        async void BtnAccount_Clicked(object sender, EventArgs e) {
-            if (App.LoginUidAuth=="") await Navigation.PushAsync(new PageLogin());
-            else await Navigation.PushAsync(new PageAccount());
+        private async void BtnAccount_Clicked(object sender, EventArgs e) {
+            if (App.LoginUidAuth=="") await App.Current.MainPage.Navigation.PushAsync(new PageLogin());
+            else await App.Current.MainPage.Navigation.PushAsync(new PageAccount());
         }
     }
 }

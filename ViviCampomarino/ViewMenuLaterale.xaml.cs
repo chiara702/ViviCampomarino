@@ -38,16 +38,16 @@ namespace ViviCampomarino {
         //}
 
         private void TapCercaLibro_Tapped(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageBibliotecaCerca());
+            App.Current.MainPage.Navigation.PushAsync(new PageBibliotecaCerca());
         }
 
         private void TapAccount_Tapped(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageAccount());
+            App.Current.MainPage.Navigation.PushAsync(new PageAccount());
         }
 
 
         private void TapHome_Tapped(object sender, EventArgs e) {
-            Navigation.PushAsync(new PageHome());
+            App.Current.MainPage.Navigation.PushAsync(new PageHome());
         }
     }
 }

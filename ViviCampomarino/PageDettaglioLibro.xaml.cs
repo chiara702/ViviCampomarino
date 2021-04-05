@@ -15,13 +15,13 @@ namespace ViviCampomarino {
         public PageDettaglioLibro(String IdLibro) {
             InitializeComponent();
             idLibro = IdLibro;
-            Task.Run(LeggiDaDb);
+            //Task.Run(LeggiDaDb);
         }
-        public async void LeggiDaDb() {
+        public void LeggiDaDb() {
             var db = new Database<Libro>();
-            var Libro = await db.ReadDocument("/Libri/" + idLibro);
+            var Libro = db.ReadDocument("/Libri/" + idLibro).Result;
             try {
-                await FirebaseStorage.DownloadFromStorage("Libri/" + idLibro + ".png", System.IO.Path.GetTempPath() + idLibro + ".png");
+                FirebaseStorage.DownloadFromStorage("Libri/" + idLibro + ".png", System.IO.Path.GetTempPath() + idLibro + ".png").Wait();
             } catch(Exception){}
             Device.BeginInvokeOnMainThread(() => {
                 LblAutori.Text = Funzioni.Antinull(Libro.Autori);
