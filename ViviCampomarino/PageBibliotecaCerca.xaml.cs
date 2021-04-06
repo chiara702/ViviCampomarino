@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Firebase.Firestore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,13 @@ namespace ViviCampomarino {
             var db = new Database<Libro>();
             var coll = db.GetCollection("/Libri/");
             var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(50);
-            var ListaLibri = await query.GetDocumentsAsync<Libro>();
+            IQuerySnapshot<Libro> ListaLibri=null;
+            try {
+                ListaLibri = await query.GetDocumentsAsync<Libro>();
+            } catch(Exception err) {
+                await DisplayAlert("Errore", "Errore: " + err.Message, "OK");
+            }
+            
             var curStorage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current.GetRootReference();
             //var listaFile = await curStorage.GetChild("Libri").ListAllAsync();
             StackView.Children.Clear();

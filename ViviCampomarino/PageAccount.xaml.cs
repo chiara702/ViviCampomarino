@@ -15,10 +15,25 @@ namespace ViviCampomarino {
             MenuTop.MenuLaterale = MenuLaterale;
         }
 
-        private async void ImgMenu_Tapped(object sender, EventArgs e)
-        {
+        private async void ImgMenu_Tapped(object sender, EventArgs e) {
             MenuLaterale.IsVisible = true;
             await MenuLaterale.Mostra();
         }
+
+        
+        private async void CaricaLibri() {
+            var db = new Database<Libro>();
+            var coll = db.GetCollection("/Libri/");
+            var LibriSnap = await coll.WhereEqualsTo("UtenteId", App.LoginUidAuth).GetDocumentsAsync<Libro>();
+            Device.BeginInvokeOnMainThread(() => { 
+                StkLibriPresi.Children.Clear();
+                foreach (var x in LibriSnap.Documents) {
+                    var el = new ViewAccountLibro();
+                    el.Titolo = Funzioni.Antinull(x.Data.Titolo);
+                    StkLibriPresi.Children.Add(el);
+                }
+            });
+        }
+
     }
 }

@@ -15,7 +15,7 @@ namespace ViviCampomarino {
         public PageDettaglioLibro(String IdLibro) {
             InitializeComponent();
             idLibro = IdLibro;
-            //Task.Run(LeggiDaDb);
+            Task.Run(LeggiDaDb);
         }
         public void LeggiDaDb() {
             var db = new Database<Libro>();
@@ -31,7 +31,34 @@ namespace ViviCampomarino {
             });
         }
 
-        private void BtnPrenota_Clicked(object sender, EventArgs e) {
+        private async void BtnPrenota_Clicked(object sender, EventArgs e) {
+            var db = new Database<Libro>();
+            var snap = await db.GetCollection("Libri").GetDocument(idLibro).GetDocumentSnapshotAsync<Libro>(Plugin.Firebase.Firestore.Source.Server);
+            
+
+
+            if (snap == null) {
+                await DisplayAlert("Errore", "Non riesco a recuperare i dati del libro online!", "OK");
+                return;
+            }
+            if (App.LoginUidAuth=="") {
+                await DisplayAlert("Errore", "Devi eseguire il login!", "OK");
+                return;
+            }
+            
+            if (snap.Data.LibroDisponibile() == Libro._Disponibile.Disponibile) {
+                var dictUpdate = new Dictionary<Object, Object>();
+                dictUpdate.Add("IdUtente", App.LoginUidAuth);
+                dictUpdate.Add("DataPrenotato", DateTimeOffset.Now);
+                dictUpdate.Add("DataPrestito", DateTimeOffset.Parse("01/01/1900"));
+                try {
+                    await snap.Reference.SetDataAsync(new  HashMap(dictUpdate));
+                } catch(Exception err) {
+                    await DisplayAlert("Errore", "Errore nel salvataggio! " + err.Message, "OK");
+                    return;
+                }
+                await DisplayAlert("Prenotazione", "Prenotazione avvenuta con successo!", "OK");
+            }
 
         }
     }

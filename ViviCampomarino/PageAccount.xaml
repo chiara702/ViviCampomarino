@@ -32,9 +32,7 @@
                         </StackLayout>
                         
                         <StackLayout x:Name="StkLibriPresi"  Orientation="Vertical"  Margin="15,0,15,10">
-                            <vivicampomarino:ViewRisultatiRicerca></vivicampomarino:ViewRisultatiRicerca>
-                            <Label x:Name="LblScadenzaPrestito" Margin="0, 5,0,5" HorizontalOptions="Center" Text="Scadenza prestito: 05/05/2020" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" />
-                            <Line  X1="250" Stroke="#0c4b8e" StrokeDashArray="2" StrokeDashOffset="5"  HorizontalOptions="Center" />
+                            <!--<vivicampomarino:ViewAccountLibro></vivicampomarino:ViewAccountLibro>-->
                         </StackLayout>
                     
                       </StackLayout>

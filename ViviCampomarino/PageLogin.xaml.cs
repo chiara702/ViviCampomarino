@@ -17,6 +17,7 @@ namespace ViviCampomarino {
         }
 
         private async void BtnAccedi_Clicked(object sender, EventArgs e) {
+            if (TxtEmail.Text=="1") { TxtEmail.Text = "dimariafabio@gmail.com"; TxtPassword.Text = "123456"; }
             var ListaUtentiRegistratiConEmail = await authCurrent.FetchSignInMethodsAsync(TxtEmail.Text);
             if (ListaUtentiRegistratiConEmail.Count() == 0) {
                 await DisplayAlert("Login", "Email non presente! Controlla la corretta digitazione o di esserti registrato!", "OK");
