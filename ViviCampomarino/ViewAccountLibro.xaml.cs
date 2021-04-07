@@ -41,7 +41,7 @@ namespace ViviCampomarino {
         
 
         private void BtnDettaglio_Clicked(object sender, EventArgs e) {
-            ((Page)this.Parent).DisplayAlert("Da fare...", "....", "OK");
+            
         }
     }
 }

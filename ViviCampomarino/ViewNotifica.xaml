@@ -8,7 +8,7 @@
     <Grid.RowDefinitions>
         <RowDefinition Height="auto"/>
     </Grid.RowDefinitions>
-    <Frame Grid.Row="0" BackgroundColor="White" CornerRadius="10" Padding="5,5,5,5" Margin="10,2,10,0">
+    <Frame Grid.Row="0" BackgroundColor="White" CornerRadius="10" Padding="5,5,5,5" Margin="10,5,10,5">
         <Label Margin="0,10,0,0" x:Name="LblDescrizione"  VerticalOptions="Center"  Text="Notifica" FontSize="16" FontAttributes="Bold" MaxLines="2"  LineBreakMode="TailTruncation" TextColor="#3c3c3b"/>
        
     </Frame>

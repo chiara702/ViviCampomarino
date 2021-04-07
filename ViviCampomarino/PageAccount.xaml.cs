@@ -24,8 +24,8 @@ namespace ViviCampomarino {
         
         private async void CaricaLibri() {
             var db = new Database<Libro>();
-            var coll = db.GetCollection("/Libri/");
-            var LibriSnap = await coll.WhereEqualsTo("UtenteId", App.LoginUidAuth).GetDocumentsAsync<Libro>();
+            var coll = db.GetCollection("Libri");
+            var LibriSnap = await coll.WhereEqualsTo("IdUtente", App.LoginUidAuth).GetDocumentsAsync<Libro>();
             Device.BeginInvokeOnMainThread(() => { 
                 StkLibriPresi.Children.Clear();
                 foreach (var x in LibriSnap.Documents) {

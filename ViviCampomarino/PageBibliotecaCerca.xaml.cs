@@ -30,7 +30,7 @@ namespace ViviCampomarino {
             }
             var db = new Database<Libro>();
             var coll = db.GetCollection("/Libri/");
-            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(50);
+            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(20);
             IQuerySnapshot<Libro> ListaLibri=null;
             try {
                 ListaLibri = await query.GetDocumentsAsync<Libro>();
@@ -68,10 +68,14 @@ namespace ViviCampomarino {
                         //var presente = false;
                         //foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
                         //if (presente == true) {
-                            var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
-                            await a.AwaitAsync();
+                        var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
+
+                    await a.AwaitAsync();
+                    if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
+                    
+                            //await a.AwaitAsync();
                         //}
-                        if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
+                        
                     } catch (SystemException) {
                     } catch (Exception err) {
                     }
