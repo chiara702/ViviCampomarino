@@ -34,8 +34,9 @@ namespace ViviCampomarino {
         private async void BtnPrenota_Clicked(object sender, EventArgs e) {
             var db = new Database<Libro>();
             var snap = await db.GetCollection("Libri").GetDocument(idLibro).GetDocumentSnapshotAsync<Libro>(Plugin.Firebase.Firestore.Source.Server);
-            
-
+            var x = snap.Data.Autori;
+            snap.Data.Autori = "prova";
+            var y = snap.Data.Autori;
 
             if (snap == null) {
                 await DisplayAlert("Errore", "Non riesco a recuperare i dati del libro online!", "OK");
@@ -51,8 +52,9 @@ namespace ViviCampomarino {
                 dictUpdate.Add("IdUtente", App.LoginUidAuth);
                 dictUpdate.Add("DataPrenotato", DateTimeOffset.Now);
                 dictUpdate.Add("DataPrestito", DateTimeOffset.Parse("01/01/1900"));
+
                 try {
-                    await snap.Reference.SetDataAsync(new  HashMap(dictUpdate));
+                    await snap.Reference.SetDataAsync(dictUpdate, Plugin.Firebase.Firestore.SetOptions.Merge());
                 } catch(Exception err) {
                     await DisplayAlert("Errore", "Errore nel salvataggio! " + err.Message, "OK");
                     return;
