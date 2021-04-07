@@ -43,6 +43,7 @@ namespace ViviCampomarino {
             }
             if (App.LoginUidAuth=="") {
                 await DisplayAlert("Errore", "Devi eseguire il login!", "OK");
+                await Navigation.PushAsync(new PageLogin());
                 return;
             }
             
@@ -52,7 +53,7 @@ namespace ViviCampomarino {
                 dictUpdate.Add("DataPrenotato", DateTimeOffset.Now);
                 dictUpdate.Add("DataPrestito", DateTimeOffset.Parse("01/01/1900"));
                 try {
-                    await snap.Reference.SetDataAsync(new  HashMap(dictUpdate));
+                    await snap.Reference.UpdateDataAsync(dictUpdate);
                 } catch(Exception err) {
                     await DisplayAlert("Errore", "Errore nel salvataggio! " + err.Message, "OK");
                     return;

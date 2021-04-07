@@ -6,7 +6,10 @@
         <ColumnDefinition Width="1*"/>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
-        <RowDefinition Height="60"/>
+        <RowDefinition Height="auto"/>
     </Grid.RowDefinitions>
-    <Label Margin="0,10,0,0" x:Name="LblDescrizione" Grid.Row="0" VerticalOptions="Center" Grid.Column="0" Text="Notifica" FontSize="16" FontAttributes="Bold" MaxLines="2"  LineBreakMode="TailTruncation" TextColor="#3c3c3b"/>
+    <Frame Grid.Row="0" BackgroundColor="White" CornerRadius="10" Padding="5,5,5,5" Margin="10,2,10,0">
+        <Label Margin="0,10,0,0" x:Name="LblDescrizione"  VerticalOptions="Center"  Text="Notifica" FontSize="16" FontAttributes="Bold" MaxLines="2"  LineBreakMode="TailTruncation" TextColor="#3c3c3b"/>
+       
+    </Frame>
 </Grid>
