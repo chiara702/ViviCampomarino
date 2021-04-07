@@ -20,9 +20,7 @@ namespace ViviCampomarino {
         public String Autori {
             set { LblAutori.Text = value; }
         }
-        public String Disponibile {
-            set { LblDisponibile.Text = value; }
-        }
+      
         public ImageSource Image {
             set { ImgLibro.Source = value; }
         }

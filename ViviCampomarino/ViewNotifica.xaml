@@ -4,12 +4,13 @@
              x:Class="ViviCampomarino.ViewNotifica">
     <Grid.ColumnDefinitions>
         <ColumnDefinition Width="1*"/>
+        <ColumnDefinition Width="0.1*"/>
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
         <RowDefinition Height="auto"/>
     </Grid.RowDefinitions>
-    <Frame Grid.Row="0" BackgroundColor="White" CornerRadius="10" Padding="5,5,5,5" Margin="10,5,10,5">
-        <Label Margin="0,10,0,0" x:Name="LblDescrizione"  VerticalOptions="Center"  Text="Notifica" FontSize="16" FontAttributes="Bold" MaxLines="2"  LineBreakMode="TailTruncation" TextColor="#3c3c3b"/>
-       
+    <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" CornerRadius="10" Padding="5,5,5,5" Margin="10,5,10,5">
+        <Label Margin="5,10,5,10" x:Name="LblDescrizione"  VerticalOptions="Center"  Text="Notifica" FontSize="16" TextColor="#3c3c3b"/>
     </Frame>
+    <ImageButton Grid.Row="0" Grid.Column="1" Source="Bell" HeightRequest="30" BackgroundColor="Transparent" Margin="5,5,10,5"/>
 </Grid>

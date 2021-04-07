@@ -12,6 +12,13 @@ namespace ViviCampomarino {
     public partial class PageEventiHome : ContentPage {
         public PageEventiHome() {
             InitializeComponent();
+            MenuTop.MenuLaterale = MenuLaterale;
+        }
+
+        private async void ImgMenu_Tapped(object sender, EventArgs e)
+        {
+            MenuLaterale.IsVisible = true;
+            await MenuLaterale.Mostra();
         }
     }
 }
