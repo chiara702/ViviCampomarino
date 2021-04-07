@@ -13,6 +13,7 @@ namespace ViviCampomarino {
         public PageAccount() {
             InitializeComponent();
             MenuTop.MenuLaterale = MenuLaterale;
+            Task.Run(CaricaLibri);
         }
 
         private async void ImgMenu_Tapped(object sender, EventArgs e) {
@@ -31,6 +32,11 @@ namespace ViviCampomarino {
                     var el = new ViewAccountLibro();
                     el.Titolo = Funzioni.Antinull(x.Data.Titolo);
                     StkLibriPresi.Children.Add(el);
+                }
+                if (LibriSnap.Documents.Count() == 0) {
+                    StkNoPrestito.IsVisible=true;
+                } else {
+                    StkNoPrestito.IsVisible = false;
                 }
             });
         }

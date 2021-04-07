@@ -32,7 +32,6 @@
                         </StackLayout>
                         
                         <StackLayout x:Name="StkLibriPresi"  Orientation="Vertical"  Margin="15,0,15,10">
-                            <!--<vivicampomarino:ViewAccountLibro></vivicampomarino:ViewAccountLibro>-->
                         </StackLayout>
                     
                       </StackLayout>

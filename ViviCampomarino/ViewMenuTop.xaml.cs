@@ -71,9 +71,8 @@ namespace ViviCampomarino {
             });
         }
 
-        private void BtnBell_Clicked(object sender, EventArgs e) {
-            //Application.Current.MainPage = new PageNotifiche();
-            //App.DataLetturaNotifiche = DateTime.Now;
+        private async void BtnBell_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new PageNotifiche());
         }
 
 

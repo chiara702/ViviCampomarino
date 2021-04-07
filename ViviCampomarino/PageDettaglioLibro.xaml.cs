@@ -44,6 +44,7 @@ namespace ViviCampomarino {
             }
             if (App.LoginUidAuth=="") {
                 await DisplayAlert("Errore", "Devi eseguire il login!", "OK");
+                await Navigation.PushAsync(new PageLogin());
                 return;
             }
             
