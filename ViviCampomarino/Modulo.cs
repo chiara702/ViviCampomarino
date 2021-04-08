@@ -73,7 +73,7 @@ namespace ViviCampomarino {
         }
         public _Disponibile LibroDisponibile() {
             if (Disponibile == true) {
-                if (DataPrenotato == null) return _Disponibile.Disponibile;
+                if (DataPrenotato == null || DataPrenotato.Year<=1900) return _Disponibile.Disponibile;
                 if (System.DateTime.Now - DataPrenotato >= TimeSpan.FromDays(7)) return _Disponibile.Disponibile; else return _Disponibile.Prenotato;
             } else {
                 return _Disponibile.Prestato;

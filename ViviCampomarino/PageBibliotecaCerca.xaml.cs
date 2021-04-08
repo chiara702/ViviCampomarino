@@ -30,7 +30,7 @@ namespace ViviCampomarino {
             }
             var db = new Database<Libro>();
             var coll = db.GetCollection("/Libri/");
-            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(20);
+            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(200);
             IQuerySnapshot<Libro> ListaLibri=null;
             try {
                 ListaLibri = await query.GetDocumentsAsync<Libro>();
@@ -60,7 +60,7 @@ namespace ViviCampomarino {
                 }
                 StackView.Children.Add(el);
             }
-            //await Task.Run(() => {
+            _ = Task.Run(() => {
                 foreach (ViewRisultatiRicerca x in StackView.Children) {
                     try {
                         var nomefile = x.IdLibro + ".png";
@@ -70,8 +70,10 @@ namespace ViviCampomarino {
                         //if (presente == true) {
                         var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
 
-                    await a.AwaitAsync();
-                    if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
+                        a.AwaitAsync().Wait(500);
+                        if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) {
+                            x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
+                        }
                     
                             //await a.AwaitAsync();
                         //}
@@ -81,7 +83,7 @@ namespace ViviCampomarino {
                     }
 
                 }
-            //});
+            });
             if (ListaLibri.Count == 0) {
                 LblRicercaFallita.IsVisible = true;
             } else LblRicercaFallita.IsVisible = false;

@@ -24,7 +24,7 @@ namespace ViviCampomarino {
             set { LblDisponibile.Text = value; }
         }
         public ImageSource Image {
-            set { ImgLibro.Source = value; }
+            set { Device.BeginInvokeOnMainThread(() => ImgLibro.Source = value); }
         }
         public String ISBN {
             get;

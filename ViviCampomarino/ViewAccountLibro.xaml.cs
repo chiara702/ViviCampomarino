@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace ViviCampomarino {
         }
       
         public ImageSource Image {
-            set { ImgLibro.Source = value; }
+            set { Device.BeginInvokeOnMainThread(() => ImgLibro.Source = value); }
         }
         public String ISBN {
             get;
@@ -40,6 +41,21 @@ namespace ViviCampomarino {
 
         private void BtnDettaglio_Clicked(object sender, EventArgs e) {
             
+        }
+
+        private async void BtnCancellaPrenotazione_Clicked(object sender, EventArgs e) {
+            try {
+                var db = new Database<Libro>();
+                var document = db.GetCollection("Libri").GetDocument(IdLibro);
+                var Dict = new Dictionary<Object, Object>();
+                Dict.Add("DataPrenotato", DateTimeOffset.Parse("01/01/1900"));
+                Dict.Add("IdUtente", "");
+                await document.SetDataAsync(Dict, Plugin.Firebase.Firestore.SetOptions.Merge());
+                await Application.Current.MainPage.DisplayAlert("Prenotazione", "Prenotazione cancellata con successo!", "OK");
+                this.IsVisible = false;
+            } catch (Exception) {
+                await Application.Current.MainPage.DisplayAlert("Verifica connessione", "Non sono riuscito a cancellare la prenotazione!", "OK");
+            }
         }
     }
 }

@@ -26,8 +26,16 @@ namespace ViviCampomarino {
         public static void SalvaImpostazioni() {
             Preferences.Set("LoginUidAuth", LoginUidAuth);
         }
-        public static void LeggiImpostazioni() {
-            Preferences.Get("LoginUidAuth", "");
+        public async static void LeggiImpostazioni() {
+            LoginUidAuth=Preferences.Get("LoginUidAuth", "");
+            if (LoginUidAuth != "") {
+                try {
+                    var db = new Database<Login>();
+                    App.login = await db.ReadDocument("Login/" + App.LoginUidAuth);
+                }catch(Exception) {
+                    Console.WriteLine("errore Login");
+                }
+            }
         }
 
         private void Current_TokenChanged(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMTokenChangedEventArgs e) {

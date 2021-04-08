@@ -49,5 +49,12 @@ namespace ViviCampomarino {
         private void TapHome_Tapped(object sender, EventArgs e) {
             App.Current.MainPage.Navigation.PushAsync(new PageHome());
         }
+
+        private async void TapLogout_Tapped(object sender, EventArgs e) {
+            App.LoginUidAuth = "";
+            App.login = null;
+            App.SalvaImpostazioni();
+            await Navigation.PopToRootAsync();
+        }
     }
 }

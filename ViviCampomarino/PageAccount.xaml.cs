@@ -30,7 +30,9 @@ namespace ViviCampomarino {
                 StkLibriPresi.Children.Clear();
                 foreach (var x in LibriSnap.Documents) {
                     var el = new ViewAccountLibro();
+                    el.IdLibro = x.Reference.Id;
                     el.Titolo = Funzioni.Antinull(x.Data.Titolo);
+                    
                     StkLibriPresi.Children.Add(el);
                 }
                 if (LibriSnap.Documents.Count() == 0) {

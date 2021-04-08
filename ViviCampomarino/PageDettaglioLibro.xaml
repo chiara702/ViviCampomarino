@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <Frame>
             <ScrollView VerticalScrollBarVisibility="Never">
-                <Grid Margin="5,0,5,5" VerticalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="5" Padding="0" BackgroundColor="AliceBlue">
+                <Grid Margin="5,0,5,5" VerticalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="5" Padding="0" BackgroundColor="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="2*" />
