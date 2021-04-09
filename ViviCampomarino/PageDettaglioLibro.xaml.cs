@@ -61,8 +61,14 @@ namespace ViviCampomarino {
                     return;
                 }
                 await DisplayAlert("Prenotazione", "Prenotazione avvenuta con successo!", "OK");
-
                 await Navigation.PushAsync(new PageAccount());
+                foreach (var z in Navigation.NavigationStack) {
+                    if (z is PageDettaglioLibro) { Navigation.RemovePage(z); break;}
+                }
+                foreach (var z in Navigation.NavigationStack) {
+                    if (z is PageBibliotecaCerca) { Navigation.RemovePage(z); break; }
+                }
+
             } else {
                 await DisplayAlert("Prenotazione", "Libro già prenotato!", "OK");
             }
