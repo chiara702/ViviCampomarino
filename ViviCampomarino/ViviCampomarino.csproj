@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Google.Apis.Books.v1" Version="1.51.0.2231" />
     <PackageReference Include="Plugin.Firebase" Version="1.0.7" />
+    <PackageReference Include="Plugin.FirebaseAuth" Version="4.1.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />

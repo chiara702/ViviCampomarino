@@ -65,11 +65,11 @@ namespace ViviCampomarino {
                 await Navigation.PushAsync(new PageAccount(),true);
 
                 Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-                //var pageToRemove = new List<Page>();
-                //foreach (var page in Navigation.NavigationStack) {
-                //    if (Page is PageBibliotecaCerca) 
-                //}
-                
+                var pageToRemove = new List<Page>();
+                foreach (var page in Navigation.NavigationStack) {
+                    if (page is PageBibliotecaCerca) pageToRemove.Add(page);
+                }
+
 
             } else {
                 await DisplayAlert("Prenotazione", "Libro già prenotato!", "OK");
