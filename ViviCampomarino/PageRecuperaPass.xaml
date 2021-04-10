@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.PageRecuperaPass" NavigationPage.HasNavigationBar="False" BackgroundColor="#3c3c3b">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,30,0,20" />
+                    <On Platform="Android, WinPhone, Windows" Value="0,0,0,20" />
+                </OnPlatform>
+            </Grid.Margin>
+
+            <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
+            <ContentView Grid.Row="0" Grid.Column="1">
+                <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
+			    HorizontalOptions="Center" VerticalOptions="Center" />
+            </ContentView>
+
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="3" VerticalOptions="CenterAndExpand" Spacing="5" Margin="20,0,20,0">
+                <Label Margin="0,0,0,30" Text="Per resettare il tuo account inserisci il tuo indirizzo e-mail e la nuova password. Ti invieremo una e-mail di conferma per resettare la password." Style="{StaticResource LabReg}" HorizontalTextAlignment="Center" TextColor="White" FontSize="20" />
+
+                <Label Text="Indirizzo e-mail" Style="{StaticResource LabReg}" TextColor="White"/>
+                <Entry x:Name="TxtEmail" Margin="10,1,10,10" Placeholder="E-mail" Style="{StaticResource EntryReg}" />
+                <Label Text="Nuova password" Style="{StaticResource LabReg}" TextColor="White"/>
+                <Entry x:Name="TxtPassword" Margin="10,1,10,10" Placeholder="Password" Style="{StaticResource EntryReg}" />
+                <Label Text="Inserisci nuovamente la password" Style="{StaticResource LabReg}" TextColor="White"/>
+                <Entry x:Name="TxtConfermaPassword" Margin="10,1,10,20" Placeholder="Conferma password" Style="{StaticResource EntryReg}" />
+
+                <Button Margin="20,20,20,15" x:Name="BtnRecupera" Text="RESET PASSWORD" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="24" TextColor="White" FontAttributes="Bold" CornerRadius="30"  />
+
+
+
+            </StackLayout>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

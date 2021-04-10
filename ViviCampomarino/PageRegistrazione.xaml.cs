@@ -83,5 +83,15 @@ namespace ViviCampomarino
         private void TxtPassword2_Unfocused(object sender, FocusEventArgs e) {
 
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            BtnIndietro_Clicked(null, null);
+            return true;
+        }
+        private async void BtnIndietro_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

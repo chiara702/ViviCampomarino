@@ -181,4 +181,22 @@
   <ItemGroup>
     <BundleResource Include="Resources\Home.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AddUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LogoBiblio3W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LogoBiblio3WShort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Logout.png" />
+  </ItemGroup>
 </Project>
