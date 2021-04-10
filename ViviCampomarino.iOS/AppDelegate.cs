@@ -25,6 +25,10 @@ namespace ViviCampomarino.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
+            //Plugin.FirebaseAuth Wrapper
+            Firebase.Core.App.Configure();
+
+
             return base.FinishedLaunching(app, options);
         }
     }
