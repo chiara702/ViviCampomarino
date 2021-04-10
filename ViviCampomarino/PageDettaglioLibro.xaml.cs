@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Firebase.CloudMessaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,26 @@ namespace ViviCampomarino {
                 LblAutori.Text = Funzioni.Antinull(Libro.Autori);
                 LblTitolo.Text = Funzioni.Antinull(Libro.Titolo);
                 LblSottotitolo.Text = Funzioni.Antinull(Libro.Sommario);
+                LblCasaEditrice.Text = "Casa editrice: "+ Funzioni.Antinull(Libro.Editore);
+                LblAnnoPubblicazione.Text = "Pubblicazione: " + Funzioni.Antinull(Libro.DataPubblicazione);
+                LblGenere.Text = "Genere: " + Funzioni.Antinull(Libro.Generi);
+                LblPagine.Text = "Pagine: " + Funzioni.Antinull(Libro.Pagine);
+                LblDescrizione.Text = Funzioni.Antinull(Libro.Descrizione);
+                switch (Libro.LibroDisponibile()) {
+                    case Libro._Disponibile.Disponibile:
+                        LblDisponibilita.Text = "Disponibile";
+                        break;
+                    case Libro._Disponibile.Prenotato:
+                        LblDisponibilita.Text = "Prenotato";
+                        BtnPrenota.IsEnabled = false;
+                        BtnAvvisa.IsVisible = true;
+                        break;
+                    case Libro._Disponibile.Prestato:
+                        LblDisponibilita.Text = "Momentaneamente non disponibile";
+                        BtnPrenota.IsEnabled = false;
+                        BtnAvvisa.IsVisible = true;
+                        break;
+                }
                 if (System.IO.File.Exists(System.IO.Path.GetTempPath() + idLibro + ".png") == true) ImgLibro.Source = ImageSource.FromFile(System.IO.Path.GetTempPath() + idLibro + ".png");
             });
         }
@@ -74,6 +95,16 @@ namespace ViviCampomarino {
             } else {
                 await DisplayAlert("Prenotazione", "Libro già prenotato!", "OK");
             }
+
+        }
+
+        private async void BtnAvvisa_Clicked(object sender, EventArgs e)
+        {
+            await CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync(idLibro);
+            await DisplayAlert("Notifiche attivate","Riceverai una notifica non appena il libro tornerà disponibile!","OK");
+            BtnAvvisa.Text = "Notifiche attivate";
+            BtnAvvisa.Clicked -= BtnAvvisa_Clicked;
+            
 
         }
     }

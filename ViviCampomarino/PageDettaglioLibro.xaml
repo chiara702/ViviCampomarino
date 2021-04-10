@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ViviCampomarino.PageDettaglioLibro"  Title="Dettagli">
     <ContentPage.Content>
-        <Frame>
-            <ScrollView VerticalScrollBarVisibility="Never">
-                <Grid Margin="5,0,5,5" VerticalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="5" Padding="0" BackgroundColor="Transparent">
+        <Frame Padding="0" Margin="10,0,10,0">
+            <ScrollView VerticalScrollBarVisibility="Never"  Margin="15,0,15,0">
+                <Grid Margin="0,0,0,5" VerticalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="5" Padding="0" BackgroundColor="Transparent">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="2*" />
@@ -14,33 +14,36 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
- 
-                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" x:Name="LblTitolo"  VerticalOptions="Center"  Text="Titolo del libro............." FontSize="20" FontAttributes="Bold"   TextColor="#3c3c3b"/>
+
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,0" x:Name="LblTitolo"  VerticalOptions="Center"  Text="Titolo del libro............." FontSize="20" FontAttributes="Bold"  TextColor="#0c4b8e"/>
                     <Label  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Margin="0,5,0,5" x:Name="LblSottotitolo"    Text="" FontSize="14"    TextColor="#3c3c3b"/>
                 
                     
-                    <Frame Grid.Row="2" Grid.RowSpan="5" Grid.Column="0"  CornerRadius="20"  Padding="0" Margin="0,0,10,0" >
+                    <Frame Grid.Row="2" Grid.RowSpan="5" Grid.Column="0"  CornerRadius="20"  Padding="0" Margin="0,0,10,0" MinimumHeightRequest="250" >
                         <Image x:Name="ImgLibro" Source="ImmagineLibro" HorizontalOptions="FillAndExpand" Aspect="AspectFill" VerticalOptions="FillAndExpand" />
                     </Frame>
-                    <Label x:Name="LblAutori" Grid.Row="2"  Grid.Column="1"  VerticalOptions="Center"  Text="Nome autore"  FontSize="16" TextColor="#3c3c3b" FontAttributes="Bold" />
-                    <Label x:Name="LblCasaEditrice" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"  Text="Casa editrice" FontSize="15" TextColor="#3c3c3b" />
-                    <Label x:Name="LblGenere" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"  Text="Genere" FontSize="15" TextColor="#3c3c3b" />
-                    <Label x:Name="LblAnnoPubblicazione" Grid.Row="5" Grid.Column="1" VerticalOptions="Center"  Text="Pubblicazione" FontSize="15" TextColor="#3c3c3b" />
-                    <Label x:Name="LblPagine" Grid.Row="6" Grid.Column="1" VerticalOptions="Center"  Text="N. pagine: ..." FontSize="15" TextColor="#3c3c3b" />
-
-                    <Label Margin="0,10,0,0"  x:Name="LblDescrizione" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center" FontSize="16"  Text="Non è presente alcuna descrizione per il libro selezionato" TextColor="#3c3c3b" />
+                    <Label Margin="0,5,0,5" x:Name="LblAutori" Grid.Row="2"  Grid.Column="1"  VerticalOptions="Center"  Text="Nome autore"  FontSize="16" TextColor="#3c3c3b" FontAttributes="Bold" />
+                    <Label Margin="0,0,0,5" x:Name="LblCasaEditrice" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"  Text="Casa editrice" FontSize="15" TextColor="#3c3c3b" />
+                    <Label Margin="0,0,0,5" x:Name="LblGenere" Grid.Row="4" Grid.Column="1" VerticalOptions="Center"  Text="Genere" FontSize="15" TextColor="#3c3c3b" />
+                    <Label Margin="0,0,0,5" x:Name="LblAnnoPubblicazione" Grid.Row="5" Grid.Column="1" VerticalOptions="Center"  Text="Pubblicazione" FontSize="15" TextColor="#3c3c3b" />
+                    <Label Margin="0,0,0,5" x:Name="LblPagine" Grid.Row="6" Grid.Column="1" VerticalOptions="Center"  Text="N. pagine: ..." FontSize="15" TextColor="#3c3c3b" />
+                    <ScrollView  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HeightRequest="270" VerticalOptions="Start" VerticalScrollBarVisibility="Always" Margin="0,10,0,0">                    
+                        <Label Margin="0,10,0,0"  x:Name="LblDescrizione"  VerticalOptions="Start" FontSize="16"  Text="Non è presente alcuna descrizione per il libro selezionato" TextColor="#3c3c3b" />
+                    </ScrollView>
                    
-                    <StackLayout Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" >
+                    <StackLayout Margin="0,0,0,20" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" >
                         <Label x:Name="LblDisponibilita" HorizontalOptions="Center" Text="Disponibile" TextColor="#0c4b8e" FontSize="18" FontAttributes="Bold" />
                         <Button Margin="40,10,40,0" x:Name="BtnPrenota" Text="PRENOTA" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnPrenota_Clicked"  />
+                        <Button Margin="40,0,40,20" IsVisible="false" x:Name="BtnAvvisa" Text="Avvisa quando torna disponibile" TextTransform="None" BackgroundColor="Transparent" FontSize="18" TextColor="#a4182f"  CornerRadius="30" Clicked="BtnAvvisa_Clicked"  />
+
                     </StackLayout>
 
 
