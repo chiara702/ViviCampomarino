@@ -41,8 +41,10 @@ namespace ViviCampomarino {
             App.Current.MainPage.Navigation.PushAsync(new PageBibliotecaCerca());
         }
 
-        private void TapAccount_Tapped(object sender, EventArgs e) {
-            App.Current.MainPage.Navigation.PushAsync(new PageAccount());
+        private async void TapAccount_Tapped(object sender, EventArgs e) {
+            if (App.LoginUidAuth == "") await App.Current.MainPage.Navigation.PushAsync(new PageLogin());
+            else await App.Current.MainPage.Navigation.PushAsync(new PageAccount());
+            //App.Current.MainPage.Navigation.PushAsync(new PageAccount());
         }
 
 

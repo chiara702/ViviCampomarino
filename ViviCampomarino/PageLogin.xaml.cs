@@ -47,5 +47,21 @@ namespace ViviCampomarino {
         private void BtnRegistrati_Clicked(object sender, EventArgs e) {
             App.Current.MainPage.Navigation.PushAsync(new PageRegistrazione());
         }
+        protected override bool OnBackButtonPressed()
+        {
+            BtnIndietro_Clicked(null, null);
+            return true;
+        }
+        private async void BtnIndietro_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
+        private void BtnRecuperaPassword_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new PageRecuperaPass());
+        }
+
+ 
     }
 }
