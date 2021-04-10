@@ -21,7 +21,10 @@ namespace ViviCampomarino {
             set { LblAutori.Text = value; }
         }
         public String Disponibile {
-            set { LblDisponibile.Text = value; }
+            set { 
+                LblDisponibile.Text = value;
+                if (LblDisponibile.Text != "Disponibile") LblDisponibile.TextColor = Color.Red;
+            }
         }
         public ImageSource Image {
             set { Device.BeginInvokeOnMainThread(() => ImgLibro.Source = value); }

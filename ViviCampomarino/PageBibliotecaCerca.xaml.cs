@@ -22,26 +22,43 @@ namespace ViviCampomarino {
             await MenuLaterale.Mostra();
         }
 
+        private Boolean RicercaValida(Libro libro, String ricerca, Boolean SoloDisponibili) {
+            var Ritorno = false;
+            if (libro == null) return false;
+            if (Funzioni.Antinull(libro.Titolo).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno=true;
+            if (Funzioni.Antinull(libro.Autori).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno=true;
+            if (Funzioni.Antinull(libro.Generi).Contains(ricerca,StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
+            if (Funzioni.Antinull(libro.ISBN).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
+            if (Funzioni.Antinull(libro.Editore).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
+            if (SoloDisponibili == true) if (libro.LibroDisponibile() != Libro._Disponibile.Disponibile) Ritorno = false;
+            return Ritorno;
+        }
+
         private async void BtnCerca_Clicked(object sender, EventArgs e) {
             TxtCerca.Text = Funzioni.Antinull(TxtCerca.Text);
+
             if (TxtCerca.Text == null) {
                 LblRicercaFallita.IsVisible = true;
                 return;
             }
             var db = new Database<Libro>();
-            var coll = db.GetCollection("/Libri/");
-            var query = coll.WhereGreaterThanOrEqualsTo("Titolo", TxtCerca.Text).WhereLessThanOrEqualsTo("Titolo", TxtCerca.Text + "\uf8ff").LimitedTo(200);
-            IQuerySnapshot<Libro> ListaLibri=null;
+            var coll = db.GetCollection("Libri");
+            IQuerySnapshot<Libro> ListaLibri = null;
             try {
-                ListaLibri = await query.GetDocumentsAsync<Libro>();
-            } catch(Exception err) {
+                ListaLibri = await coll.GetDocumentsAsync<Libro>();
+            } catch (Exception err) {
                 await DisplayAlert("Errore", "Errore: " + err.Message, "OK");
+                return;
             }
-            
-            var curStorage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current.GetRootReference();
-            //var listaFile = await curStorage.GetChild("Libri").ListAllAsync();
+            var curStorage = FirebaseStorage.current.GetRootReference();
             StackView.Children.Clear();
+            var LibriMostrati = 0;
+            var CercaSoloDisponibili = false;
+            if (CheckSoloDisponibili.IsChecked == true) CercaSoloDisponibili = true;
             foreach (var x in ListaLibri.Documents) {
+                if (RicercaValida(x.Data,TxtCerca.Text,CercaSoloDisponibili)==false) continue;
+                LibriMostrati++;
+                if (LibriMostrati >= 50) break;
                 var el = new ViewRisultatiRicerca();
                 el.IdLibro = x.Reference.Id;
                 el.Titolo = "" + x.Data.Titolo;
@@ -60,6 +77,13 @@ namespace ViviCampomarino {
                 }
                 StackView.Children.Add(el);
             }
+
+            if (LibriMostrati == 0) {
+                LblRicercaFallita.IsVisible = true;
+            } else LblRicercaFallita.IsVisible = false;
+            FrameRicerca.IsVisible = true;
+            StkCerca.IsVisible = false;
+
             _ = Task.Run(() => {
                 foreach (ViewRisultatiRicerca x in StackView.Children) {
                     try {
@@ -68,42 +92,39 @@ namespace ViviCampomarino {
                         //var presente = false;
                         //foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
                         //if (presente == true) {
+                        if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) {
+                            if (System.IO.File.GetCreationTime(System.IO.Path.GetTempPath() + nomefile) >= DateTime.Now.AddDays(-1)) {
+                                x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
+                                continue;
+                            }
+                        }
                         var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + nomefile);
-
-                        a.AwaitAsync().Wait(500);
+                        a.AwaitAsync().Wait(3000);
                         if (System.IO.File.Exists(System.IO.Path.GetTempPath() + nomefile) == true) {
                             x.Image = ImageSource.FromFile(System.IO.Path.GetTempPath() + nomefile);
                         }
-                    
-                            //await a.AwaitAsync();
+
+                        //await a.AwaitAsync();
                         //}
-                        
+
                     } catch (SystemException) {
                     } catch (Exception err) {
                     }
 
                 }
             });
-            if (ListaLibri.Count == 0) {
-                LblRicercaFallita.IsVisible = true;
-            } else LblRicercaFallita.IsVisible = false;
 
+            
 
-            StackView.IsVisible = true;
-            FrameRicerca.IsVisible = true;
-            StkCerca.IsVisible = false;
-            BtnNuovaRicerca.IsVisible = true;
-
-           
         }
 
+        
+
         private void BtnNuovaRicerca_Clicked(object sender, EventArgs e) {
-            //await Navigation.PushAsync(new PageBibliotecaCerca());
+            StackView.Children.Clear();
             FrameRicerca.IsVisible = false;
             StkCerca.IsVisible = true;
-            BtnNuovaRicerca.IsVisible = false;
             TxtCerca.Text = "";
-            StackView.IsVisible = false;
         }
 
         

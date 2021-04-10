@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using Plugin.Firebase.Storage;
 
 namespace ViviCampomarino {
     public class Database<T> {
-        private IFirebaseFirestore current = CrossFirebaseFirestore.Current;
+        public IFirebaseFirestore current = CrossFirebaseFirestore.Current;
         public Database() { }
         public async void WriteDocument(String Patch, T oggetto) {
             await current.GetDocument(Patch).SetDataAsync(oggetto);
@@ -25,6 +26,8 @@ namespace ViviCampomarino {
     }
 
     class FirebaseStorage {
+
+        public static IFirebaseStorage current=Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
         public static async Task DownloadFromStorage(String storagePath, String localPath) {
             var storage = Plugin.Firebase.Storage.CrossFirebaseStorage.Current;
             var child = storage.GetRootReference().GetChild(storagePath);

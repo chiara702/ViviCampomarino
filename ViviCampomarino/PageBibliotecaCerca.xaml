@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-               
+
 
                 <Frame Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White" Margin="0,0,0,10" CornerRadius="15" Padding="0">
                     <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Margin="0,0,0,0" >
@@ -27,13 +27,13 @@
                             <StackLayout x:Name="StkCerca">
                                 <Label   FontFamily="" Style="{StaticResource LabReg}"  Text="Ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold"/>
                                 <Entry x:Name="TxtCerca" Margin="10,1,10,20" Placeholder="Inserisci titolo o autore, ecc" Style="{StaticResource EntryReg}" />
-                                    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >
-                                        <CheckBox x:Name="CheckSoloDisponibili" Margin="10, 5,1,0"  Color="#a4182f"  />
-                                        <Label VerticalOptions="Start" Text="Mostra solo quelli disponibili"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="Gray" FontSize="16" WidthRequest="310" />
-                                    </StackLayout>
-                                    <Button Margin="25, 30,25,25" x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >
+                                    <CheckBox x:Name="CheckSoloDisponibili" Margin="10, 5,1,0"  Color="#a4182f"  />
+                                    <Label VerticalOptions="Start" Text="Mostra solo quelli disponibili"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="Gray" FontSize="16" WidthRequest="310" />
                                 </StackLayout>
-                                <Frame x:Name="FrameRicerca" Padding="0" IsVisible="false" Margin="0,0,0,5">
+                                <Button Margin="25, 30,25,25" x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
+                            </StackLayout>
+                            <Frame x:Name="FrameRicerca" Padding="0" IsVisible="false" Margin="0,0,0,5">
                                 <StackLayout>
                                     <Label  Margin="5, 10,5,10" HorizontalOptions="Center" Text="Risultati della ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold" />
 
@@ -42,8 +42,8 @@
                                     </StackLayout>
                                     <Label x:Name="LblRicercaFallita" IsVisible="false"  FontFamily="" Style="{StaticResource LabReg}"  Text="Ci spiace, non abbiamo trovato questo libro!"/>
 
-                                    <Button  Margin="25, 15,25,15" x:Name="BtnNuovaRicerca" IsVisible="false" Text="Effettua una nuova ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold"  Clicked="BtnNuovaRicerca_Clicked" />
-                                   
+                                    <Button  Margin="25, 15,25,15" x:Name="BtnNuovaRicerca" Text="Effettua una nuova ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold"  Clicked="BtnNuovaRicerca_Clicked" />
+
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
