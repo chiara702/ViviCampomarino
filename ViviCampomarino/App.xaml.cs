@@ -22,6 +22,7 @@ namespace ViviCampomarino {
             CrossFirebaseCloudMessaging.Current.TokenChanged += Current_TokenChanged;
             //CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
             
+
         }
         public static void SalvaImpostazioni() {
             Preferences.Set("LoginUidAuth", LoginUidAuth);
@@ -36,6 +37,10 @@ namespace ViviCampomarino {
                     Console.WriteLine("errore Login");
                 }
             }
+        }
+
+        public static void FcmTopicsRefresh() {
+            CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale").Wait();
         }
 
         private void Current_TokenChanged(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMTokenChangedEventArgs e) {

@@ -100,7 +100,6 @@ namespace ViviCampomarino {
 
         private async void BtnAvvisa_Clicked(object sender, EventArgs e)
         {
-            await CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync(idLibro);
             await DisplayAlert("Notifiche attivate","Riceverai una notifica non appena il libro tornerà disponibile!","OK");
             BtnAvvisa.Text = "Notifiche attivate";
             BtnAvvisa.Clicked -= BtnAvvisa_Clicked;

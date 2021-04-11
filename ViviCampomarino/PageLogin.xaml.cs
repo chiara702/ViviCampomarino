@@ -35,6 +35,11 @@ namespace ViviCampomarino {
                 App.SalvaImpostazioni();
                 var db = new Database<Login>();
                 App.login = await db.ReadDocument("Login/" + App.LoginUidAuth);
+                var token=await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+                var dictUpdate = new Dictionary<Object, Object>();
+                dictUpdate.Add("TokenFcm", token);
+                db.UpdateDocumentWithDictionary("Login/" + App.LoginUidAuth, dictUpdate);
+                App.FcmTopicsRefresh();
                 await Navigation.PopAsync();
             }catch (Exception err) { //FirebaseAuthInvalidCredentialsException
                 if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!","Ok");

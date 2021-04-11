@@ -23,6 +23,10 @@ namespace ViviCampomarino {
         public ICollectionReference GetCollection(String Path) {
             return current.GetCollection(Path);
         }
+        public async void UpdateDocumentWithDictionary(string Path,Dictionary<object,object> dictUpdate) {
+            var doc=current.GetDocument(Path);
+            await doc.SetDataAsync(dictUpdate, Plugin.Firebase.Firestore.SetOptions.Merge());
+        }
     }
 
     class FirebaseStorage {
@@ -92,6 +96,7 @@ namespace ViviCampomarino {
         [FirestoreProperty("Password")] public String Password { get; set; }
         [FirestoreProperty("Telefono")] public String Telefono { get; set; }
         [FirestoreProperty("Paese")] public String Paese { get; set; }
+        [FirestoreProperty("TokenFcm")] public String TokenFcm { get; set; }
     }
     public class NotificheGenerali {
         [FirestoreProperty("Data")] public DateTimeOffset Data { get; set; }
