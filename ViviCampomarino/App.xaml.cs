@@ -39,8 +39,8 @@ namespace ViviCampomarino {
             }
         }
 
-        public static void FcmTopicsRefresh() {
-            CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale").Wait();
+        public async static void FcmTopicsRefresh() {
+            await CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
         }
 
         private void Current_TokenChanged(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMTokenChangedEventArgs e) {
