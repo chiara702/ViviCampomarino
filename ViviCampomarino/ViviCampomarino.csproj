@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseAdmin" Version="2.0.0" />
     <PackageReference Include="Google.Apis.Books.v1" Version="1.51.0.2231" />
     <PackageReference Include="Plugin.Firebase" Version="1.0.7" />
     <PackageReference Include="Plugin.FirebaseAuth" Version="4.1.0" />
