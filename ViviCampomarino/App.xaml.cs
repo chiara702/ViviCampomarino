@@ -1,5 +1,5 @@
 ﻿using Plugin.Firebase.CloudMessaging;
-using Plugin.LocalNotifications;
+//using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
@@ -62,13 +62,15 @@ namespace ViviCampomarino {
         public async static void CheckNotificaLibri() {
             var db = new Database<object>();
             var collNot = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
-            var docNot = await collNot.GetDocumentsAsync<Object>();
+            var docNot = await collNot.GetDocumentsAsync<NotificheLibri>();
             var collLibri = db.current.GetCollection("Libri");
             foreach (var x in docNot.Documents) {
+                if (x.Data.NotificaDisponibile != true) continue;
                 var LibroId = x.Reference.Id.ToString();
                 var Libro = await collLibri.GetDocument(LibroId).GetDocumentSnapshotAsync<Libro>();
                 if (Libro.Data.LibroDisponibile() == ViviCampomarino.Libro._Disponibile.Disponibile) {
-                    CrossLocalNotifications.Current.Show("Libro ora disponibile", "Il libro '" + Libro.Data.Titolo + "' è ora disponibile!");
+                    //CrossLocalNotifications.Current.Show("Libro ora disponibile", "Il libro '" + Libro.Data.Titolo + "' è ora disponibile!");
+                    await x.Reference.DeleteDocumentAsync();
                 }
             }
         }

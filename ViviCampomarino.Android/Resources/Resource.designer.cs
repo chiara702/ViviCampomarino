@@ -2300,7 +2300,6 @@ namespace ViviCampomarino.Droid
 			global::Plugin.FirebaseAuth.Resource.Styleable.SignInButton_buttonSize = global::ViviCampomarino.Droid.Resource.Styleable.SignInButton_buttonSize;
 			global::Plugin.FirebaseAuth.Resource.Styleable.SignInButton_colorScheme = global::ViviCampomarino.Droid.Resource.Styleable.SignInButton_colorScheme;
 			global::Plugin.FirebaseAuth.Resource.Styleable.SignInButton_scopeUris = global::ViviCampomarino.Droid.Resource.Styleable.SignInButton_scopeUris;
-			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::ViviCampomarino.Droid.Resource.Drawable.plugin_lc_smallicon;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::ViviCampomarino.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::ViviCampomarino.Droid.Resource.Attribute.font;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::ViviCampomarino.Droid.Resource.Attribute.fontProviderAuthority;
@@ -14460,16 +14459,13 @@ namespace ViviCampomarino.Droid
 			public const int notify_panel_notification_icon_bg = 2131165397;
 			
 			// aapt resource value: 0x7F0700D6
-			public const int plugin_lc_smallicon = 2131165398;
+			public const int test_custom_background = 2131165398;
 			
 			// aapt resource value: 0x7F0700D7
-			public const int test_custom_background = 2131165399;
+			public const int tooltip_frame_dark = 2131165399;
 			
 			// aapt resource value: 0x7F0700D8
-			public const int tooltip_frame_dark = 2131165400;
-			
-			// aapt resource value: 0x7F0700D9
-			public const int tooltip_frame_light = 2131165401;
+			public const int tooltip_frame_light = 2131165400;
 			
 			static Drawable()
 			{
