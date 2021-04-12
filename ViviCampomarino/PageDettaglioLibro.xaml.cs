@@ -18,9 +18,10 @@ namespace ViviCampomarino {
             idLibro = IdLibro;
             Task.Run(LeggiDaDb);
         }
-        public void LeggiDaDb() {
+        public async void LeggiDaDb() {
             var db = new Database<Libro>();
-            var Libro = db.ReadDocument("/Libri/" + idLibro).Result;
+            var Libro = await db.ReadDocument("/Libri/" + idLibro);
+            var NotificaLibri = await db.GetCollection("/Login/" + App.LoginUidAuth + "/NotificheLibri/" + idLibro).GetDocumentsAsync<NotificheLibri>();
             try {
                 FirebaseStorage.DownloadFromStorage("Libri/" + idLibro + ".png", System.IO.Path.GetTempPath() + idLibro + ".png").Wait();
             } catch(Exception){}
@@ -99,8 +100,8 @@ namespace ViviCampomarino {
 
         }
 
-        private async void BtnAvvisa_Clicked(object sender, EventArgs e)
-        {
+
+        private async void BtnAvvisa_Clicked(object sender, EventArgs e){
             await DisplayAlert("Notifiche attivate","Riceverai una notifica non appena il libro tornerà disponibile!","OK");
             BtnAvvisa.Text = "Notifiche attivate";
             //Crea nuova notifica

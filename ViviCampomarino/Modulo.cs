@@ -106,13 +106,10 @@ namespace ViviCampomarino {
         [FirestoreProperty("DataEnd")] public DateTimeOffset DataEnd { get; set; }
     }
 
-    //public class NotificheLibri {
-    //    [FirestoreProperty("Data")] public DateTimeOffset Data { get; set; }
-    //    [FirestoreProperty("LibroId")] public String LibroId { get; set; }
-    //    [FirestoreProperty("LoginId")] public String LoginId { get; set; }
-    //    [FirestoreProperty("Ricevuta")] public Boolean Ricevuta { get; set; }
-    //    [FirestoreProperty("OraDisponibile")] public Boolean OraDisponibile { get; set; }
-    //}
+    public class NotificheLibri {
+        [FirestoreProperty("NotificaDisponibile")] public Boolean NotificaDisponibile { get; set; }
+
+    }
 
     public class Funzioni {
 

@@ -9,7 +9,7 @@ using Plugin.Firebase.Auth;
 using Android.Content;
 using Plugin.Firebase.CloudMessaging;
 using Android.Content.Res;
-using Plugin.LocalNotifications;
+//using Plugin.LocalNotifications;
 
 namespace ViviCampomarino.Droid
 {
@@ -28,7 +28,7 @@ namespace ViviCampomarino.Droid
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             //
 
-            LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.Icon; //Local Notification
+            //LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.Icon; //Local Notification
 
             //FirebaseCloudMessagingImplementation.OnNewIntent(this.Intent);
             LoadApplication(new App());
