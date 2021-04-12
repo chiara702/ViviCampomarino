@@ -1,5 +1,7 @@
 ﻿using Plugin.Firebase.CloudMessaging;
+using Plugin.LocalNotifications;
 using System;
+using System.Collections.Generic;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -57,14 +59,29 @@ namespace ViviCampomarino {
             });
             //throw new NotImplementedException();
         }
-
+        public async static void CheckNotificaLibri() {
+            var db = new Database<object>();
+            var collNot = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
+            var docNot = await collNot.GetDocumentsAsync<Object>();
+            var collLibri = db.current.GetCollection("Libri");
+            foreach (var x in docNot.Documents) {
+                var LibroId = x.Reference.Id.ToString();
+                var Libro = await collLibri.GetDocument(LibroId).GetDocumentSnapshotAsync<Libro>();
+                if (Libro.Data.LibroDisponibile() == ViviCampomarino.Libro._Disponibile.Disponibile) {
+                    CrossLocalNotifications.Current.Show("Libro ora disponibile", "Il libro '" + Libro.Data.Titolo + "' è ora disponibile!");
+                }
+            }
+        }
         private void Current_NotificationReceived(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationReceivedEventArgs e) {
+            if (e.Notification.Data.ContainsKey("disponibilitycheck")) { //Controllo Disponibilità Libri
+                CheckNotificaLibri();
+            }
             //Memorizza Notifica su Sql Lite
-            var Notifica = new SqlLiteNotifiche();
-            Notifica.Data = DateTime.Now;
-            Notifica.Descrizione = e.Notification.Body;
-            Notifica.Letta = false;
-            SqlLiteDatabase.Connessione.Insert(Notifica);
+            //var Notifica = new SqlLiteNotifiche();
+            //Notifica.Data = DateTime.Now;
+            //Notifica.Descrizione = e.Notification.Body;
+            //Notifica.Letta = false;
+            //SqlLiteDatabase.Connessione.Insert(Notifica);
 
             Device.BeginInvokeOnMainThread(() => {
                 Application.Current.MainPage.DisplayAlert("Received", e.Notification.Body, "OK");

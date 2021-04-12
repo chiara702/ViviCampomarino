@@ -36,6 +36,7 @@ namespace ViviCampomarino {
                 switch (Libro.LibroDisponibile()) {
                     case Libro._Disponibile.Disponibile:
                         LblDisponibilita.Text = "Disponibile";
+                        BtnAvvisa.IsVisible = false;
                         break;
                     case Libro._Disponibile.Prenotato:
                         LblDisponibilita.Text = "Prenotato";
@@ -102,8 +103,29 @@ namespace ViviCampomarino {
         {
             await DisplayAlert("Notifiche attivate","Riceverai una notifica non appena il libro tornerà disponibile!","OK");
             BtnAvvisa.Text = "Notifiche attivate";
-            BtnAvvisa.Clicked -= BtnAvvisa_Clicked;
+            //Crea nuova notifica
+            var db = new Database<object>();
+            var coll = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
+            var doc = coll.GetDocument(idLibro);
+            var dic = new Dictionary<Object, Object>();
+            dic.Add("LibroId", idLibro);
+            dic.Add("NotificaDisponibile", true);
+            await doc.SetDataAsync(dic);
+
             
+            //var db = new Database<NotificheLibri>();
+            //var coll=db.GetCollection("notificheLibri");
+            //var Not = new NotificheLibri();
+            //Not.LoginId = App.LoginUidAuth;
+            //Not.LibroId = idLibro;
+            //Not.Data = DateTimeOffset.Now;
+            //await coll.AddDocumentAsync(Not);
+            ////Controllo notifiche da inviare
+            //var snap = await coll.GetDocumentsAsync<NotificheLibri>();
+            //foreach (var x in snap.Documents) {
+            //    if (x.Data.Data <= DateTimeOffset.Now.AddYears(-1)) await x.Reference.DeleteDocumentAsync();
+            //    //da verificare notifiche soddisfatte
+            //}
 
         }
     }

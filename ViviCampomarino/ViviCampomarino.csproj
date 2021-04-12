@@ -10,6 +10,7 @@
     <PackageReference Include="Plugin.Firebase" Version="1.0.7" />
     <PackageReference Include="Plugin.FirebaseAuth" Version="4.1.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>

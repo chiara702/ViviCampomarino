@@ -106,6 +106,14 @@ namespace ViviCampomarino {
         [FirestoreProperty("DataEnd")] public DateTimeOffset DataEnd { get; set; }
     }
 
+    //public class NotificheLibri {
+    //    [FirestoreProperty("Data")] public DateTimeOffset Data { get; set; }
+    //    [FirestoreProperty("LibroId")] public String LibroId { get; set; }
+    //    [FirestoreProperty("LoginId")] public String LoginId { get; set; }
+    //    [FirestoreProperty("Ricevuta")] public Boolean Ricevuta { get; set; }
+    //    [FirestoreProperty("OraDisponibile")] public Boolean OraDisponibile { get; set; }
+    //}
+
     public class Funzioni {
 
         public static string CreateMD5(string input) {
@@ -196,6 +204,33 @@ namespace ViviCampomarino {
 
         public static String ToQueryData(DateTime data) {
             return data.ToString("yyyy/MM/dd HH:mm:ss");
+        }
+
+        public void NotificaFcmLegacyToToken(String Token, Dictionary<String, String> Data, String Titolo, String Messaggio) {
+            var ChiaveServer = "AAAAxUThnHg:APA91bGDlDzQO7E6VbW7BIKk9-PYyjXgXBBLqDIGCPGviRfOGh3w-J1NzrQdcYEFOxgC1p9KhJLXDN1QVIxfo5gEe_IaPZDhbfXe3Sj4arkEe0XW3CmJX63PAmYwCEXdxf6iLQcdRa7j";
+            var DataMessaggio = "'data':{";
+            foreach (var x in Data) {
+                DataMessaggio += "'" + x.Key + "':" + "'" + x.Value + "',";
+            }
+            DataMessaggio = DataMessaggio.TrimEnd(',');
+            DataMessaggio += "}";
+            var MessattioTo = "'to':'" + Token + "'";
+            var MessaggioTitle = "'title':'" + Titolo + "'";
+            var MessaggioBody = "'body':'" + Messaggio + "'";
+            var MessaggioNotification = "'notification':{'title':'" + Titolo + "','body':'" + Messaggio + "'}";
+
+            var MessaggioCompleto = "{" + DataMessaggio + "," + MessattioTo + "," + MessaggioTitle + "," + MessaggioBody + "," + MessaggioNotification + "}";
+            if (Messaggio == "") MessaggioCompleto = "{" + DataMessaggio + "," + MessattioTo + "}";
+
+            var req = System.Net.WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+            req.Method = "POST";
+            req.Headers.Add("Authorization", "key=" + ChiaveServer);
+            req.ContentType = "application/json; charset=utf-8";
+            var ByteMessaggio = System.Text.UTF8Encoding.UTF8.GetBytes(MessaggioCompleto.Replace("'", @""""));
+            req.GetRequestStream().Write(ByteMessaggio, 0, ByteMessaggio.Length);
+            var Resp = req.GetResponse().GetResponseStream();
+            var read = new System.IO.StreamReader(Resp);
+            var risposta = read.ReadToEnd();
         }
     }
 }

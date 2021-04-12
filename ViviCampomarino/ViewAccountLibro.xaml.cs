@@ -55,7 +55,14 @@ namespace ViviCampomarino {
                 this.IsVisible = false;
             } catch (Exception) {
                 await Application.Current.MainPage.DisplayAlert("Verifica connessione", "Non sono riuscito a cancellare la prenotazione!", "OK");
+                return;
             }
+            //var db2 = new Database<NotificheLibri>();
+            //var collNotLib = db2.GetCollection("notificheLibri");
+            //var NuovaNotifica = new NotificheLibri();
+
+           
+
         }
     }
 }
