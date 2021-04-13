@@ -104,14 +104,16 @@ namespace ViviCampomarino {
         private async void BtnAvvisa_Clicked(object sender, EventArgs e){
             await DisplayAlert("Notifiche attivate","Riceverai una notifica non appena il libro tornerà disponibile!","OK");
             BtnAvvisa.Text = "Notifiche attivate";
+            await CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync(idLibro + "-Disponibile");
+
             //Crea nuova notifica
-            var db = new Database<object>();
-            var coll = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
-            var doc = coll.GetDocument(idLibro);
-            var dic = new Dictionary<Object, Object>();
-            dic.Add("LibroId", idLibro);
-            dic.Add("NotificaDisponibile", true);
-            await doc.SetDataAsync(dic);
+            //var db = new Database<object>();
+            //var coll = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
+            //var doc = coll.GetDocument(idLibro);
+            //var dic = new Dictionary<Object, Object>();
+            //dic.Add("LibroId", idLibro);
+            //dic.Add("NotificaDisponibile", true);
+            //await doc.SetDataAsync(dic);
 
             
             //var db = new Database<NotificheLibri>();
