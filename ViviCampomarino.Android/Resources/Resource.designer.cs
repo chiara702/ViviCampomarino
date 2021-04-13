@@ -2300,6 +2300,7 @@ namespace ViviCampomarino.Droid
 			global::Plugin.FirebaseAuth.Resource.Styleable.SignInButton_buttonSize = global::ViviCampomarino.Droid.Resource.Styleable.SignInButton_buttonSize;
 			global::Plugin.FirebaseAuth.Resource.Styleable.SignInButton_colorScheme = global::ViviCampomarino.Droid.Resource.Styleable.SignInButton_colorScheme;
 			global::Plugin.FirebaseAuth.Resource.Styleable.SignInButton_scopeUris = global::ViviCampomarino.Droid.Resource.Styleable.SignInButton_scopeUris;
+			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::ViviCampomarino.Droid.Resource.Drawable.plugin_lc_smallicon;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::ViviCampomarino.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::ViviCampomarino.Droid.Resource.Attribute.font;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::ViviCampomarino.Droid.Resource.Attribute.fontProviderAuthority;
