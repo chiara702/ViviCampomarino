@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ViviCampomarino.PageHome" BackgroundColor="#3c3c3b" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content >
-        <Grid Margin="20,35, 20, 20" ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
@@ -13,6 +13,12 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="20,65,0,20" />
+                    <On Platform="Android" Value="20,35,0,20" />
+                </OnPlatform>
+            </Grid.Margin>
 
             <Image Grid.Row="0" Grid.ColumnSpan="2" Source="LogoViviCampomarino" HeightRequest="100" VerticalOptions="Start" />
 

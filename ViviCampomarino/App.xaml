@@ -7,7 +7,7 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">#3c3c3b</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -28,6 +28,27 @@
                 </Setter>
 
             </Style>
+
+            <Style TargetType="ScrollView" x:Key="Scrollbackground">
+                <Setter Property="BackgroundColor" Value="Transparent"  />
+                <!--<Setter Property="BackgroundColor" Value="#f0f0ef"  />-->
+                <Setter Property="Margin" Value="0,100,0,0" />
+                <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+                <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+                <Setter Property="Margin">
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS">0, 100, 0, 0</On>
+                        <On Platform="Android">0, 60, 0, 0</On>
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="Padding">
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS">0, 10, 0, 0</On>
+                        <On Platform="Android">0, 10, 0, 0</On>
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
             <Style TargetType="Label" x:Key="LblSideMenu">
                 <Setter Property="TextColor" Value="#636159" />
                 <Setter Property="HeightRequest" Value="50" />

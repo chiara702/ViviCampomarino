@@ -20,7 +20,7 @@
 
 
 
-                <Frame Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White" Margin="0,0,0,10" CornerRadius="15" Padding="0">
+                <Frame Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White" Margin="{OnPlatform Android= '0,0,0,10', iOS='0,35,0,10'}"    CornerRadius="15" Padding="0">
                     <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Margin="0,0,0,0" >
                         <StackLayout  Margin="10,10,10,10" VerticalOptions="StartAndExpand" Spacing="0">
                             <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio3" Margin="5,35,5,35" />
@@ -28,12 +28,12 @@
                                 <Label   FontFamily="" Style="{StaticResource LabReg}"  Text="Ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold"/>
                                 <Entry x:Name="TxtCerca" Margin="10,1,10,20" Placeholder="Inserisci titolo o autore, ecc" Style="{StaticResource EntryReg}" />
                                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >
-                                    <CheckBox x:Name="CheckSoloDisponibili" Margin="10, 5,1,0"  Color="#a4182f"  />
-                                    <Label VerticalOptions="Start" Text="Mostra solo quelli disponibili"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="Gray" FontSize="16" WidthRequest="310" />
+                                    <CheckBox x:Name="CheckSoloDisponibili" Margin="10, 5,1,0" VerticalOptions="Center" Color="#a4182f"  />
+                                    <Label VerticalOptions="Center" Text="Mostra solo quelli disponibili"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="Gray" FontSize="16" WidthRequest="310" />
                                 </StackLayout>
                                 <Button Margin="25, 30,25,25" x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
                             </StackLayout>
-                            <Frame x:Name="FrameRicerca" Padding="0" IsVisible="false" Margin="0,0,0,5">
+                            <Frame x:Name="FrameRicerca" Padding="0" IsVisible="false" Margin="0,0,0,5" HasShadow="False">
                                 <StackLayout>
                                     <Label  Margin="5, 10,5,10" HorizontalOptions="Center" Text="Risultati della ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold" />
 
