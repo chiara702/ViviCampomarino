@@ -32,6 +32,7 @@
                                     <Label VerticalOptions="Start" Text="Mostra solo quelli disponibili"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="Gray" FontSize="16" WidthRequest="310" />
                                 </StackLayout>
                                 <Button Margin="25, 30,25,25" x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
+                                <ActivityIndicator x:Name="Act1" IsVisible="false" IsRunning="true"/>
                             </StackLayout>
                             <Frame x:Name="FrameRicerca" Padding="0" IsVisible="false" Margin="0,0,0,5">
                                 <StackLayout>

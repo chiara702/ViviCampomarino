@@ -1,6 +1,7 @@
 ﻿using Plugin.Firebase.Firestore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,29 @@ using Xamarin.Forms.Xaml;
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageBibliotecaCerca : ContentPage {
+        Task TaskCaricaDb;
         public PageBibliotecaCerca() {
             InitializeComponent();
             MenuTop.MenuLaterale = MenuLaterale;
             StkCerca.IsVisible = true;
+            TaskCaricaDb = new Task(CaricaDb);
+            TaskCaricaDb.Start();
+        }
+        private IQuerySnapshot<Libro> ListaLibri = null;
+        private void CaricaDb() {
+            Debug.WriteLine("Start CaricaDb");
+            var db = new Database<Libro>();
+            var coll = db.GetCollection("Libri");
+            try {
+                Device.BeginInvokeOnMainThread(() => Act1.IsVisible = true);
+                Debug.WriteLine("Start GetDocument");
+                ListaLibri = coll.GetDocumentsAsync<Libro>().Result;
+                Debug.WriteLine("End GetDocument");
+                Device.BeginInvokeOnMainThread(() => Act1.IsVisible = false);
+            } catch (Exception err) {
+                DisplayAlert("Errore", "Errore: " + err.Message, "OK");
+                return;
+            }
         }
 
         private async void ImgMenu_Tapped(object sender, EventArgs e) {
@@ -28,28 +48,39 @@ namespace ViviCampomarino {
             if (Funzioni.Antinull(libro.Titolo).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno=true;
             if (Funzioni.Antinull(libro.Autori).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno=true;
             if (Funzioni.Antinull(libro.Generi).Contains(ricerca,StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
-            if (Funzioni.Antinull(libro.ISBN).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
-            if (Funzioni.Antinull(libro.Editore).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
+            //if (Funzioni.Antinull(libro.ISBN).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
+            //if (Funzioni.Antinull(libro.Editore).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
             if (SoloDisponibili == true) if (libro.LibroDisponibile() != Libro._Disponibile.Disponibile) Ritorno = false;
             return Ritorno;
         }
 
+        
+
         private async void BtnCerca_Clicked(object sender, EventArgs e) {
+            Debug.WriteLine("Start BtnCerca");
             TxtCerca.Text = Funzioni.Antinull(TxtCerca.Text);
 
             if (TxtCerca.Text == null) {
                 LblRicercaFallita.IsVisible = true;
                 return;
             }
-            var db = new Database<Libro>();
-            var coll = db.GetCollection("Libri");
-            IQuerySnapshot<Libro> ListaLibri = null;
-            try {
-                ListaLibri = await coll.GetDocumentsAsync<Libro>();
-            } catch (Exception err) {
-                await DisplayAlert("Errore", "Errore: " + err.Message, "OK");
-                return;
-            }
+            //Act1.IsVisible = true;
+            Debug.WriteLine("Start TaskWait");
+            await Task.Run(()=>TaskCaricaDb.Wait());
+            Debug.WriteLine("End TaskWait");
+            //Act1.IsVisible = false;
+            //var db = new Database<Libro>();
+            //var coll = db.GetCollection("Libri");
+            //IQuerySnapshot<Libro> ListaLibri = null;
+            //try {
+            //    Act1.IsVisible = true;
+            //    ListaLibri = await coll.GetDocumentsAsync<Libro>();
+            //    var a=coll.GetDocumentsAsync<Libro>();
+            //    Act1.IsVisible = false;
+            //} catch (Exception err) {
+            //    await DisplayAlert("Errore", "Errore: " + err.Message, "OK");
+            //    return;
+            //}
             var curStorage = FirebaseStorage.current.GetRootReference();
             StackView.Children.Clear();
             var LibriMostrati = 0;
@@ -109,6 +140,7 @@ namespace ViviCampomarino {
 
                     } catch (SystemException) {
                     } catch (Exception err) {
+                        var c = 0;
                     }
 
                 }
