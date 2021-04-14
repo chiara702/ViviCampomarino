@@ -21,7 +21,7 @@ namespace ViviCampomarino {
         public async void LeggiDaDb() {
             var db = new Database<Libro>();
             var Libro = await db.ReadDocument("/Libri/" + idLibro);
-            var NotificaLibri = await db.GetCollection("/Login/" + App.LoginUidAuth + "/NotificheLibri/" + idLibro).GetDocumentsAsync<NotificheLibri>();
+            //var NotificaLibri = await db.GetCollection("/Login/" + App.LoginUidAuth + "/NotificheLibri/" + idLibro).GetDocumentsAsync<NotificheLibri>();
             try {
                 FirebaseStorage.DownloadFromStorage("Libri/" + idLibro + ".png", System.IO.Path.GetTempPath() + idLibro + ".png").Wait();
             } catch(Exception){}

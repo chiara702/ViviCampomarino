@@ -15,7 +15,7 @@ namespace ViviCampomarino {
         public App() {
             InitializeComponent();
             LeggiImpostazioni();
-            IstanzaSqlLite = new SqlLiteDatabase();
+            //IstanzaSqlLite = new SqlLiteDatabase();
             var home = new PageHome();
             MainPage = new NavigationPage(home);
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
@@ -76,7 +76,7 @@ namespace ViviCampomarino {
         }
         private void Current_NotificationReceived(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationReceivedEventArgs e) {
             if (e.Notification.Data.ContainsKey("disponibilitycheck")) { //Controllo Disponibilità Libri
-                CheckNotificaLibri();
+                //CheckNotificaLibri();
             }
             //Memorizza Notifica su Sql Lite
             //var Notifica = new SqlLiteNotifiche();
