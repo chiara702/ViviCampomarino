@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Attualmente non sono previsti eventi!" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="20" Margin="20,0,20,0"/>
+                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Attualmente non sono previsti eventi!" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="White" FontSize="20" Margin="20,0,20,0"/>
                 <Image x:Name="ImgEventi"  Grid.Row="1" Grid.ColumnSpan="2" Source="" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                 <Button x:Name="BtnDownload" Grid.Row="2" Grid.ColumnSpan="2"  Margin="30, 5,30,25" VerticalOptions="Center"  Text="SCARICA" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold"   CornerRadius="{OnPlatform Android='30', iOS='22'}"   />
 

@@ -29,6 +29,15 @@
 
             </Style>
 
+            <Style TargetType="Frame" >
+                <Setter Property="HasShadow">
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <On Platform="iOS">false</On>
+                        <On Platform="Android">true</On>
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
             <Style TargetType="ScrollView" x:Key="Scrollbackground">
                 <Setter Property="BackgroundColor" Value="Transparent"  />
                 <!--<Setter Property="BackgroundColor" Value="#f0f0ef"  />-->

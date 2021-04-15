@@ -26,18 +26,8 @@ namespace ViviCampomarino {
 
         private async void BtnRecupera_Clicked(object sender, EventArgs e) {
             TxtEmail.Text = Funzioni.Antinull(TxtEmail.Text).Trim();
-            TxtPassword.Text = Funzioni.Antinull(TxtPassword.Text).Trim();
-            TxtConfermaPassword.Text = Funzioni.Antinull(TxtConfermaPassword.Text).Trim();
             if (Funzioni.IsValidEmail(TxtEmail.Text) == false) {
                 await DisplayAlert("", "Email in formato non corretto", "Riprova");
-                return;
-            }
-            if (TxtPassword.Text.Length < 6) {
-                await DisplayAlert("Password Error", "La password deve essere lunga almeno 6 caratteri!", "Ok");
-                return;
-            }
-            if (TxtPassword.Text != TxtConfermaPassword.Text) {
-                await DisplayAlert("Password Error", "Le password non coincidono!", "Ok");
                 return;
             }
             try {
@@ -45,6 +35,7 @@ namespace ViviCampomarino {
             } catch (Exception error) {
                 await DisplayAlert("", error.Message, "OK");
             }
+            await DisplayAlert("Reset password","Ti abbiamo inviato una e-mail per resettare la password","OK");
             
         }
     }

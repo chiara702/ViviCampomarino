@@ -31,10 +31,6 @@
 
                 <Label Text="Indirizzo e-mail" Style="{StaticResource LabReg}" TextColor="White"/>
                 <Entry x:Name="TxtEmail" Margin="10,1,10,10" Placeholder="E-mail" Style="{StaticResource EntryReg}" />
-                <Label Text="Nuova password" Style="{StaticResource LabReg}" TextColor="White"/>
-                <Entry x:Name="TxtPassword" Margin="10,1,10,10" Placeholder="Password" Style="{StaticResource EntryReg}" />
-                <Label Text="Inserisci nuovamente la password" Style="{StaticResource LabReg}" TextColor="White"/>
-                <Entry x:Name="TxtConfermaPassword" Margin="10,1,10,20" Placeholder="Conferma password" Style="{StaticResource EntryReg}" />
 
                 <Button Margin="20,20,20,15" x:Name="BtnRecupera" Text="RESET PASSWORD" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="24" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnRecupera_Clicked"  />
 

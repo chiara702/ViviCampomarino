@@ -16,8 +16,8 @@ namespace ViviCampomarino {
             InitializeComponent();
             LeggiImpostazioni();
             //IstanzaSqlLite = new SqlLiteDatabase();
-            var home = new PageHome();
-            MainPage = new NavigationPage(home);
+            var home = new PageLoading();
+            MainPage = home;
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
             CrossFirebaseCloudMessaging.Current.NotificationTapped += Current_NotificationTapped;
             CrossFirebaseCloudMessaging.Current.Error += Current_Error;
