@@ -203,7 +203,7 @@ namespace ViviCampomarino {
             return data.ToString("yyyy/MM/dd HH:mm:ss");
         }
 
-        public void NotificaFcmLegacyToToken(String Token, Dictionary<String, String> Data, String Titolo, String Messaggio) {
+        public static void NotificaFcmLegacyToToken(String Token, Dictionary<String, String> Data, String Titolo, String Messaggio) {
             var ChiaveServer = "AAAAxUThnHg:APA91bGDlDzQO7E6VbW7BIKk9-PYyjXgXBBLqDIGCPGviRfOGh3w-J1NzrQdcYEFOxgC1p9KhJLXDN1QVIxfo5gEe_IaPZDhbfXe3Sj4arkEe0XW3CmJX63PAmYwCEXdxf6iLQcdRa7j";
             var DataMessaggio = "'data':{";
             foreach (var x in Data) {

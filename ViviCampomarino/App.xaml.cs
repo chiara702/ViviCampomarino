@@ -41,8 +41,8 @@ namespace ViviCampomarino {
             }
         }
 
-        public async static void FcmTopicsRefresh() {
-            await CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
+        public static void FcmTopicsRefresh() {
+            CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
         }
 
         private void Current_TokenChanged(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMTokenChangedEventArgs e) {
@@ -59,24 +59,24 @@ namespace ViviCampomarino {
             });
             //throw new NotImplementedException();
         }
-        public async static void CheckNotificaLibri() {
-            var db = new Database<object>();
-            var collNot = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
-            var docNot = await collNot.GetDocumentsAsync<NotificheLibri>();
-            var collLibri = db.current.GetCollection("Libri");
-            foreach (var x in docNot.Documents) {
-                if (x.Data.NotificaDisponibile != true) continue;
-                var LibroId = x.Reference.Id.ToString();
-                var Libro = await collLibri.GetDocument(LibroId).GetDocumentSnapshotAsync<Libro>();
-                if (Libro.Data.LibroDisponibile() == ViviCampomarino.Libro._Disponibile.Disponibile) {
-                    //CrossLocalNotifications.Current.Show("Libro ora disponibile", "Il libro '" + Libro.Data.Titolo + "' è ora disponibile!");
-                    await x.Reference.DeleteDocumentAsync();
-                }
-            }
-        }
+        //public async static void CheckNotificaLibri() {
+        //    var db = new Database<object>();
+        //    var collNot = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
+        //    var docNot = await collNot.GetDocumentsAsync<NotificheLibri>();
+        //    var collLibri = db.current.GetCollection("Libri");
+        //    foreach (var x in docNot.Documents) {
+        //        if (x.Data.NotificaDisponibile != true) continue;
+        //        var LibroId = x.Reference.Id.ToString();
+        //        var Libro = await collLibri.GetDocument(LibroId).GetDocumentSnapshotAsync<Libro>();
+        //        if (Libro.Data.LibroDisponibile() == ViviCampomarino.Libro._Disponibile.Disponibile) {
+        //            //CrossLocalNotifications.Current.Show("Libro ora disponibile", "Il libro '" + Libro.Data.Titolo + "' è ora disponibile!");
+        //            await x.Reference.DeleteDocumentAsync();
+        //        }
+        //    }
+        //}
         private void Current_NotificationReceived(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationReceivedEventArgs e) {
-            if (e.Notification.Data.ContainsKey("disponibilitycheck")) { //Controllo Disponibilità Libri
-                //CheckNotificaLibri();
+            if (e.Notification.Data.ContainsKey("NotificaDisponibilita")) {
+                Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.UnsubscribeFromTopicAsync(e.Notification.Data["Notifica"]);
             }
             //Memorizza Notifica su Sql Lite
             //var Notifica = new SqlLiteNotifiche();
@@ -86,7 +86,7 @@ namespace ViviCampomarino {
             //SqlLiteDatabase.Connessione.Insert(Notifica);
 
             Device.BeginInvokeOnMainThread(() => {
-                Application.Current.MainPage.DisplayAlert("Received", e.Notification.Body, "OK");
+                Application.Current.MainPage.DisplayAlert(e.Notification.Title, e.Notification.Body, "OK");
             });
             //throw new NotImplementedException();
         }
