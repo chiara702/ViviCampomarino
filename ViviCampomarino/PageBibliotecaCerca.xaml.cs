@@ -64,11 +64,11 @@ namespace ViviCampomarino {
                 LblRicercaFallita.IsVisible = true;
                 return;
             }
-            //Act1.IsVisible = true;
+            Act1.IsVisible = true;
             Debug.WriteLine("Start TaskWait");
             await Task.Run(()=>TaskCaricaDb.Wait());
             Debug.WriteLine("End TaskWait");
-            //Act1.IsVisible = false;
+            Act1.IsVisible = false;
             //var db = new Database<Libro>();
             //var coll = db.GetCollection("Libri");
             //IQuerySnapshot<Libro> ListaLibri = null;

@@ -23,7 +23,8 @@ namespace ViviCampomarino.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
-            
+
+
             //Plugin FirebaseAuth Wrapper
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             //
