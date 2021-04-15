@@ -42,7 +42,7 @@
                     <StackLayout Margin="0,0,0,20" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand" >
                         <Label x:Name="LblDisponibilita" HorizontalOptions="Center" Text="Disponibile" TextColor="#0c4b8e" FontSize="18" FontAttributes="Bold" />
                         <Button Margin="40,10,40,0" x:Name="BtnPrenota" Text="PRENOTA" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnPrenota_Clicked"  />
-                        <Button Margin="40,0,40,20" IsVisible="true" x:Name="BtnAvvisa" Text="Avvisa quando torna disponibile" BackgroundColor="Transparent" FontSize="18" TextColor="#a4182f"  CornerRadius="30" Clicked="BtnAvvisa_Clicked"  />
+                        <Button Margin="20,0,20,20" IsVisible="true" x:Name="BtnAvvisa" Text="Avvisa quando&#10;torna disponibile" BackgroundColor="Transparent" FontSize="18" TextColor="#a4182f"  CornerRadius="30" Clicked="BtnAvvisa_Clicked"  />
 
                     </StackLayout>
 

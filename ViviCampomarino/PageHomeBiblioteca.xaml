@@ -17,8 +17,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
- 
-                <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio"  HeightRequest="180"  />
+
+                <Image  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio"  HeightRequest="180" Margin="{OnPlatform Android= '0,0,0,0', iOS='0,25,0,0'}"  />
 
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Margin="35,30,35,0" VerticalOptions="StartAndExpand" Spacing="30">
                     <Button x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
