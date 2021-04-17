@@ -24,8 +24,6 @@ namespace ViviCampomarino {
             await App.Current.MainPage.Navigation.PushAsync(new PageEventiHome());
         }
 
-        async void BtnTest_Clicked(object sender, EventArgs e) {
-            await App.Current.MainPage.Navigation.PushAsync(new PageNotifiche());
-        }
+      
     }
 }

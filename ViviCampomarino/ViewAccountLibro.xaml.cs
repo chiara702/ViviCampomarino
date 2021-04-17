@@ -21,6 +21,17 @@ namespace ViviCampomarino {
         public String Autori {
             set { LblAutori.Text = value; }
         }
+        public Libro InteroLibro {
+            set {
+                Device.BeginInvokeOnMainThread(() => {
+                    if (value.DataPrestito > DateTimeOffset.Parse("01/01/01")) {
+                        LblScadenzaPrestito.Text = value.DataPrestito.AddDays(30).ToString("dd/MM/yy");
+                    } else {
+                        LblScadenzaPrestito.Text = "prenotato";
+                    }
+                });
+            }
+        }
       
         public ImageSource Image {
             set { Device.BeginInvokeOnMainThread(() => ImgLibro.Source = value); }
@@ -33,7 +44,6 @@ namespace ViviCampomarino {
 
         public ViewAccountLibro() {
             InitializeComponent();
-
             
         }
 
@@ -63,10 +73,6 @@ namespace ViviCampomarino {
             data.Add("Notifica", "Disponibile" + IdLibro);
             data.Add("Da", App.LoginUidAuth);
             Funzioni.NotificaFcmLegacyToToken("/topics/Disponibile" + IdLibro,  data, "Libro ora disponibile", "Il libro: " + LblTitolo.Text + " è tornato ora disponibile!");
-
-            
-            
-
 
 
         }

@@ -32,7 +32,8 @@ namespace ViviCampomarino {
                     var el = new ViewAccountLibro();
                     el.IdLibro = x.Reference.Id;
                     el.Titolo = Funzioni.Antinull(x.Data.Titolo);
-                    
+                    el.Autori = Funzioni.Antinull(x.Data.Autori);
+                    el.InteroLibro = x.Data;
                     StkLibriPresi.Children.Add(el);
                 }
                 if (LibriSnap.Documents.Count() == 0) {

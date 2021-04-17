@@ -19,9 +19,8 @@
     </Frame>
     <Label Margin="0,10,0,0" x:Name="LblTitolo" Grid.Row="0" VerticalOptions="Center" Grid.Column="1" Text="Titolo del libro................................................." FontSize="16" FontAttributes="Bold" MaxLines="2"  LineBreakMode="TailTruncation" TextColor="#3c3c3b"/>
     <Label x:Name="LblAutori" Grid.Row="1" Grid.Column="1" VerticalOptions="Center"  Text="Nome autore" LineBreakMode="TailTruncation" FontSize="14"  TextColor="#3c3c3b" />
-    <Button Grid.Row="3" Grid.Column="1"  Margin="0, 5,0,5" VerticalOptions="Center"  x:Name="BtnDettaglio" Text="DETTAGLI" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnDettaglio_Clicked"  />
-    <Button Grid.Row="4" Grid.Column="1"  Margin="0, 5,0,5" VerticalOptions="Center"  x:Name="BtnCancellaPrenotazione" Text="CANCELLA" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCancellaPrenotazione_Clicked"  />
-    <Label x:Name="LblScadenzaPrestito" Grid.Row="2" Grid.Column="1" Margin="0, 5,0,5" HorizontalOptions="Center"  Text="Scadenza prestito: 05/05/2020" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" />
-    <Line  X1="250" Stroke="#0c4b8e" StrokeDashArray="2" StrokeDashOffset="5"  HorizontalOptions="Center" />
+    <Label  Grid.Row="2" Grid.Column="1" Margin="0, 5,0,5" HorizontalOptions="Center"  Text="Scadenza prestito:" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" />
+    <Label x:Name="LblScadenzaPrestito" Grid.Row="3" Grid.Column="1" Margin="0, 5,0,5" HorizontalOptions="Center"  Text="../../.." TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" />
+    <Button Grid.Row="4" Grid.Column="1"  Margin="0, 5,0,5" VerticalOptions="Center"  x:Name="BtnCancellaPrenotazione" Text="CANCELLA" BackgroundColor="#a4182f" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCancellaPrenotazione_Clicked"  />
 
 </Grid>
