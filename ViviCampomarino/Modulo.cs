@@ -72,6 +72,10 @@ namespace ViviCampomarino {
         [FirestoreProperty("DataPrenotato")] public DateTimeOffset DataPrenotato { get; set; }
         [FirestoreProperty("Disponibile")] public Boolean Disponibile { get; set; }
         [FirestoreProperty("DataPrestito")] public DateTimeOffset DataPrestito { get; set; }
+        [FirestoreProperty("DataInserimento")] public DateTimeOffset DataInserimento { get; set; }
+        [FirestoreProperty("Sala")] public String Sala { get; set; }
+        [FirestoreProperty("Scaffale")] public String Scaffale { get; set; }
+        [FirestoreProperty("Ripiano")] public String Ripiano { get; set; }
 
         public enum _Disponibile {
             Disponibile,
