@@ -11,7 +11,6 @@ namespace ViviCampomarino {
 
         public static String LoginUidAuth = "";
         public static Login login=null;
-        public static SqlLiteDatabase IstanzaSqlLite;
         public App() {
             InitializeComponent();
             LeggiImpostazioni();
