@@ -40,5 +40,21 @@
 	</dict>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Vogliamo conoscere la tua posizione mentre l&apos;app è in funzione per geolocalizzare il luogo in cui effettuare i ritiri e visualizzare i servizi disponibili nella tua area di interesse</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Possiamo conoscere la tua posizione per la localizzazione? </string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Vogliamo conoscere la tua posizione mentre l&apos;app è in funzione per geolocalizzare il luogo in cui effettuare il ritiro</string>
+  <key>NSCameraUsageDescription</key>
+  <string>L&apos;app necessita di accedere alla fotocamera per scattare foto ai rifiuti abbandonati o da ritirare.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>L&apos;app necessita di accedere alla galleria per il salvataggio delle foto e per il caricamento di un&apos;immagine relativa al rifiuto.</string>
+  <key>FirebaseAppDelegateProxyEnabled</key>
+  <false/>
+  <key>UIBackgroundModes</key>
+  <array>
+    <string>remote-notification</string>
+  </array>
 </dict>
 </plist>
