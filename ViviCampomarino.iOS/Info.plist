@@ -48,6 +48,18 @@
 	<string>L&apos;app necessita di accedere alla fotocamera per scattare foto ai rifiuti abbandonati o da ritirare.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>L&apos;app necessita di accedere alla galleria per il salvataggio delle foto e per il caricamento di un&apos;immagine relativa al rifiuto.</string>
+  <key>NSContactsUsageDescription</key>
+  <string>Accesso ai contatti in rubrica non necessario</string>
+  <key>NSCalendarsUsageDescription</key>
+  <string>Accesso al calendario non necessario</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Accesso al microfono non necessario</string>
+  <key>NSAppleMusicUsageDescription</key>
+  <string>Musica Richiesta</string>
+  <key>NSSiriUsageDescription</key>
+  <string>Richiesta a Siri</string>
+  <key>NSBluetoothAlwaysUsageDescript</key>
+  <string>Richiesta accesso Bluetooth</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
