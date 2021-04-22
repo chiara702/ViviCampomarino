@@ -36,16 +36,22 @@
                     </StackLayout>
                     <Label Text="Nome" Style="{StaticResource LabReg}" />
                 <Entry x:Name="TxtNome" Margin="10,1,10,20" Placeholder="Nome" Style="{StaticResource EntryReg}" />
+                    
                     <Label Text="Cognome" Style="{StaticResource LabReg}" />
                 <Entry x:Name="TxtCognome" Margin="10,1,10,20" Placeholder="Cognome" Style="{StaticResource EntryReg}" />
-                    <Label Text="Cognome" Style="{StaticResource LabReg}" />
-                <Entry x:Name="TxtPaese" Margin="10,1,10,20" Placeholder="Paese" Style="{StaticResource EntryReg}" />
+                    
                     <Label Text="Paese" Style="{StaticResource LabReg}" />
+                <Entry x:Name="TxtPaese" Margin="10,1,10,20" Placeholder="Paese" Style="{StaticResource EntryReg}" />
+                    
+                    <Label Text="Telefono" Style="{StaticResource LabReg}" />
                 <Entry x:Name="TxtTelefono" Margin="10,1,10,20" Placeholder="Recapito telefonico" Style="{StaticResource EntryReg}" />
-                    <Label Text="Recapito telefonico" Style="{StaticResource LabReg}" />
-                <Entry x:Name="TxtEmail" Margin="10,1,10,20" Placeholder="E-mail" Style="{StaticResource EntryReg}" Unfocused="TxtEmail_Unfocused" />
+                    
+                    <Label Text="E-mail" Style="{StaticResource LabReg}" />
+                <Entry x:Name="TxtEmail" Margin="10,1,10,20" Placeholder="E-mail" Style="{StaticResource EntryReg}" Unfocused="TxtEmail_Unfocused" Keyboard="Email" TextTransform="Lowercase"/>
+                    
                     <Label Text="Password" Style="{StaticResource LabReg}" />
                 <Entry x:Name="TxtPassword" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" Unfocused="TxtPassword_Unfocused" />
+                    
                     <Label Text="Immetti nuovamente la password" Style="{StaticResource LabReg}" />
                 <Entry x:Name="TxtPassword2" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" Unfocused="TxtPassword2_Unfocused" />
                 
@@ -58,7 +64,7 @@
                     </Label>
                 </StackLayout>
 
-                <Button Margin="20,20,20,35" x:Name="BtnRegistrati" Text="REGISTRATI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30"  Clicked="BtnRegistrati_Clicked" />
+                <Button Margin="20,20,20,35" x:Name="BtnRegistrati" Text="REGISTRATI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30"  Clicked="BtnRegistrati_Clicked" IsEnabled="False" />
 
 
                 </StackLayout>

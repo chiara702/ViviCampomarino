@@ -20,7 +20,7 @@
 
 
 
-                <Frame Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White"    CornerRadius="15" Padding="0">
+                <Frame Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="White" Margin="{OnPlatform Android='0,0,0,10',iOS='0,35,0,10'}"    CornerRadius="15" Padding="0">
                     <!--Margin="{OnPlatform Android='0,0,0,10',iOS='0,35,0,10'}"-->
                     <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never" Margin="0,0,0,0" >
                         <StackLayout  Margin="10,10,10,10" VerticalOptions="StartAndExpand" Spacing="0">

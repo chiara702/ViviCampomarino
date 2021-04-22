@@ -1,4 +1,4 @@
-﻿using Plugin.Firebase.Auth;
+﻿using Plugin.FirebaseAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,11 @@ namespace ViviCampomarino
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageRegistrazione : ContentPage{
-        private IFirebaseAuth authCurrent;
+        //private IFirebaseAuth authCurrent;
+        private IFirebaseAuth authCurrent = Plugin.FirebaseAuth.CrossFirebaseAuth.Current;
         public PageRegistrazione(){
             InitializeComponent();
-            authCurrent = Plugin.Firebase.Auth.CrossFirebaseAuth.Current;
+            //authCurrent = Plugin.Firebase.Auth.CrossFirebaseAuth.Current;
         }
 
         private void LinkPrivacy_Tapped(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace ViviCampomarino
 
         private void CheckPrivacy_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-
+            BtnRegistrati.IsEnabled=!CheckPrivacy.IsChecked;
         }
 
         private async void BtnRegistrati_Clicked(object sender, EventArgs e){
@@ -34,8 +35,8 @@ namespace ViviCampomarino
                 return;
             }
             try {
-                var ListaUtentiRegistratiConEmail = await authCurrent.FetchSignInMethodsAsync(Funzioni.Antinull(TxtEmail.Text).Trim());
-                if (ListaUtentiRegistratiConEmail.Count() > 0) {
+                var ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(Funzioni.Antinull(TxtEmail.Text).Trim());
+                if (ListaUtentiRegistratiConEmail!=null) {
                     await DisplayAlert("Registrazione", "Email già presente nei nostri archivi. Se hai dimenticato la password puoi crearne una nuova!", "OK");
                     return;
                 }
@@ -43,8 +44,8 @@ namespace ViviCampomarino
                 await DisplayAlert("", "Errore nell'email!", "OK");
                 return;
             }
-            var tmp=await authCurrent.SignInWithEmailAndPasswordAsync(Funzioni.Antinull(TxtEmail.Text).Trim(), Funzioni.Antinull(TxtPassword.Text).Trim());
-            var UidAuth = tmp.Uid;
+            var tmp=await authCurrent.Instance.CreateUserWithEmailAndPasswordAsync(Funzioni.Antinull(TxtEmail.Text).Trim(), Funzioni.Antinull(TxtPassword.Text).Trim());
+            var UidAuth = tmp.User.Uid; //tmp.Uid;
             var db = new Database<Login>();
             var login = new Login();
             login.Cognome = Funzioni.Antinull(TxtCognome.Text).Trim();
@@ -55,7 +56,8 @@ namespace ViviCampomarino
             login.Telefono = Funzioni.Antinull(TxtTelefono.Text).Trim();
             login.UidAuth = UidAuth;
             db.WriteDocument("Login/" + UidAuth, login);
-            await tmp.SendEmailVerificationAsync();
+            //await tmp.SendEmailVerificationAsync();
+            await authCurrent.Instance.CurrentUser.SendEmailVerificationAsync();
             await DisplayAlert("Registrazione", "E' stata appena inviata una email per confermare la registrazione.", "OK");
             await Navigation.PopAsync();
 
@@ -63,7 +65,7 @@ namespace ViviCampomarino
 
         private async void TxtEmail_Unfocused(object sender, FocusEventArgs e) {
             try {
-                var ListaUtentiRegistratiConEmail = await authCurrent.FetchSignInMethodsAsync(Funzioni.Antinull(TxtEmail.Text).Trim());
+                var ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(Funzioni.Antinull(TxtEmail.Text).Trim());
                 if (ListaUtentiRegistratiConEmail.Count() > 0) {
                     _ = Task.Run(() => {
                         var colorOrig = TxtEmail.BackgroundColor;
