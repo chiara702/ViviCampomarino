@@ -26,7 +26,7 @@ namespace ViviCampomarino
 
         private void CheckPrivacy_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            BtnRegistrati.IsEnabled=!CheckPrivacy.IsChecked;
+            BtnRegistrati.IsEnabled=CheckPrivacy.IsChecked;
         }
 
         private async void BtnRegistrati_Clicked(object sender, EventArgs e){
