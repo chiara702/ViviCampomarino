@@ -64,5 +64,9 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+  <key>UIUserInterfaceStyle</key>
+  <string>Light</string>
+  <key>UIStatusBarStyle</key>
+  <string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>
