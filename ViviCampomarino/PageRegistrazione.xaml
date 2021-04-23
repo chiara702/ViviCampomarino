@@ -27,7 +27,7 @@
             </ContentView>
 
 
-            <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10,10,0" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never">
+            <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,10,10,0" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" x:Name="Scrool1">
             <Frame  BackgroundColor="White" Margin="0,0,0,10" CornerRadius="15" Padding="0">
                 <StackLayout Margin="10,25,10,0">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="-45,0,0,20">
@@ -44,7 +44,7 @@
                 <Entry x:Name="TxtPaese" Margin="10,1,10,20" Placeholder="Paese" Style="{StaticResource EntryReg}" />
                     
                     <Label Text="Telefono" Style="{StaticResource LabReg}" />
-                <Entry x:Name="TxtTelefono" Margin="10,1,10,20" Placeholder="Recapito telefonico" Style="{StaticResource EntryReg}" />
+                <Entry x:Name="TxtTelefono" Margin="10,1,10,20" Placeholder="Recapito telefonico" Style="{StaticResource EntryReg}" Keyboard="Telephone" />
                     
                     <Label Text="E-mail" Style="{StaticResource LabReg}" />
                 <Entry x:Name="TxtEmail" Margin="10,1,10,20" Placeholder="E-mail" Style="{StaticResource EntryReg}" Unfocused="TxtEmail_Unfocused" Keyboard="Email" TextTransform="Lowercase"/>

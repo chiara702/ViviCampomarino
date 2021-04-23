@@ -24,24 +24,39 @@ namespace ViviCampomarino
 
         }
 
-        private void CheckPrivacy_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            BtnRegistrati.IsEnabled=!CheckPrivacy.IsChecked;
+        private void CheckPrivacy_CheckedChanged(object sender, CheckedChangedEventArgs e){
+            BtnRegistrati.IsEnabled=CheckPrivacy.IsChecked;
         }
 
+        private async void TextBoxLampeggiante(Entry Source) {
+            for (int x = 0; x <= 3; x++) {
+                await ViewExtensions.ColorTo(Source, Color.White, Color.Red, i=>Source.BackgroundColor=i,150);
+                await ViewExtensions.ColorTo(Source, Color.Red, Color.White, i => Source.BackgroundColor = i, 150);
+            }
+        }
         private async void BtnRegistrati_Clicked(object sender, EventArgs e){
+            if (Funzioni.Antinull(TxtNome.Text).Length < 3) { _ = Task.Run(() => TextBoxLampeggiante(TxtNome)); _ = Scrool1.ScrollToAsync(0, 0, true); return; }
+            if (Funzioni.Antinull(TxtCognome.Text).Length < 3) { _ = Task.Run(() => TextBoxLampeggiante(TxtCognome)); _ = Scrool1.ScrollToAsync(0, 100, true); return; }
+            if (Funzioni.Antinull(TxtPaese.Text).Length < 3) { _ = Task.Run(() => TextBoxLampeggiante(TxtPaese)); _ = Scrool1.ScrollToAsync(0, 200, true); return; }
+            if (Funzioni.Antinull(TxtTelefono.Text).Length < 3) { _ = Task.Run(() => TextBoxLampeggiante(TxtTelefono)); _ = Scrool1.ScrollToAsync(0, 300, true); return; }
+            if (Funzioni.Antinull(TxtPassword.Text).Length < 6) { await Task.Run(() => TextBoxLampeggiante(TxtPassword)); await DisplayAlert("", "La password deve essere lunga almeno 6 caratteri!", "OK"); }
+            if (Funzioni.Antinull(TxtPassword.Text) != Funzioni.Antinull(TxtPassword2.Text)) { _ = Task.Run(() => TextBoxLampeggiante(TxtPassword2)); return; }
+
             if (Funzioni.IsValidEmail(Funzioni.Antinull(TxtEmail.Text)) == false) {
                 await DisplayAlert("Registrazione", "Email non valida!", "OK");
+                _ = Task.Run(() => TextBoxLampeggiante(TxtEmail));
                 return;
             }
             try {
                 var ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(Funzioni.Antinull(TxtEmail.Text).Trim());
-                if (ListaUtentiRegistratiConEmail!=null) {
+                if (ListaUtentiRegistratiConEmail!=null && ListaUtentiRegistratiConEmail.Length>0 && String.IsNullOrEmpty(ListaUtentiRegistratiConEmail[0])==false) {
                     await DisplayAlert("Registrazione", "Email già presente nei nostri archivi. Se hai dimenticato la password puoi crearne una nuova!", "OK");
+                    _ = Task.Run(() => TextBoxLampeggiante(TxtEmail));
                     return;
                 }
-            } catch (Exception) {
-                await DisplayAlert("", "Errore nell'email!", "OK");
+            } catch (Exception er) {
+                await DisplayAlert("", "Errore nell'email! "+ er.Message, "OK");
+                _ = Task.Run(() => TextBoxLampeggiante(TxtEmail));
                 return;
             }
             var tmp=await authCurrent.Instance.CreateUserWithEmailAndPasswordAsync(Funzioni.Antinull(TxtEmail.Text).Trim(), Funzioni.Antinull(TxtPassword.Text).Trim());
@@ -56,7 +71,6 @@ namespace ViviCampomarino
             login.Telefono = Funzioni.Antinull(TxtTelefono.Text).Trim();
             login.UidAuth = UidAuth;
             db.WriteDocument("Login/" + UidAuth, login);
-            //await tmp.SendEmailVerificationAsync();
             await authCurrent.Instance.CurrentUser.SendEmailVerificationAsync();
             await DisplayAlert("Registrazione", "E' stata appena inviata una email per confermare la registrazione.", "OK");
             await Navigation.PopAsync();
