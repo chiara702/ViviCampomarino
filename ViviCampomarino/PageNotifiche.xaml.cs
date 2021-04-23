@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,6 +33,12 @@ namespace ViviCampomarino {
             Device.BeginInvokeOnMainThread(() => { 
                 foreach (var x in querySnap.Documents) {
                     var el = new ViewNotifica();
+                    el.EventoEliminaNotifica += (s, e) =>
+                    {
+                        var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",").ToList<String>();
+                        //NotificheNascoste.Add(el.)
+                    };
+
                     el.Descrizione = Funzioni.Antinull(x.Data.Titolo);
                     StkNotifiche.Children.Add(el);
                 }

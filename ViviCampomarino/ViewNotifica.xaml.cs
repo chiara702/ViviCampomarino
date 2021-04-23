@@ -17,5 +17,10 @@ namespace ViviCampomarino {
         public String Descrizione {
             set { LblDescrizione.Text = value; }
         }
+        public event EventHandler EventoEliminaNotifica;
+
+        private void ImageButton_Clicked(object sender, EventArgs e) {
+            EventoEliminaNotifica.Invoke(this, e);
+        }
     }
 }
