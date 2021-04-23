@@ -100,5 +100,15 @@ namespace ViviCampomarino
         private async void BtnIndietro_Clicked(object sender, EventArgs e){
             await Navigation.PopAsync();
         }
+
+        private void TxtPassword_Unfocused(object sender, FocusEventArgs e)
+        {
+
+        }
+
+        private void TxtPassword2_Unfocused(object sender, FocusEventArgs e)
+        {
+
+        }
     }
 }
