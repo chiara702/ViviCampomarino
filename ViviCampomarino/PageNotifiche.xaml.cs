@@ -30,13 +30,18 @@ namespace ViviCampomarino {
             var coll=db.GetCollection("NotificheGenerali");
             var querySnap = await coll.GetDocumentsAsync<NotificheGenerali>(Plugin.Firebase.Firestore.Source.Default);
             StkNotifiche.Children.Clear();
-            Device.BeginInvokeOnMainThread(() => { 
+            Device.BeginInvokeOnMainThread(() => {
+                var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",", StringSplitOptions.RemoveEmptyEntries).ToList<String>();
                 foreach (var x in querySnap.Documents) {
+                    if (NotificheNascoste.Contains(x.Reference.Id)) continue;
                     var el = new ViewNotifica();
+                    el.IdNotifica = x.Reference.Id;
                     el.EventoEliminaNotifica += (s, e) =>
                     {
-                        var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",").ToList<String>();
-                        //NotificheNascoste.Add(el.)
+                        var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",",StringSplitOptions.RemoveEmptyEntries).ToList<String>();
+                        NotificheNascoste.Add(el.IdNotifica);
+                        Preferences.Set("NotificheNascoste", String.Join(",", NotificheNascoste));
+                        StkNotifiche.Children.Remove(el);
                     };
 
                     el.Descrizione = Funzioni.Antinull(x.Data.Titolo);

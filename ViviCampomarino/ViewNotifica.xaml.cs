@@ -13,6 +13,10 @@ namespace ViviCampomarino {
         public ViewNotifica() {
             InitializeComponent();
         }
+        public String IdNotifica{
+            get;
+            set;
+        }
         
         public String Descrizione {
             set { LblDescrizione.Text = value; }
