@@ -40,7 +40,7 @@
                                     <Label  Margin="5, 10,5,10" HorizontalOptions="Center" Text="Risultati della ricerca" TextTransform="None" FontSize="18" BackgroundColor="Transparent"  TextColor="#a4182f" FontAttributes="Bold" />
 
                                     <StackLayout Orientation="Vertical" x:Name="StackView" Margin="0,0,0,10">
-                                        <vivicampomarino:ViewRisultatiRicerca></vivicampomarino:ViewRisultatiRicerca>
+                                        
                                     </StackLayout>
                                     <Label x:Name="LblRicercaFallita" IsVisible="false"  FontFamily="" Style="{StaticResource LabReg}"  Text="Ci spiace, non abbiamo trovato questo libro!"/>
 

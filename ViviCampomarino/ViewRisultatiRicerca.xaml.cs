@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +11,15 @@ using Xamarin.Forms.Xaml;
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewRisultatiRicerca : Grid {
-        public String IdLibro {
-            get;
-            set;
+        public DataRow rowLibro;
+        public ViewRisultatiRicerca(DataRow rowLibro) {
+            InitializeComponent();
+            this.rowLibro = rowLibro;
+            LblTitolo.Text = rowLibro["Titolo"].ToString();
+            LblAutori.Text = rowLibro["Autori"].ToString();
+            
         }
-        public String Titolo {
-            set { LblTitolo.Text = value; }
-        }
-        public String Autori {
-            set { LblAutori.Text = value; }
-        }
+        
         public String Disponibile {
             set { 
                 LblDisponibile.Text = value;
@@ -29,18 +29,13 @@ namespace ViviCampomarino {
         public ImageSource Image {
             set { Device.BeginInvokeOnMainThread(() => ImgLibro.Source = value); }
         }
-        public String ISBN {
-            get;
-            set;
-        }
+        
 
 
-        public ViewRisultatiRicerca() {
-            InitializeComponent();
-        }
+        
 
         private async void BtnPrenota_Clicked(object sender, EventArgs e) {
-             await App.Current.MainPage.Navigation.PushAsync(new PageDettaglioLibro(IdLibro));
+             await App.Current.MainPage.Navigation.PushAsync(new PageDettaglioLibro(rowLibro));
         }
     }
 }

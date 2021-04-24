@@ -1,6 +1,7 @@
 ﻿using Plugin.Firebase.CloudMessaging;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,74 +12,60 @@ using Xamarin.Forms.Xaml;
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageDettaglioLibro : ContentPage {
-        private String idLibro;
+        private DataRow rowLibro;
+        private MySqlvc dbSql = new MySqlvc();
 
-        public PageDettaglioLibro(String IdLibro) {
+        public PageDettaglioLibro(DataRow rowLibro) {
             InitializeComponent();
-            idLibro = IdLibro;
-            Task.Run(LeggiDaDb);
+            this.rowLibro = rowLibro;
+            LblAutori.Text = Funzioni.Antinull(rowLibro["Autori"]);
+            LblTitolo.Text = Funzioni.Antinull(rowLibro["Titolo"]);
+            LblSottotitolo.Text = Funzioni.Antinull(rowLibro["Sommario"]);
+            LblCasaEditrice.Text = "Casa editrice: " + Funzioni.Antinull(rowLibro["Editore"]);
+            LblAnnoPubblicazione.Text = "Pubblicazione: " + Funzioni.Antinull(rowLibro["DataPubblicazione"]);
+            LblGenere.Text = "Genere: " + Funzioni.Antinull(rowLibro["Generi"]);
+            LblPagine.Text = "Pagine: " + Funzioni.Antinull(rowLibro["Pagine"]);
+            LblDescrizione.Text = Funzioni.Antinull(rowLibro["Descrizione"]);
+            switch (FunzioniLibri.LibroDisponibile(rowLibro)) {
+                case FunzioniLibri._Disponibile.Disponibile:
+                    LblDisponibilita.Text = "Disponibile";
+                    BtnAvvisa.IsVisible = false;
+                    break;
+                case FunzioniLibri._Disponibile.Prenotato:
+                    LblDisponibilita.Text = "Prenotato";
+                    BtnPrenota.IsEnabled = false;
+                    BtnAvvisa.IsVisible = true;
+                    break;
+                case FunzioniLibri._Disponibile.Prestato:
+                    LblDisponibilita.Text = "Momentaneamente non disponibile";
+                    BtnPrenota.IsEnabled = false;
+                    BtnAvvisa.IsVisible = true;
+                    break;
+            }
+            ImgLibro.Source = ImageSource.FromFile(System.IO.Path.GetTempPath() + rowLibro["Id"].ToString() + ".png");
         }
-        public async void LeggiDaDb() {
-            var db = new Database<Libro>();
-            var Libro = await db.ReadDocument("/Libri/" + idLibro);
-            //var NotificaLibri = await db.GetCollection("/Login/" + App.LoginUidAuth + "/NotificheLibri/" + idLibro).GetDocumentsAsync<NotificheLibri>();
-            try {
-                FirebaseStorage.DownloadFromStorage("Libri/" + idLibro + ".png", System.IO.Path.GetTempPath() + idLibro + ".png").Wait();
-            } catch(Exception){}
-            Device.BeginInvokeOnMainThread(() => {
-                LblAutori.Text = Funzioni.Antinull(Libro.Autori);
-                LblTitolo.Text = Funzioni.Antinull(Libro.Titolo);
-                LblSottotitolo.Text = Funzioni.Antinull(Libro.Sommario);
-                LblCasaEditrice.Text = "Casa editrice: "+ Funzioni.Antinull(Libro.Editore);
-                LblAnnoPubblicazione.Text = "Pubblicazione: " + Funzioni.Antinull(Libro.DataPubblicazione);
-                LblGenere.Text = "Genere: " + Funzioni.Antinull(Libro.Generi);
-                LblPagine.Text = "Pagine: " + Funzioni.Antinull(Libro.Pagine);
-                LblDescrizione.Text = Funzioni.Antinull(Libro.Descrizione);
-                switch (Libro.LibroDisponibile()) {
-                    case Libro._Disponibile.Disponibile:
-                        LblDisponibilita.Text = "Disponibile";
-                        BtnAvvisa.IsVisible = false;
-                        break;
-                    case Libro._Disponibile.Prenotato:
-                        LblDisponibilita.Text = "Prenotato";
-                        BtnPrenota.IsEnabled = false;
-                        BtnAvvisa.IsVisible = true;
-                        break;
-                    case Libro._Disponibile.Prestato:
-                        LblDisponibilita.Text = "Momentaneamente non disponibile";
-                        BtnPrenota.IsEnabled = false;
-                        BtnAvvisa.IsVisible = true;
-                        break;
-                }
-                if (System.IO.File.Exists(System.IO.Path.GetTempPath() + idLibro + ".png") == true) ImgLibro.Source = ImageSource.FromFile(System.IO.Path.GetTempPath() + idLibro + ".png");
-            });
-        }
+        
 
         private async void BtnPrenota_Clicked(object sender, EventArgs e) {
-            var db = new Database<Libro>();
-            var snap = await db.GetCollection("Libri").GetDocument(idLibro).GetDocumentSnapshotAsync<Libro>(Plugin.Firebase.Firestore.Source.Server);
-            var x = snap.Data.Autori;
-            snap.Data.Autori = "prova";
-            var y = snap.Data.Autori;
-
-            if (snap == null) {
-                await DisplayAlert("Errore", "Non riesco a recuperare i dati del libro online!", "OK");
-                return;
-            }
+            
             if (App.LoginUidAuth=="") {
                 await DisplayAlert("Errore", "Devi eseguire il login!", "OK");
                 await Navigation.PushAsync(new PageLogin());
                 return;
             }
             
-            if (snap.Data.LibroDisponibile() == Libro._Disponibile.Disponibile) {
+            if (FunzioniLibri.LibroDisponibile(rowLibro) == FunzioniLibri._Disponibile.Disponibile) {
                 var dictUpdate = new Dictionary<Object, Object>();
                 dictUpdate.Add("IdUtente", App.LoginUidAuth);
                 dictUpdate.Add("DataPrenotato", DateTimeOffset.Now);
                 dictUpdate.Add("DataPrestito", DateTimeOffset.Parse("01/01/1900"));
 
                 try {
-                    await snap.Reference.SetDataAsync(dictUpdate, Plugin.Firebase.Firestore.SetOptions.Merge());
+                    var dbBis = new MySqlvc.DBSqlBis(dbSql, "Libri");
+                    dbBis.GetParam.AddWithValue("IdUtente", App.LoginUidAuth);
+                    dbBis.GetParam.AddWithValue("DataPrenotato", DateTimeOffset.Now);
+                    dbBis.GetParam.AddWithValue("DataPrestito", null);
+                    dbBis.GeneraUpdate(Convert.ToInt32(rowLibro["Id"]));
                 } catch(Exception err) {
                     await DisplayAlert("Errore", "Errore nel salvataggio! " + err.Message, "OK");
                     return;
@@ -104,7 +91,7 @@ namespace ViviCampomarino {
         private async void BtnAvvisa_Clicked(object sender, EventArgs e){
             await DisplayAlert("Notifiche attivate","Riceverai una notifica non appena il libro tornerà disponibile!","OK");
             BtnAvvisa.Text = "Notifica attivate";
-            await CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("Disponibile" + idLibro);
+            await CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("Disponibile" + rowLibro["IdLibro"].ToString());
 
             //Crea nuova notifica
             //var db = new Database<object>();

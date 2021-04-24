@@ -18,9 +18,15 @@ namespace ViviCampomarino {
             await App.Current.MainPage.Navigation.PushAsync(new PageHomeBiblioteca());
 
 
+
         }
 
         async void BtnEventi_Clicked(object sender, EventArgs e) {
+            //Test Database MySql
+            //var Db = new MySqlvc();
+            //var Table = Db.EseguiQuery("Select * From Libri");
+            //await DisplayAlert("TEST", "Test MySql: Row count libri: " + Table.Rows.Count.ToString(), "OK");
+
             await App.Current.MainPage.Navigation.PushAsync(new PageEventiHome());
         }
 

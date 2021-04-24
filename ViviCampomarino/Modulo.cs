@@ -8,8 +8,25 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using Plugin.Firebase.Storage;
 using Xamarin.Forms;
+using System.Data;
 
 namespace ViviCampomarino {
+
+    public static class FunzioniLibri {
+        public enum _Disponibile {
+            Disponibile,
+            Prenotato,
+            Prestato
+        }
+        public static _Disponibile LibroDisponibile(DataRow RowLibro) {
+            if (Convert.ToBoolean(RowLibro["Disponibile"]) == true) {
+                if (Convert.IsDBNull( RowLibro["DataPrenotato"]) == true) return _Disponibile.Disponibile;
+                if (System.DateTime.Now - Convert.ToDateTime(RowLibro["DataPrenotato"]) >= TimeSpan.FromDays(7)) return _Disponibile.Disponibile; else return _Disponibile.Prenotato;
+            } else {
+                return _Disponibile.Prestato;
+            }
+        }
+    }
     public class Database<T> {
         public IFirebaseFirestore current = CrossFirebaseFirestore.Current;
         public Database() { }

@@ -1,6 +1,7 @@
 ﻿using Plugin.Firebase.Firestore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -16,47 +17,24 @@ namespace ViviCampomarino {
         public PageBibliotecaCerca() {
             InitializeComponent();
             MenuTop.MenuLaterale = MenuLaterale;
-            StkCerca.IsVisible = true;
-            TaskCaricaDb = new Task(CaricaDb);
-            TaskCaricaDb.Start();
+           
         }
         private IQuerySnapshot<Libro> ListaLibri = null;
-        private void CaricaDb() {
-            Debug.WriteLine("Start CaricaDb");
-            var db = new Database<Libro>();
-            var coll = db.GetCollection("Libri");
-            try {
-                Device.BeginInvokeOnMainThread(() => Act1.IsVisible = true);
-                Debug.WriteLine("Start GetDocument");
-                ListaLibri = coll.GetDocumentsAsync<Libro>().Result;
-                Debug.WriteLine("End GetDocument");
-                Device.BeginInvokeOnMainThread(() => Act1.IsVisible = false);
-            } catch (Exception err) {
-                DisplayAlert("Errore", "Errore: " + err.Message, "OK");
-                return;
-            }
-        }
+        
 
         private async void ImgMenu_Tapped(object sender, EventArgs e) {
             MenuLaterale.IsVisible = true;
             await MenuLaterale.Mostra();
         }
 
-        private Boolean RicercaValida(Libro libro, String ricerca, Boolean SoloDisponibili) {
-            var Ritorno = false;
-            if (libro == null) return false;
-            if (Funzioni.Antinull(libro.Titolo).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno=true;
-            if (Funzioni.Antinull(libro.Autori).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno=true;
-            if (Funzioni.Antinull(libro.Generi).Contains(ricerca,StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
-            //if (Funzioni.Antinull(libro.ISBN).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
-            //if (Funzioni.Antinull(libro.Editore).Contains(ricerca, StringComparison.CurrentCultureIgnoreCase) == true) Ritorno = true;
-            if (SoloDisponibili == true) if (libro.LibroDisponibile() != Libro._Disponibile.Disponibile) Ritorno = false;
-            return Ritorno;
-        }
+        
+
+        
 
         
 
         private async void BtnCerca_Clicked(object sender, EventArgs e) {
+            var curStorage = FirebaseStorage.current.GetRootReference();
             Debug.WriteLine("Start BtnCerca");
             TxtCerca.Text = Funzioni.Antinull(TxtCerca.Text);
 
@@ -65,47 +43,31 @@ namespace ViviCampomarino {
                 return;
             }
             Act1.IsVisible = true;
-            Debug.WriteLine("Start TaskWait");
-            await Task.Run(()=>TaskCaricaDb.Wait());
-            Debug.WriteLine("End TaskWait");
-            Act1.IsVisible = false;
-            //var db = new Database<Libro>();
-            //var coll = db.GetCollection("Libri");
-            //IQuerySnapshot<Libro> ListaLibri = null;
-            //try {
-            //    Act1.IsVisible = true;
-            //    ListaLibri = await coll.GetDocumentsAsync<Libro>();
-            //    var a=coll.GetDocumentsAsync<Libro>();
-            //    Act1.IsVisible = false;
-            //} catch (Exception err) {
-            //    await DisplayAlert("Errore", "Errore: " + err.Message, "OK");
-            //    return;
-            //}
-            var curStorage = FirebaseStorage.current.GetRootReference();
-            StackView.Children.Clear();
-            var LibriMostrati = 0;
             var CercaSoloDisponibili = false;
             if (CheckSoloDisponibili.IsChecked == true) CercaSoloDisponibili = true;
-            foreach (var x in ListaLibri.Documents) {
-                if (RicercaValida(x.Data,TxtCerca.Text,CercaSoloDisponibili)==false) continue;
+            var Db = new MySqlvc();
+            var Table = await Task.Run(()=> Db.EseguiQuery(String.Format("Select * From Libri Where Titolo like '%{0}%' or Autori like '%{0}%' or Generi like '{0}%' limit 30", Funzioni.AntiAp(TxtCerca.Text))));
+
+          
+            StackView.Children.Clear();
+            int LibriMostrati = 0;
+            foreach (DataRow x in Table.Rows) {
+                if (LibriMostrati > 15) break;
                 LibriMostrati++;
-                if (LibriMostrati >= 50) break;
-                var el = new ViewRisultatiRicerca();
-                el.IdLibro = x.Reference.Id;
-                el.Titolo = "" + x.Data.Titolo;
-                el.Autori = "" + x.Data.Autori;
-                el.IdLibro = x.Reference.Id;
-                switch (x.Data.LibroDisponibile()) {
-                    case Libro._Disponibile.Disponibile:
+                var el = new ViewRisultatiRicerca(x);
+                var Disp = FunzioniLibri.LibroDisponibile(x);
+                switch (Disp) {
+                    case FunzioniLibri._Disponibile.Disponibile:
                         el.Disponibile = "Disponibile";
                         break;
-                    case Libro._Disponibile.Prenotato:
+                    case FunzioniLibri._Disponibile.Prenotato:
                         el.Disponibile = "Non Disponibile";
                         break;
-                    case Libro._Disponibile.Prestato:
+                    case FunzioniLibri._Disponibile.Prestato:
                         el.Disponibile = "Non Disponibile";
                         break;
                 }
+                if (CercaSoloDisponibili == true) continue;
                 StackView.Children.Add(el);
             }
 
@@ -114,11 +76,11 @@ namespace ViviCampomarino {
             } else LblRicercaFallita.IsVisible = false;
             FrameRicerca.IsVisible = true;
             StkCerca.IsVisible = false;
-
+            Act1.IsVisible = false;
             _ = Task.Run(() => {
                 foreach (ViewRisultatiRicerca x in StackView.Children) {
                     try {
-                        var nomefile = x.IdLibro + ".png";
+                        var nomefile = x.rowLibro["Id"].ToString() + ".png";
                         var rifs = curStorage.GetChild("Libri/" + nomefile);
                         //var presente = false;
                         //foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;
@@ -146,11 +108,11 @@ namespace ViviCampomarino {
                 }
             });
 
-            
+
 
         }
 
-        
+
 
         private void BtnNuovaRicerca_Clicked(object sender, EventArgs e) {
             StackView.Children.Clear();
