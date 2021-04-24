@@ -16,9 +16,6 @@ namespace ViviCampomarino {
 
         async void BtnBiblioteca_Clicked(object sender, EventArgs e) {
             await App.Current.MainPage.Navigation.PushAsync(new PageHomeBiblioteca());
-
-
-
         }
 
         async void BtnEventi_Clicked(object sender, EventArgs e) {
@@ -30,6 +27,11 @@ namespace ViviCampomarino {
             await App.Current.MainPage.Navigation.PushAsync(new PageEventiHome());
         }
 
-      
+
+        async void BtnScopri_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarino());
+
+        }
     }
 }

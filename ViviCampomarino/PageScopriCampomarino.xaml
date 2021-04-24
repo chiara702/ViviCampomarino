@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" 
+             x:Class="ViviCampomarino.PageScopriCampomarino" >
+    <ContentPage.Content>
+        <Grid BackgroundColor="#f0f0ef" VerticalOptions="FillAndExpand" Margin="0">
+
+           
+
+            <maps:Map Grid.Column="0" x:Name="map1" HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
+                <x:Arguments>
+                    
+                </x:Arguments>
+                <maps:Map.Pins>
+
+                </maps:Map.Pins>
+
+            </maps:Map>
+            
+            <ImageButton  Grid.Column="0" x:Name="BtnScanPoint" Source="ScanCode.png" VerticalOptions="Start" HorizontalOptions="End"  Margin="15,30,15,0"  HeightRequest="120" BackgroundColor="Transparent" Clicked="BtnScanPoint_Clicked" />
+
+            <Frame Grid.Column="0" VerticalOptions="End"  x:Name="FrmDettagli" IsVisible="true" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0" CornerRadius="10" BackgroundColor="White" Margin="10,0,10,10" Padding="0,0,0,0"   >
+                <Frame.HasShadow>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <On Platform="iOS" Value="false" />
+                        <On Platform="Android" Value="true" />
+                    </OnPlatform>
+                </Frame.HasShadow>
+                <Grid Margin="10,10,10,10" RowSpacing="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <BoxView Grid.Row="0" BackgroundColor="Transparent" />
+                    <BoxView Grid.Row="1" BackgroundColor="Transparent"/>
+                    <BoxView Grid.Row="2" BackgroundColor="Transparent" />
+
+                    <Label x:Name="LblDenominazione" Grid.Row="0" FontSize="18" TextColor="#0c4b8e"  Text="DENOMINAZIONE PUNTO DI INTERESSE" HorizontalOptions="Start" FontAttributes="Bold" VerticalOptions="Center" TextTransform="Uppercase" Style="{StaticResource UserFont}" />
+                    <Label x:Name="LblDescrizione" Grid.Row="1" Text="Testo breve descrittivo" FontSize="16" HorizontalOptions="Start" VerticalOptions="Start" Style="{StaticResource UserFont}" />
+                    <Button Grid.Row="2" Margin="30,0,30,0" x:Name="BtnDettagli" Text="DETTAGLI" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="{OnPlatform Android='30', iOS='22'}" Clicked="BtnDettagli_Clicked"  />
+
+                </Grid>
+
+            </Frame>
+            <Frame x:Name="FrmInfo" HeightRequest="600" IsVisible="true" BackgroundColor="#005595" Margin="10,30,10,10" Padding="0" CornerRadius="10">
+                <Image   Source="Info"  Margin="0" VerticalOptions="FillAndExpand" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapInfo" Tapped="TapInfo_Tapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
