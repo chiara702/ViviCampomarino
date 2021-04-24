@@ -141,12 +141,8 @@ namespace ViviCampomarino {
         }
         
         public static bool IsValidEmail(string email) {
-            try {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            } catch {
-                return false;
-            }
+            var regex = new Regex("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
+            return regex.IsMatch(email);
         }
 
 
