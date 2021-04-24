@@ -45,9 +45,11 @@ namespace ViviCampomarino {
                 db.UpdateDocumentWithDictionary("Login/" + App.LoginUidAuth, dictUpdate);
                 App.FcmTopicsRefresh();
                 await Navigation.PopAsync();
-            }catch (Exception err) { //FirebaseAuthInvalidCredentialsException
+            }catch (FirebaseAuthException err) { //FirebaseAuthInvalidCredentialsException
+                var DataError = err.Data;
+                
                 if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!","Ok");
-                else await DisplayAlert("Login", "Errore generale: " + err.Message, "Ok");
+                else await DisplayAlert("Login", "Errore generale: " + err.Message + " " + err.ErrorCode, "Ok");
                 return;
             }
             

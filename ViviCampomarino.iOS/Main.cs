@@ -14,9 +14,11 @@ namespace ViviCampomarino.iOS
         {
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
+            Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
+
             UIApplication.Main(args, null, "AppDelegate");
             
-            Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
+            
 
         }
     }
