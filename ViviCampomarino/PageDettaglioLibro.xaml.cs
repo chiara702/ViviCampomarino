@@ -55,10 +55,11 @@ namespace ViviCampomarino {
             }
             
             if (FunzioniLibri.LibroDisponibile(rowLibro) == FunzioniLibri._Disponibile.Disponibile) {
-                var dictUpdate = new Dictionary<Object, Object>();
-                dictUpdate.Add("IdUtente", App.LoginUidAuth);
-                dictUpdate.Add("DataPrenotato", DateTimeOffset.Now);
-                dictUpdate.Add("DataPrestito", DateTimeOffset.Parse("01/01/1900"));
+                var rowLibri = FunzioniLibri.ListaRowLibriPrenotatiPrestati(App.LoginUidAuth);
+                if (rowLibri.Count>=5) {
+                    await DisplayAlert("", "Hai superato il numero max di libri prenotabili!", "OK");
+                    return;
+                }
 
                 try {
                     var dbBis = new MySqlvc.DBSqlBis(dbSql, "Libri");
