@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,21 +24,16 @@ namespace ViviCampomarino {
         }
 
         
-        private async void CaricaLibri() {
-            var db = new Database<Libro>();
-            var coll = db.GetCollection("Libri");
-            var LibriSnap = await coll.WhereEqualsTo("IdUtente", App.LoginUidAuth).GetDocumentsAsync<Libro>();
+        private void CaricaLibri() {
+            var rowLibri = FunzioniLibri.ListaRowLibriPrenotatiPrestati(App.LoginUidAuth);
+
             Device.BeginInvokeOnMainThread(() => { 
                 StkLibriPresi.Children.Clear();
-                foreach (var x in LibriSnap.Documents) {
-                    var el = new ViewAccountLibro();
-                    el.IdLibro = x.Reference.Id;
-                    el.Titolo = Funzioni.Antinull(x.Data.Titolo);
-                    el.Autori = Funzioni.Antinull(x.Data.Autori);
-                    el.InteroLibro = x.Data;
+                foreach (var x in rowLibri) {
+                    var el = new ViewAccountLibro(x);
                     StkLibriPresi.Children.Add(el);
                 }
-                if (LibriSnap.Documents.Count() == 0) {
+                if (rowLibri.Count() == 0) {
                     StkNoPrestito.IsVisible=true;
                 } else {
                     StkNoPrestito.IsVisible = false;
@@ -48,7 +44,7 @@ namespace ViviCampomarino {
                     {
                         try
                         {
-                            var nomefile = x.IdLibro + ".png";
+                            var nomefile = x.rowLibro["Id"].ToString() + ".png";
                             var rifs = FirebaseStorage.current.GetRootReference().GetChild("Libri/" + nomefile);
                             //var presente = false;
                             //foreach (var f in listaFile.Items) if (f.Name == nomefile) presente = true;

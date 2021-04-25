@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,56 +12,41 @@ using Xamarin.Forms.Xaml;
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewAccountLibro : Grid {
-        public String IdLibro {
-            get;
-            set;
-        }
-        public String Titolo {
-            set { LblTitolo.Text = value; }
-        }
-        public String Autori {
-            set { LblAutori.Text = value; }
-        }
-        public Libro InteroLibro {
-            set {
-                Device.BeginInvokeOnMainThread(() => {
-                    if (value.DataPrestito > DateTimeOffset.Parse("01/01/01")) {
-                        LblScadenzaPrestito.Text = value.DataPrestito.AddDays(30).ToString("dd/MM/yy");
-                    } else {
-                        LblScadenzaPrestito.Text = "prenotato";
-                    }
-                });
+
+        public DataRow rowLibro;
+        public ViewAccountLibro(DataRow RowLibro) {
+            InitializeComponent();
+            rowLibro = RowLibro;
+            LblTitolo.Text = Funzioni.Antinull(rowLibro["Titolo"]);
+            LblAutori.Text = Funzioni.Antinull(rowLibro["Autori"]);
+
+            if (Convert.IsDBNull(rowLibro["DataPrestito"])==false && Convert.ToDateTime(rowLibro["DataPrestito"]) > DateTimeOffset.Parse("01/01/01")) {
+                LblScadenzaPrestito.Text = Convert.ToDateTime(rowLibro["DataPrestito"]).AddDays(30).ToString("dd/MM/yy");
+            } else {
+                LblScadenzaPrestito.Text = "prenotato";
             }
         }
-      
+
+
+
+
         public ImageSource Image {
             set { Device.BeginInvokeOnMainThread(() => ImgLibro.Source = value); }
         }
-        public String ISBN {
-            get;
-            set;
-        }
 
 
-        public ViewAccountLibro() {
-            InitializeComponent();
-            
-        }
 
-        
 
-        private void BtnDettaglio_Clicked(object sender, EventArgs e) {
-            
-        }
+
+
+
+
 
         private async void BtnCancellaPrenotazione_Clicked(object sender, EventArgs e) {
             try {
-                var db = new Database<Libro>();
-                var document = db.GetCollection("Libri").GetDocument(IdLibro);
-                var Dict = new Dictionary<Object, Object>();
-                Dict.Add("DataPrenotato", DateTimeOffset.Parse("01/01/1900"));
-                Dict.Add("IdUtente", "");
-                await document.SetDataAsync(Dict, Plugin.Firebase.Firestore.SetOptions.Merge());
+                var Db = new MySqlvc();
+                Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "DataPrenotato", null);
+                Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "IdUtente", "");
                 await Application.Current.MainPage.DisplayAlert("Prenotazione", "Prenotazione cancellata con successo!", "OK");
                 this.IsVisible = false;
             } catch (Exception) {
@@ -69,10 +55,10 @@ namespace ViviCampomarino {
             }
             var data = new Dictionary<string, string>();
             data.Add("NotificaDisponibilita", "si");
-            data.Add("IdLibro", IdLibro);
-            data.Add("Notifica", "Disponibile" + IdLibro);
+            data.Add("IdLibro", rowLibro["Id"].ToString());
+            data.Add("Notifica", "Disponibile" + rowLibro["Id"].ToString());
             data.Add("Da", App.LoginUidAuth);
-            Funzioni.NotificaFcmLegacyToToken("/topics/Disponibile" + IdLibro,  data, "Libro ora disponibile", "Il libro: " + LblTitolo.Text + " è tornato ora disponibile!");
+            Funzioni.NotificaFcmLegacyToToken("/topics/Disponibile" + rowLibro["Id"].ToString(), data, "Libro ora disponibile", "Il libro: " + LblTitolo.Text + " è tornato ora disponibile!");
 
 
         }

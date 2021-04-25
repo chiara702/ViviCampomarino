@@ -26,6 +26,18 @@ namespace ViviCampomarino {
                 return _Disponibile.Prestato;
             }
         }
+        public static List<DataRow> ListaRowLibriPrenotatiPrestati(string IdUtente) {
+            var Db = new MySqlvc();
+            var TableLibriUtente = Db.EseguiQuery("Select * From Libri Where IdUtente='" + Funzioni.AntiAp(App.LoginUidAuth) + "'");
+            var ListaRowLibri = new List<DataRow>();
+            foreach (DataRow x in TableLibriUtente.Rows) {
+                if (FunzioniLibri.LibroDisponibile(x) == FunzioniLibri._Disponibile.Prenotato || FunzioniLibri.LibroDisponibile(x) == FunzioniLibri._Disponibile.Prestato) {
+                    ListaRowLibri.Add(x);
+                }
+            }
+            Db.CloseCommit();
+            return ListaRowLibri;
+        }
     }
     public class Database<T> {
         public IFirebaseFirestore current = CrossFirebaseFirestore.Current;
