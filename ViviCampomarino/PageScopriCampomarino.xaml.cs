@@ -63,13 +63,17 @@ namespace ViviCampomarino
         }
 
         private async void TapInfo_Tapped(object sender, EventArgs e)
-        {
+        { 
+            await DisplayAlert("Presto disponibile!", "Funzione presto disponibile", "OK");
+            await Navigation.PopAsync();
+            return;
+
             _ = await FrmInfo.FadeTo(0, 500);
             FrmInfo.IsVisible = false;
             _ = await FrmDettagli.FadeTo(0, 1);
             FrmDettagli.IsVisible = true;
             _ = FrmDettagli.FadeTo(1, 800);
-
+           
         }
     }
 

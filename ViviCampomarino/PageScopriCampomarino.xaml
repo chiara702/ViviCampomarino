@@ -19,7 +19,7 @@
             
             <ImageButton  Grid.Column="0" x:Name="BtnScanPoint" Source="ScanCode.png" VerticalOptions="Start" HorizontalOptions="End"  Margin="15,30,15,0"  HeightRequest="120" BackgroundColor="Transparent" Clicked="BtnScanPoint_Clicked" />
 
-            <Frame Grid.Column="0" VerticalOptions="End"  x:Name="FrmDettagli" IsVisible="true" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0" CornerRadius="10" BackgroundColor="White" Margin="10,0,10,10" Padding="0,0,0,0"   >
+            <Frame Grid.Column="0" VerticalOptions="End"  x:Name="FrmDettagli" IsVisible="false" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0" CornerRadius="10" BackgroundColor="White" Margin="10,0,10,10" Padding="0,0,0,0"   >
                 <Frame.HasShadow>
                     <OnPlatform x:TypeArguments="x:Boolean">
                         <On Platform="iOS" Value="false" />
