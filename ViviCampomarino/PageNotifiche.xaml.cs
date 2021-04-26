@@ -21,6 +21,7 @@ namespace ViviCampomarino {
         public async void LeggiNotifiche() {
             var db = new MySqlvc();
             var TableNotifiche = db.EseguiQuery("Select * From NotificheGenerali");
+            db.CloseCommit();
             StkNotifiche.Children.Clear();
             Device.BeginInvokeOnMainThread(() => {
                 var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",", StringSplitOptions.RemoveEmptyEntries).ToList<String>();

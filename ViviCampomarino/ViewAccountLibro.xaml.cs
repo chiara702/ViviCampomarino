@@ -50,8 +50,8 @@ namespace ViviCampomarino {
         private async void BtnCancellaPrenotazione_Clicked(object sender, EventArgs e) {
             try {
                 var Db = new MySqlvc();
-                Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "DataPrenotato", null);
-                Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "IdUtente", "");
+                Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "DataPrenotato", DBNull.Value);
+                Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "IdUtente", 0);
                 Db.CloseCommit();
                 await Application.Current.MainPage.DisplayAlert("Prenotazione", "Prenotazione cancellata con successo!", "OK");
                 this.IsVisible = false;
