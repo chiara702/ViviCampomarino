@@ -15,7 +15,7 @@ namespace ViviCampomarino {
             InitializeComponent();
             MenuTop.MenuLaterale = MenuLaterale;
             Task.Run(CaricaLibri);
-            LblEmail.Text = App.login.Email;
+            LblEmail.Text = App.login["Email"].ToString();
         }
 
         private async void ImgMenu_Tapped(object sender, EventArgs e) {

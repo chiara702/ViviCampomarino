@@ -13,7 +13,7 @@ namespace ViviCampomarino {
         public ViewNotifica() {
             InitializeComponent();
         }
-        public String IdNotifica{
+        public int IdNotifica{
             get;
             set;
         }

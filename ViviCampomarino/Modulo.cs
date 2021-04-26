@@ -16,19 +16,19 @@ namespace ViviCampomarino {
         public enum _Disponibile {
             Disponibile,
             Prenotato,
-            Prestato
+            Prestato,
+            NonDisponibile
         }
         public static _Disponibile LibroDisponibile(DataRow RowLibro) {
-            if (Convert.ToBoolean(RowLibro["Disponibile"]) == true) {
-                if (Convert.IsDBNull( RowLibro["DataPrenotato"]) == true) return _Disponibile.Disponibile;
-                if (System.DateTime.Now - Convert.ToDateTime(RowLibro["DataPrenotato"]) >= TimeSpan.FromDays(7)) return _Disponibile.Disponibile; else return _Disponibile.Prenotato;
-            } else {
-                return _Disponibile.Prestato;
-            }
+            if (Convert.ToBoolean(RowLibro["Disponibile"]) == false) return _Disponibile.NonDisponibile;
+            if (Convert.ToInt32(RowLibro["IdUtente"]) == 0) return _Disponibile.Disponibile;
+            if (Convert.IsDBNull(RowLibro["DataPrestito"]) == false) return _Disponibile.Prestato;
+            if (Convert.IsDBNull(RowLibro["DataPrenotato"]) == false && System.DateTime.Now - Convert.ToDateTime(RowLibro["DataPrenotato"]) <= TimeSpan.FromDays(7)) return _Disponibile.Prenotato;
+            return _Disponibile.Disponibile;
         }
         public static List<DataRow> ListaRowLibriPrenotatiPrestati(string IdUtente) {
             var Db = new MySqlvc();
-            var TableLibriUtente = Db.EseguiQuery("Select * From Libri Where IdUtente='" + Funzioni.AntiAp(App.LoginUidAuth) + "'");
+            var TableLibriUtente = Db.EseguiQuery("Select * From Libri Where IdUtente=" + App.login["Id"].ToString());
             var ListaRowLibri = new List<DataRow>();
             foreach (DataRow x in TableLibriUtente.Rows) {
                 if (FunzioniLibri.LibroDisponibile(x) == FunzioniLibri._Disponibile.Prenotato || FunzioniLibri.LibroDisponibile(x) == FunzioniLibri._Disponibile.Prestato) {
@@ -87,7 +87,7 @@ namespace ViviCampomarino {
 
     }
 
-    public class Libro {
+    public class _Libro {
         [FirestoreProperty("Titolo")] public String Titolo { get; set; }
         [FirestoreProperty("Autori")] public String Autori { get; set; }
         [FirestoreProperty("Editore")] public String Editore { get; set; }
@@ -122,7 +122,7 @@ namespace ViviCampomarino {
         }
 
     }
-    public class Login {
+    public class _Login {
         [FirestoreProperty("UidAuth")] public String UidAuth { get; set; }
         [FirestoreProperty("Cognome")] public String Cognome { get; set; }
         [FirestoreProperty("Nome")] public String Nome { get; set; }
@@ -132,7 +132,7 @@ namespace ViviCampomarino {
         [FirestoreProperty("Paese")] public String Paese { get; set; }
         [FirestoreProperty("TokenFcm")] public String TokenFcm { get; set; }
     }
-    public class NotificheGenerali {
+    public class _NotificheGenerali {
         [FirestoreProperty("Data")] public DateTimeOffset Data { get; set; }
         [FirestoreProperty("Titolo")] public String Titolo { get; set; }
         [FirestoreProperty("Descrizione")] public String Descrizione { get; set; }
@@ -140,7 +140,7 @@ namespace ViviCampomarino {
         [FirestoreProperty("DataEnd")] public DateTimeOffset DataEnd { get; set; }
     }
 
-    public class NotificheLibri {
+    public class _NotificheLibri {
         [FirestoreProperty("NotificaDisponibile")] public Boolean NotificaDisponibile { get; set; }
 
     }

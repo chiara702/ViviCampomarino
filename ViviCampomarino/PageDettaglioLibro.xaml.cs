@@ -41,6 +41,11 @@ namespace ViviCampomarino {
                     BtnPrenota.IsEnabled = false;
                     BtnAvvisa.IsVisible = true;
                     break;
+                case FunzioniLibri._Disponibile.NonDisponibile:
+                    LblDisponibilita.Text = "Non disponibile";
+                    BtnPrenota.IsEnabled = false;
+                    BtnAvvisa.IsVisible = true;
+                    break;
             }
             ImgLibro.Source = ImageSource.FromFile(System.IO.Path.GetTempPath() + rowLibro["Id"].ToString() + ".png");
         }
@@ -63,7 +68,7 @@ namespace ViviCampomarino {
 
                 try {
                     var dbBis = new MySqlvc.DBSqlBis(dbSql, "Libri");
-                    dbBis.GetParam.AddWithValue("IdUtente", App.LoginUidAuth);
+                    dbBis.GetParam.AddWithValue("IdUtente", App.login["Id"]);
                     dbBis.GetParam.AddWithValue("DataPrenotato", DateTimeOffset.Now);
                     dbBis.GetParam.AddWithValue("DataPrestito", null);
                     dbBis.GeneraUpdate(Convert.ToInt32(rowLibro["Id"]));

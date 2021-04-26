@@ -20,11 +20,16 @@ namespace ViviCampomarino {
             LblTitolo.Text = Funzioni.Antinull(rowLibro["Titolo"]);
             LblAutori.Text = Funzioni.Antinull(rowLibro["Autori"]);
 
-            if (Convert.IsDBNull(rowLibro["DataPrestito"])==false && Convert.ToDateTime(rowLibro["DataPrestito"]) > DateTimeOffset.Parse("01/01/01")) {
-                LblScadenzaPrestito.Text = Convert.ToDateTime(rowLibro["DataPrestito"]).AddDays(30).ToString("dd/MM/yy");
-            } else {
-                LblScadenzaPrestito.Text = "prenotato";
+            if (FunzioniLibri.LibroDisponibile(RowLibro) == FunzioniLibri._Disponibile.Prestato) {
+                LblScadenzaPrestito.Text = Convert.ToDateTime(rowLibro["DataPrestito"]).AddDays(30).ToString("dd/MM/yyyy");
+                BtnCancellaPrenotazione.IsEnabled = false;
             }
+            if (FunzioniLibri.LibroDisponibile(RowLibro) == FunzioniLibri._Disponibile.Prenotato) {
+                LblScadenzaPrestito.Text = "prenotato";
+                BtnCancellaPrenotazione.IsEnabled = true;
+            }
+
+
         }
 
 
@@ -47,6 +52,7 @@ namespace ViviCampomarino {
                 var Db = new MySqlvc();
                 Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "DataPrenotato", null);
                 Db.UpdateRapido("Libri", Convert.ToInt32(rowLibro["Id"]), "IdUtente", "");
+                Db.CloseCommit();
                 await Application.Current.MainPage.DisplayAlert("Prenotazione", "Prenotazione cancellata con successo!", "OK");
                 this.IsVisible = false;
             } catch (Exception) {

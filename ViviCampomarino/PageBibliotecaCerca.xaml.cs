@@ -19,7 +19,7 @@ namespace ViviCampomarino {
             MenuTop.MenuLaterale = MenuLaterale;
            
         }
-        private IQuerySnapshot<Libro> ListaLibri = null;
+        //private IQuerySnapshot<Libro> ListaLibri = null;
         
 
         private async void ImgMenu_Tapped(object sender, EventArgs e) {

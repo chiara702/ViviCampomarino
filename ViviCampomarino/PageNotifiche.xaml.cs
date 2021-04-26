@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,39 +13,32 @@ namespace ViviCampomarino {
     public partial class PageNotifiche : ContentPage {
         public PageNotifiche() {
             InitializeComponent();
-            //Leggi notifiche da db
-            //var conn = SqlLiteDatabase.Connessione;
-            //var ListaNotifiche = conn.Query<SqlLiteNotifiche>("Select * From Notifiche Order By Data desc");
-            //StkNotifiche.Children.Clear();
-            //foreach (var x in ListaNotifiche) {
-            //    var el = new ViewNotifica();
-            //    el.Descrizione = x.Descrizione;
-            //    StkNotifiche.Children.Add(el);
-            //}
+            
             Task.Run(LeggiNotifiche);
             
         }
 
         public async void LeggiNotifiche() {
-            var db = new Database<NotificheGenerali>();
-            var coll=db.GetCollection("NotificheGenerali");
-            var querySnap = await coll.GetDocumentsAsync<NotificheGenerali>(Plugin.Firebase.Firestore.Source.Default);
+            var db = new MySqlvc();
+            var TableNotifiche = db.EseguiQuery("Select * From NotificheGenerali");
             StkNotifiche.Children.Clear();
             Device.BeginInvokeOnMainThread(() => {
                 var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",", StringSplitOptions.RemoveEmptyEntries).ToList<String>();
-                foreach (var x in querySnap.Documents) {
-                    if (NotificheNascoste.Contains(x.Reference.Id)) continue;
+                foreach (DataRow x in TableNotifiche.Rows) {
+                    if (NotificheNascoste.Contains(x["Id"].ToString())) continue;
+                    if (Convert.IsDBNull(x["DataEnd"])==false && Convert.ToDateTime(x["DataEnd"]) < DateTime.Now) continue;
+                    if (x["Token"].ToString() != "" && x["Token"].ToString() != App.login["TokenFcm"].ToString()) continue;
                     var el = new ViewNotifica();
-                    el.IdNotifica = x.Reference.Id;
+                    el.IdNotifica = Convert.ToInt32(x["Id"]);
                     el.EventoEliminaNotifica += (s, e) =>
                     {
                         var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",",StringSplitOptions.RemoveEmptyEntries).ToList<String>();
-                        NotificheNascoste.Add(el.IdNotifica);
+                        NotificheNascoste.Add(el.IdNotifica.ToString());
                         Preferences.Set("NotificheNascoste", String.Join(",", NotificheNascoste));
                         StkNotifiche.Children.Remove(el);
                     };
 
-                    el.Descrizione = Funzioni.Antinull(x.Data.Titolo);
+                    el.Descrizione = Funzioni.Antinull(x["Titolo"]);
                     StkNotifiche.Children.Add(el);
                 }
             });

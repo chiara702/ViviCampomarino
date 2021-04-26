@@ -2,6 +2,8 @@
 //using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -10,7 +12,7 @@ namespace ViviCampomarino {
     public partial class App : Application {
 
         public static String LoginUidAuth = "";
-        public static Login login=null;
+        public static DataRow login=null;
         public App() {
             InitializeComponent();
             LeggiImpostazioni();
@@ -32,8 +34,10 @@ namespace ViviCampomarino {
             LoginUidAuth=Preferences.Get("LoginUidAuth", "");
             if (LoginUidAuth != "") {
                 try {
-                    var db = new Database<Login>();
-                    App.login = await db.ReadDocument("Login/" + App.LoginUidAuth);
+                    var Db = new MySqlvc();
+                    //login=await Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'"));
+                    login = Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'");
+                    Db.CloseCommit();
                 }catch(Exception) {
                     Console.WriteLine("errore Login");
                 }
