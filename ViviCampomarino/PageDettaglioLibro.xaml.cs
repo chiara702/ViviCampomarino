@@ -47,7 +47,11 @@ namespace ViviCampomarino {
                     BtnAvvisa.IsVisible = true;
                     break;
             }
-            ImgLibro.Source = ImageSource.FromFile(System.IO.Path.GetTempPath() + rowLibro["Id"].ToString() + ".png");
+            if (System.IO.File.Exists(System.IO.Path.GetTempPath() + rowLibro["Id"].ToString() + ".png") == true) {
+                ImgLibro.Source = ImageSource.FromFile(System.IO.Path.GetTempPath() + rowLibro["Id"].ToString() + ".png");
+            } else {
+                ImgLibro.Source = "ImmagineLibro";
+            }
         }
         
 

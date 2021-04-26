@@ -23,9 +23,10 @@
             <Image Grid.Row="0" Grid.ColumnSpan="2" Source="LogoViviCampomarino" HeightRequest="100" VerticalOptions="Start" />
 
             <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,15,0" VerticalOptions="CenterAndExpand" Spacing="30">
-                <Button x:Name="BtnScopri" Text="Scopri Campomarino" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="25" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnScopri_Clicked" />
-                <Button x:Name="BtnEventi" Text="Eventi" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="25" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnEventi_Clicked" />
+                <Button x:Name="BtnScopri" Text="Scopri Campomarino" IsVisible="false" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="25" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnScopri_Clicked" />
                 <Button x:Name="BtnBiblioteca" Text="Biblioteca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="25" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnBiblioteca_Clicked" />
+
+                <Button x:Name="BtnEventi" Text="Eventi" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="25" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnEventi_Clicked" />
 
             </StackLayout>
             <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40"   />
