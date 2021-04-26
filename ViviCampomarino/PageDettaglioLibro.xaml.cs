@@ -13,7 +13,7 @@ namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageDettaglioLibro : ContentPage {
         private DataRow rowLibro;
-        private MySqlvc dbSql = new MySqlvc();
+        
 
         public PageDettaglioLibro(DataRow rowLibro) {
             InitializeComponent();
@@ -71,11 +71,13 @@ namespace ViviCampomarino {
                 }
 
                 try {
+                    MySqlvc dbSql = new MySqlvc();
                     var dbBis = new MySqlvc.DBSqlBis(dbSql, "Libri");
                     dbBis.GetParam.AddWithValue("IdUtente", App.login["Id"]);
                     dbBis.GetParam.AddWithValue("DataPrenotato", DateTimeOffset.Now);
                     dbBis.GetParam.AddWithValue("DataPrestito", null);
                     dbBis.GeneraUpdate(Convert.ToInt32(rowLibro["Id"]));
+                    dbSql.CloseCommit();
                 } catch(Exception err) {
                     await DisplayAlert("Errore", "Errore nel salvataggio! " + err.Message, "OK");
                     return;

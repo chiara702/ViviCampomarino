@@ -47,7 +47,7 @@ namespace ViviCampomarino {
             if (CheckSoloDisponibili.IsChecked == true) CercaSoloDisponibili = true;
             var Db = new MySqlvc();
             var Table = await Task.Run(()=> Db.EseguiQuery(String.Format("Select * From Libri Where Titolo like '%{0}%' or Autori like '%{0}%' or Generi like '{0}%' limit 30", Funzioni.AntiAp(TxtCerca.Text))));
-
+            Db.CloseCommit();
           
             StackView.Children.Clear();
             int LibriMostrati = 0;
