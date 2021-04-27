@@ -168,7 +168,14 @@ namespace ViviCampomarino {
         public static string AntiAp(String stringa) {
             return stringa.Replace("'", "''");
         }
-        
+
+        public static string LimitLength(string source, int maxLength) {
+            if (source.Length <= maxLength) {
+                return source;
+            }
+            return source.Substring(0, maxLength);
+        }
+
         public static bool IsValidEmail(string email) {
             var regex = new Regex("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
             return regex.IsMatch(email);

@@ -18,12 +18,12 @@ namespace ViviCampomarino {
             
         }
 
-        public async void LeggiNotifiche() {
+        public void LeggiNotifiche() {
             var db = new MySqlvc();
             var TableNotifiche = db.EseguiQuery("Select * From NotificheGenerali");
             db.CloseCommit();
-            StkNotifiche.Children.Clear();
             Device.BeginInvokeOnMainThread(() => {
+                StkNotifiche.Children.Clear();
                 var NotificheNascoste = Preferences.Get("NotificheNascoste", "").Split(",", StringSplitOptions.RemoveEmptyEntries).ToList<String>();
                 foreach (DataRow x in TableNotifiche.Rows) {
                     if (NotificheNascoste.Contains(x["Id"].ToString())) continue;
@@ -39,7 +39,8 @@ namespace ViviCampomarino {
                         StkNotifiche.Children.Remove(el);
                     };
 
-                    el.Descrizione = Funzioni.Antinull(x["Titolo"]);
+                    el.Titolo = Funzioni.Antinull(x["Titolo"]);
+                    el.Descrizione = Funzioni.Antinull(x["Descrizione"]);
                     StkNotifiche.Children.Add(el);
                 }
             });

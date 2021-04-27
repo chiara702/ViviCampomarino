@@ -59,6 +59,7 @@ namespace ViviCampomarino {
                 await Application.Current.MainPage.DisplayAlert("Verifica connessione", "Non sono riuscito a cancellare la prenotazione!", "OK");
                 return;
             }
+            MySqlvc.WriteLog("Cancella prenotazione Libro: " + rowLibro["Id"].ToString());
             var data = new Dictionary<string, string>();
             data.Add("NotificaDisponibilita", "si");
             data.Add("IdLibro", rowLibro["Id"].ToString());

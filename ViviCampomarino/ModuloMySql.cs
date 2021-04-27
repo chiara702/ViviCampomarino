@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace ViviCampomarino {
     public class MySqlvc {
@@ -151,6 +153,20 @@ namespace ViviCampomarino {
                     Conn.Close();
                 throw;
             }
+        }
+
+        public static void WriteLog(String Operazione) {
+            Task.Run(() => {
+                var Db = new MySqlvc();
+                var Bis = new MySqlvc.DBSqlBis(Db, "Log");
+                var Par = Bis.GetParam;
+                Par.AddWithValue("Data", DateTime.Now);
+                Par.AddWithValue("Piattaforma", "Mobile");
+                if (App.login != null) Par.AddWithValue("LoginId", App.login["Id"].ToString());
+                Par.AddWithValue("Operazione", Funzioni.LimitLength(Operazione,100));
+                Bis.GeneraInsert();
+                Db.CloseCommit();
+            });
         }
 
 
