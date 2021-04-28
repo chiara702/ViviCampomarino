@@ -14,7 +14,9 @@ namespace ViviCampomarino {
         public PageNotifiche() {
             InitializeComponent();
             
-            Task.Run(LeggiNotifiche);
+            if (App.login != null) Task.Run(LeggiNotifiche); else {
+                LblNonDisponibile.IsVisible = true;
+            }
             
         }
 
