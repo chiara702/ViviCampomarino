@@ -19,16 +19,16 @@ namespace ViviCampomarino {
         private async void BtnAccedi_Clicked(object sender, EventArgs e) {
             var email = Funzioni.Antinull(TxtEmail.Text);
             var password = Funzioni.Antinull(TxtPassword.Text);
-            if (email=="1") { TxtEmail.Text = "dimariafabio@gmail.com"; TxtPassword.Text = "123456"; }
-            if (Funzioni.IsValidEmail(TxtEmail.Text) == false) await DisplayAlert("Errore", "E-mail in formato non corretto!", "OK");
+            if (email=="1") { email = "dimariafabio@gmail.com"; password = "123456"; }
+            if (Funzioni.IsValidEmail(email) == false) await DisplayAlert("Errore", "E-mail in formato non corretto!", "OK");
 
-            var ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(TxtEmail.Text);
+            var ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(email);
             if (ListaUtentiRegistratiConEmail.Count() == 0) {
                 await DisplayAlert("Login", "Email non presente! Controlla la corretta digitazione o di esserti registrato!", "OK");
                 return;
             }
             try {
-                var tmp = await authCurrent.Instance.SignInWithEmailAndPasswordAsync(TxtEmail.Text, TxtPassword.Text);
+                var tmp = await authCurrent.Instance.SignInWithEmailAndPasswordAsync(email, password);
                 if (tmp.User.IsEmailVerified == false) {
                     await DisplayAlert("Login", "Account non ancora validato. E' stata inviata una nuova e-mail di validazione! Controlla la tua email e clicca il link per confermare la registrazione!", "OK");
                     await tmp.User.SendEmailVerificationAsync();

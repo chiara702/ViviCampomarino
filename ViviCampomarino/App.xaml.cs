@@ -31,12 +31,12 @@ namespace ViviCampomarino {
         public static void SalvaImpostazioni() {
             Preferences.Set("LoginUidAuth", LoginUidAuth);
         }
-        public async static void LeggiImpostazioni() {
+        public static void LeggiImpostazioni() {
             LoginUidAuth=Preferences.Get("LoginUidAuth", "");
             if (LoginUidAuth != "") {
                 try {
                     var Db = new MySqlvc();
-                    login=await Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'"));
+                    login=Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'")).GetAwaiter().GetResult();
                     //login = Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'");
                     Db.CloseCommit();
                 }catch(Exception) {
