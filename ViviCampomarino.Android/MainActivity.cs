@@ -24,7 +24,6 @@ namespace ViviCampomarino.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
 
-
             //Plugin FirebaseAuth Wrapper
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             //
@@ -56,8 +55,9 @@ namespace ViviCampomarino.Droid
             FirebaseAuthImplementation.HandleActivityResultAsync(requestCode, resultCode, data);
         }
         protected override void OnNewIntent(Intent intent) {
-            base.OnNewIntent(intent);
             FirebaseCloudMessagingImplementation.OnNewIntent(intent);
+            base.OnNewIntent(intent);
+            
 
         }
         

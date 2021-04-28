@@ -15,15 +15,16 @@ namespace ViviCampomarino {
         public static DataRow login=null;
         public App() {
             InitializeComponent();
-            LeggiImpostazioni();
+            
             //IstanzaSqlLite = new SqlLiteDatabase();
-            var home = new PageLoading();
-            MainPage = home;
+            
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
             CrossFirebaseCloudMessaging.Current.NotificationTapped += Current_NotificationTapped;
             CrossFirebaseCloudMessaging.Current.Error += Current_Error;
             CrossFirebaseCloudMessaging.Current.TokenChanged += Current_TokenChanged;
             //CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
+            
+            LeggiImpostazioni();
             
 
         }
@@ -35,8 +36,8 @@ namespace ViviCampomarino {
             if (LoginUidAuth != "") {
                 try {
                     var Db = new MySqlvc();
-                    //login=await Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'"));
-                    login = Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'");
+                    login=await Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'"));
+                    //login = Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'");
                     Db.CloseCommit();
                 }catch(Exception) {
                     Console.WriteLine("errore Login");
@@ -58,49 +59,37 @@ namespace ViviCampomarino {
 
         private void Current_NotificationTapped(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationTappedEventArgs e) {
             Device.BeginInvokeOnMainThread(() => {
-                Application.Current.MainPage.DisplayAlert("Tapped", e.Notification.Body, "OK");
+                //Application.Current.MainPage.DisplayAlert("Tapped", e.Notification.Body, "OK");
+                App.Current.MainPage = new PageNotifiche();
             });
             //throw new NotImplementedException();
         }
-        //public async static void CheckNotificaLibri() {
-        //    var db = new Database<object>();
-        //    var collNot = db.current.GetCollection("Login/" + App.LoginUidAuth + "/NotificheLibri");
-        //    var docNot = await collNot.GetDocumentsAsync<NotificheLibri>();
-        //    var collLibri = db.current.GetCollection("Libri");
-        //    foreach (var x in docNot.Documents) {
-        //        if (x.Data.NotificaDisponibile != true) continue;
-        //        var LibroId = x.Reference.Id.ToString();
-        //        var Libro = await collLibri.GetDocument(LibroId).GetDocumentSnapshotAsync<Libro>();
-        //        if (Libro.Data.LibroDisponibile() == ViviCampomarino.Libro._Disponibile.Disponibile) {
-        //            //CrossLocalNotifications.Current.Show("Libro ora disponibile", "Il libro '" + Libro.Data.Titolo + "' è ora disponibile!");
-        //            await x.Reference.DeleteDocumentAsync();
-        //        }
-        //    }
-        //}
+        
         private void Current_NotificationReceived(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationReceivedEventArgs e) {
             if (e.Notification.Data.ContainsKey("NotificaDisponibilita")) {
                 Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.UnsubscribeFromTopicAsync(e.Notification.Data["Notifica"]);
             }
-            //Memorizza Notifica su Sql Lite
-            //var Notifica = new SqlLiteNotifiche();
-            //Notifica.Data = DateTime.Now;
-            //Notifica.Descrizione = e.Notification.Body;
-            //Notifica.Letta = false;
-            //SqlLiteDatabase.Connessione.Insert(Notifica);
+            
 
             Device.BeginInvokeOnMainThread(() => {
-                Application.Current.MainPage.DisplayAlert(e.Notification.Title, e.Notification.Body, "OK");
+                //Application.Current.MainPage.DisplayAlert(e.Notification.Title, e.Notification.Body, "OK");
+                try {
+                    Application.Current.MainPage.Navigation.PushAsync(new PageNotifiche());
+                } catch (Exception) { }
             });
             //throw new NotImplementedException();
         }
 
         protected override void OnStart() {
+            var home = new PageLoading();
+            MainPage = home;
         }
 
         protected override void OnSleep() {
         }
 
         protected override void OnResume() {
+            var x = 0;
         }
         
     }

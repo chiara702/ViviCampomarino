@@ -46,11 +46,13 @@ namespace ViviCampomarino {
                 Db.UpdateRapido("Login", Convert.ToInt32(App.login["Id"]), "NumeroAccessi", Convert.ToInt32(App.login["NumeroAccessi"])+1);
                 Db.CloseCommit();
                 App.FcmTopicsRefresh();
+                MySqlvc.WriteLog("Login Ok");
                 await Navigation.PopAsync();
             }catch (FirebaseAuthException err) { //FirebaseAuthInvalidCredentialsException
                 var DataError = err.Data;
                 if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!","Ok");
                 else await DisplayAlert("Login", "Errore generale: " + err.Message + " " + err.ErrorCode, "Ok");
+                MySqlvc.WriteLog("Login Error: " + err.Message);
                 return;
             }
             

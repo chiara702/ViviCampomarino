@@ -73,9 +73,11 @@ namespace ViviCampomarino
             Par.AddWithValue("Telefono", Funzioni.Antinull(TxtTelefono.Text).Trim());
             Par.AddWithValue("UidAuth", UidAuth);
             Bis.GeneraInsert();
+            Db.CloseCommit();
             //db.WriteDocument("Login/" + UidAuth, login);
             await authCurrent.Instance.CurrentUser.SendEmailVerificationAsync();
             await DisplayAlert("Registrazione", "E' stata appena inviata una email per confermare la registrazione.", "OK");
+            MySqlvc.WriteLog("Registrazione Ok: " + Funzioni.Antinull(TxtCognome.Text));
             await Navigation.PopAsync();
 
         }

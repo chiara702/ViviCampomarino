@@ -20,5 +20,9 @@ namespace ViviCampomarino {
             MenuLaterale.IsVisible = true;
             await MenuLaterale.Mostra();
         }
+
+        private void BtnDownload_Clicked(object sender, EventArgs e) {
+
+        }
     }
 }

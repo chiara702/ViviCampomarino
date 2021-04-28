@@ -10,7 +10,10 @@
         <RowDefinition Height="auto"/>
     </Grid.RowDefinitions>
     <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" CornerRadius="10" Padding="5,5,5,5" Margin="10,5,10,5">
-        <Label Margin="5,10,5,10" x:Name="LblDescrizione"  VerticalOptions="Center"  Text="Notifica" FontSize="16" TextColor="#3c3c3b"/>
+        <StackLayout Margin="5,10,5,10">
+            <Label x:Name="LblTitolo"  VerticalOptions="Center"  Text="Notifica" FontSize="16" TextColor="#3c3c3b"/>
+            <Label x:Name="LblDescrizione"  VerticalOptions="Center"  Text="Notifica" FontSize="10" TextColor="#3c3c3b"/>
+        </StackLayout>
     </Frame>
     <ImageButton Grid.Row="0" Grid.Column="1" Source="Delete" HeightRequest="30" BackgroundColor="Transparent" Margin="5,5,10,5" Clicked="ImageButton_Clicked"/>
 </Grid>
