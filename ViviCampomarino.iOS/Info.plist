@@ -35,13 +35,21 @@
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 	</dict>
-  <!--<key>NSContactsUsageDescription</key>
+  
+	<key>NSContactsUsageDescription</key>
   <string>Accesso ai contatti in rubrica perchè ios lo obbliga!</string>
   <key>NSCalendarsUsageDescription</key>
   <string>Si richiede accesso al calendario perchè ios lo obbliga!</string>
   <key>NSMicrophoneUsageDescription</key>
-  <string>Accesso al microfono non so per quale motivo!</string>-->
-	<key>NSLocationAlwaysUsageDescription</key>
+  <string>Accesso al microfono non so per quale motivo!</string>
+  <key>NSAppleMusicUsageDescription</key>
+  <string>Accesso a musica non so per quale motivo!</string>
+  <key>NSSiriUsageDescription</key>
+  <string>Accesso a siri non so per quale motivo!</string>
+  <key>NSBluetoothAlwaysUsageDescription</key>
+  <string>Accesso a Bluetooth non so per quale motivo!</string>
+
+  <key>NSLocationAlwaysUsageDescription</key>
 	<string>Vogliamo conoscere la tua posizione mentre l&apos;app è in funzione per geolocalizzare il luogo in cui effettuare i ritiri e visualizzare i servizi disponibili nella tua area di interesse</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Possiamo conoscere la tua posizione per la localizzazione? </string>
