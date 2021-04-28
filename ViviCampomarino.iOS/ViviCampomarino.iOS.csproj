@@ -69,7 +69,7 @@
     <CodesignKey>Apple Distribution: Fabio Di Maria (9HAAQ267G2)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>AppStoreViviCampomarino</CodesignProvision>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchSdkVersion>
     </MtouchSdkVersion>
   </PropertyGroup>
