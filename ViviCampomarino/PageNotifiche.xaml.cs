@@ -30,7 +30,7 @@ namespace ViviCampomarino {
                 foreach (DataRow x in TableNotifiche.Rows) {
                     if (NotificheNascoste.Contains(x["Id"].ToString())) continue;
                     if (Convert.IsDBNull(x["DataEnd"])==false && Convert.ToDateTime(x["DataEnd"]) < DateTime.Now) continue;
-                    if (x["Token"].ToString() != "" && x["Token"].ToString() != App.login["TokenFcm"].ToString()) continue;
+                    if (x["Token"].ToString() != "" && x["Token"].ToString() != "Generale" && x["Token"].ToString() != App.login["TokenFcm"].ToString()) continue;
                     var el = new ViewNotifica();
                     el.IdNotifica = Convert.ToInt32(x["Id"]);
                     el.EventoEliminaNotifica += (s, e) =>
