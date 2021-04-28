@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ViviCampomarino.PageNotifiche" BackgroundColor="#3c3c3b" Title="Notifiche">
     <ContentPage.Content>
-        <StackLayout x:Name="StkNotifiche">
-            <Label TextColor="WhiteSmoke" Margin="30,30,30,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" IsVisible="false" x:Name="LblNonDisponibile"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout x:Name="StkNotifiche">
+                <Label TextColor="WhiteSmoke" Margin="30,30,30,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" IsVisible="false" x:Name="LblNonDisponibile"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
