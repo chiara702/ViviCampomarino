@@ -20,7 +20,7 @@ namespace ViviCampomarino
         }
 
         private void LinkPrivacy_Tapped(object sender, EventArgs e){
-
+            Xamarin.Essentials.Browser.OpenAsync("http://vivi-campomarino.web.app/Privacy.pdf");
         }
 
         private void CheckPrivacy_CheckedChanged(object sender, CheckedChangedEventArgs e){
