@@ -27,13 +27,12 @@ namespace ViviCampomarino {
             await MenuLaterale.Mostra();
         }
 
-        
 
-        
 
-        
 
-        private async void BtnCerca_Clicked(object sender, EventArgs e) {
+        int LastRecord = 0;
+        private void Cerca(int DaRecord) {
+            LastRecord = DaRecord;
             var curStorage = FirebaseStorage.current.GetRootReference();
             Debug.WriteLine("Start BtnCerca");
             TxtCerca.Text = Funzioni.Antinull(TxtCerca.Text);
@@ -46,13 +45,31 @@ namespace ViviCampomarino {
             var CercaSoloDisponibili = false;
             if (CheckSoloDisponibili.IsChecked == true) CercaSoloDisponibili = true;
             var Db = new MySqlvc();
-            var Table = await Task.Run(()=> Db.EseguiQuery(String.Format("Select * From Libri Where Titolo like '%{0}%' or Autori like '%{0}%' or Generi like '{0}%' limit 30", Funzioni.AntiAp(TxtCerca.Text))));
+            var Where = "";
+            if (CheckAutori.IsChecked == false && CheckGenere.IsChecked == false && CheckTitoli.IsChecked == false) {
+                CheckAutori.IsChecked = true; CheckGenere.IsChecked = true; CheckAutori.IsChecked = true;
+            }
+            if (CheckAutori.IsChecked == true) {
+                Where += String.Format("Autori like '%{0}%' or ", Funzioni.AntiAp(TxtCerca.Text));
+            }
+            if (CheckGenere.IsChecked == true) {
+                Where += String.Format("Generi like '%{0}%' or ", Funzioni.AntiAp(TxtCerca.Text));
+            }
+            if (CheckTitoli.IsChecked == true) {
+                Where += String.Format("Titolo like '%{0}%' or ", Funzioni.AntiAp(TxtCerca.Text));
+            }
+            Where += "1=0";
+
+            var Table = Db.EseguiQuery("Select * From Libri Where " + Where + " limit " + DaRecord +",100");
+
+
             Db.CloseCommit();
-          
+
             StackView.Children.Clear();
             int LibriMostrati = 0;
             foreach (DataRow x in Table.Rows) {
-                if (LibriMostrati > 15) break;
+                if (LibriMostrati > 50) break;
+                LastRecord += 1;
                 LibriMostrati++;
                 var el = new ViewRisultatiRicerca(x);
                 var Disp = FunzioniLibri.LibroDisponibile(x);
@@ -62,12 +79,14 @@ namespace ViviCampomarino {
                         break;
                     case FunzioniLibri._Disponibile.Prenotato:
                         el.Disponibile = "Non Disponibile";
+                        if (CercaSoloDisponibili == true) continue;
                         break;
                     case FunzioniLibri._Disponibile.Prestato:
                         el.Disponibile = "Non Disponibile";
+                        if (CercaSoloDisponibili == true) continue;
                         break;
                 }
-                if (CercaSoloDisponibili == true) continue;
+                
                 StackView.Children.Add(el);
             }
 
@@ -108,8 +127,10 @@ namespace ViviCampomarino {
                 }
             });
 
+        }
 
-
+        private async void BtnCerca_Clicked(object sender, EventArgs e) {
+            Cerca(0); //Cerca(LastRecord);
         }
 
 
@@ -121,6 +142,9 @@ namespace ViviCampomarino {
             TxtCerca.Text = "";
         }
 
-        
+        private void BtnMostraAltri_Clicked(object sender, EventArgs e) {
+            Cerca(LastRecord);
+            ScrollLibri.ScrollToAsync(0, 0, true);
+        }
     }
 }
