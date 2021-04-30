@@ -16,17 +16,18 @@ namespace ViviCampomarino {
         }
 
         private async void Animazione() {
-            await LogoCampomarino.FadeTo(0, 1); 
-            LogoCampomarino.RelScaleTo(0.1, 1);
-            LogoCampomarino.RelScaleTo(0.4, 3000);
+            await LogoCampomarino.FadeTo(0, 1);
+            _ = LogoCampomarino.RelScaleTo(0.1, 1);
+            _ = LogoCampomarino.RelScaleTo(0.4, 3000);
             await LogoCampomarino.FadeTo(1, 3000);
             await Task.Delay(1000);
             Device.BeginInvokeOnMainThread(() => {
-
-                var Nav = new NavigationPage(new PageHome());
-                App.Current.MainPage = Nav;
-                Nav.BarBackgroundColor = Color.FromHex("3c3c3b");
-                Nav.BarTextColor = Color.White;
+                if (App.Current.MainPage is PageNotifiche == false) {
+                    var Nav = new NavigationPage(new PageHome());
+                    App.Current.MainPage = Nav;
+                    Nav.BarBackgroundColor = Color.FromHex("3c3c3b");
+                    Nav.BarTextColor = Color.White;
+                }
             });
 
         }

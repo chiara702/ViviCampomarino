@@ -13,9 +13,10 @@ namespace ViviCampomarino {
 
         public static String LoginUidAuth = "";
         public static DataRow login=null;
+        public static Boolean InterrompiLoading = false;
         public App() {
             InitializeComponent();
-            
+            InterrompiLoading = false;
             //IstanzaSqlLite = new SqlLiteDatabase();
             
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
@@ -58,6 +59,7 @@ namespace ViviCampomarino {
         }
 
         private void Current_NotificationTapped(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationTappedEventArgs e) {
+            App.InterrompiLoading = true;
             Device.BeginInvokeOnMainThread(() => {
                 //Application.Current.MainPage.DisplayAlert("Tapped", e.Notification.Body, "OK");
                 App.Current.MainPage = new PageNotifiche();
@@ -66,6 +68,7 @@ namespace ViviCampomarino {
         }
         
         private void Current_NotificationReceived(object sender, Plugin.Firebase.CloudMessaging.EventArgs.FCMNotificationReceivedEventArgs e) {
+            App.InterrompiLoading = true;
             if (e.Notification.Data.ContainsKey("NotificaDisponibilita")) {
                 Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.UnsubscribeFromTopicAsync(e.Notification.Data["Notifica"]);
             }
