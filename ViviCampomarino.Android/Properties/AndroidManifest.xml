@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.07" package="com.companyname.vivicampomarino" android:installLocation="auto" android:versionCode="107">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.15" package="com.companyname.vivicampomarino" android:installLocation="auto" android:versionCode="115">
+	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="30" />
 	<application android:label="ViviCampomarino.Android" android:theme="@style/MainTheme" android:icon="@drawable/LogoViviCampomarino">
 		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA65sNRgaMjKdaS7JmfpHGA5l2qAIOZDjU" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />

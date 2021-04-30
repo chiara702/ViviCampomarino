@@ -17,14 +17,23 @@ namespace ViviCampomarino {
         }
 
         private async void BtnAccedi_Clicked(object sender, EventArgs e) {
-            var email = Funzioni.Antinull(TxtEmail.Text);
-            var password = Funzioni.Antinull(TxtPassword.Text);
+            var email = Funzioni.Antinull(TxtEmail.Text).Trim();
+            var password = Funzioni.Antinull(TxtPassword.Text).Trim();
             if (email=="1") { email = "dimariafabio@gmail.com"; password = "123456"; }
-            if (Funzioni.IsValidEmail(email) == false) await DisplayAlert("Errore", "E-mail in formato non corretto!", "OK");
-
-            var ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(email);
+            if (Funzioni.IsValidEmail(email) == false) { await DisplayAlert("Errore", "E-mail in formato non corretto!", "OK"); return; }
+            String[] ListaUtentiRegistratiConEmail = null;
+            try {
+                ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(email);
+            }catch(FirebaseAuthException err) {
+                await DisplayAlert("Errore", "Errore nel controllo esistenza email! Verificare connessione internet o attendere qualche minuto!","OK");
+                return;
+            }
             if (ListaUtentiRegistratiConEmail.Count() == 0) {
                 await DisplayAlert("Login", "Email non presente! Controlla la corretta digitazione o di esserti registrato!", "OK");
+                return;
+            }
+            if (password == "") {
+                await DisplayAlert("Errore", "La password non può essere vuota!", "OK");
                 return;
             }
             try {
