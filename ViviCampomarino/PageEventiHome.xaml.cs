@@ -21,7 +21,22 @@ namespace ViviCampomarino {
             await MenuLaterale.Mostra();
         }
 
-        private void BtnDownload_Clicked(object sender, EventArgs e) {
+        private async void BtnDownload_Clicked(object sender, EventArgs e) {
+            try {
+                var rifs = FirebaseStorage.current.GetRootReference().GetChild("Eventi/Evento.pdf");
+                System.IO.File.Delete(System.IO.Path.GetTempPath() + "Evento.pdf");
+                var a = rifs.DownloadFile(System.IO.Path.GetTempPath() + "Evento.pdf");
+                await a.AwaitAsync();
+                if (System.IO.File.Exists(System.IO.Path.GetTempPath() + "Evento.pdf") == false) {
+                    await DisplayAlert("Errore", "Non disponibile!", "OK");
+                    return;
+                }
+                var OpenFile = new Xamarin.Essentials.OpenFileRequest("", new Xamarin.Essentials.ReadOnlyFile(System.IO.Path.GetTempPath() + "Evento.pdf"));
+                await Xamarin.Essentials.Launcher.OpenAsync(OpenFile);
+
+            } catch(Exception) {
+                await DisplayAlert("Errore", "File non disponibile!", "OK");
+            }
 
         }
     }
