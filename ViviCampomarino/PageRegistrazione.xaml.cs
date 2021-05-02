@@ -20,7 +20,8 @@ namespace ViviCampomarino
         }
 
         private void LinkPrivacy_Tapped(object sender, EventArgs e){
-            Xamarin.Essentials.Browser.OpenAsync("http://vivi-campomarino.web.app/Privacy.pdf");
+            //Xamarin.Essentials.Browser.OpenAsync("http://vivi-campomarino.web.app/Privacy.pdf");
+            CheckPrivacy.IsChecked = !CheckPrivacy.IsChecked;
         }
 
         private void CheckPrivacy_CheckedChanged(object sender, CheckedChangedEventArgs e){
@@ -115,6 +116,10 @@ namespace ViviCampomarino
         private void TxtPassword2_Unfocused(object sender, FocusEventArgs e)
         {
 
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e) {
+            await Xamarin.Essentials.Launcher.OpenAsync("https://vivi-campomarino.web.app/Privacy.pdf");
         }
     }
 }
