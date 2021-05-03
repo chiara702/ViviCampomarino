@@ -13,7 +13,6 @@ namespace ViviCampomarino {
     public partial class PageNotifiche : ContentPage {
         public PageNotifiche() {
             InitializeComponent();
-            
             if (App.login != null) Task.Run(LeggiNotifiche); else {
                 LblNonDisponibile.IsVisible = true;
             }
@@ -43,6 +42,7 @@ namespace ViviCampomarino {
 
                     el.Titolo = Funzioni.Antinull(x["Titolo"]);
                     el.Descrizione = Funzioni.Antinull(x["Descrizione"]);
+                    //el.MinimumHeightRequest = 60;
                     StkNotifiche.Children.Add(el);
                 }
             });

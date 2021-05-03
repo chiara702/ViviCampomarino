@@ -23,18 +23,19 @@ namespace ViviCampomarino.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
-
+            CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+            
             //Plugin FirebaseAuth Wrapper
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             //
 
-            //LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.Icon; //Local Notification
 
-            //FirebaseCloudMessagingImplementation.OnNewIntent(this.Intent);
+            FirebaseCloudMessagingImplementation.OnNewIntent(Intent);
+            CreateNotificationChannelIfNeeded();
+
+
             LoadApplication(new App());
-            //AndroidEnvironment.UnhandledExceptionRaiser += (sender, args) => {
-            //    var newExc = new ApplicationException("AndroidEnvironment_UnhandledExceptionRaiser", args.Exception);
-            //};
+            
         }
 
         //aggiunto per i cellulari che hanno i font ingranditi
@@ -55,11 +56,23 @@ namespace ViviCampomarino.Droid
             FirebaseAuthImplementation.HandleActivityResultAsync(requestCode, resultCode, data);
         }
         protected override void OnNewIntent(Intent intent) {
-            FirebaseCloudMessagingImplementation.OnNewIntent(intent);
             base.OnNewIntent(intent);
-            
-
+            FirebaseCloudMessagingImplementation.OnNewIntent(intent);
         }
-        
+
+        private void CreateNotificationChannelIfNeeded() {
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.O) {
+                CreateNotificationChannel();
+            }
+        }
+
+        private void CreateNotificationChannel() {
+            var channelId = $"{PackageName}.general";
+            var notificationManager = (NotificationManager)GetSystemService(NotificationService);
+            var channel = new NotificationChannel(channelId, "General", NotificationImportance.Default);
+            notificationManager.CreateNotificationChannel(channel);
+            FirebaseCloudMessagingImplementation.ChannelId = channelId;
+        }
+
     }
 }

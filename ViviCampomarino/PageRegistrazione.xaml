@@ -57,8 +57,19 @@
                 
                 <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" Margin="0,0,10,0" >
                     <CheckBox x:Name="CheckPrivacy" Margin="10, 5,1,0" CheckedChanged="CheckPrivacy_CheckedChanged" Color="#a4182f" />
-                        <Label VerticalOptions="Start" Text="Ho letto l'informativa sulla privacy e accetto le condizioni generali d'uso dell'app"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="#3c3c3b" FontSize="16" WidthRequest="310">
-                        <Label.GestureRecognizers>
+                            <Label VerticalOptions="Start" Text="Ho letto l'informativa sulla privacy e accetto le condizioni generali d'uso dell'app"  TextTransform="None"  Padding="0,10,0,0"  BackgroundColor="Transparent" TextColor="#3c3c3b" FontSize="16" WidthRequest="310">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Ho letto l'informativa sulla "/>
+                                        <Span TextDecorations="Underline">privacy
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                            </Span.GestureRecognizers>
+                                        </Span>
+                                        <Span Text=" e accetto le condizioni generali d'uso dell'app."/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                <Label.GestureRecognizers>
                             <TapGestureRecognizer x:Name="LinkPrivacy" Tapped="LinkPrivacy_Tapped"/>
                         </Label.GestureRecognizers>
                     </Label>

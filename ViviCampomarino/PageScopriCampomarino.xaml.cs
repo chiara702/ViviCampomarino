@@ -6,77 +6,77 @@ using System.Threading.Tasks;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Data;
+using System.Diagnostics;
 
-namespace ViviCampomarino
-{
+namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageScopriCampomarino : ContentPage
-    {
-        public PageScopriCampomarino()
-        {
+    public partial class PageScopriCampomarino : ContentPage {
+        public PageScopriCampomarino() {
             InitializeComponent();
         }
-        protected async override void OnAppearing()
-        {
+        protected override void OnAppearing() {
             base.OnAppearing();
-            try
-            {
-                CaricaPin();
-                if (map1.Pins.Count > 0)
-                {
-                    var p = new Position(map1.Pins[0].Position.Latitude, map1.Pins[0].Position.Longitude);
-                    var span = new MapSpan(p, 0.005, 0.005);
-                    map1.MoveToRegion(span);
-                }
-            }
-            catch (Exception e)
-            {
-                await DisplayAlert("", e.Message, "ok");
+            CaricaPin();
+            var p = new Position(41.95582197035494, 15.03307138401569);
+            var span = new MapSpan(p, 0.015, 0.015);
+            map1.MoveToRegion(span);
+
+        }
+        DataTable TablePunti;
+        public void CaricaPin(Boolean MostraGestore = false) {
+            var Db = new MySqlvc();
+            TablePunti = Db.EseguiQuery("Select * From PuntiInteresse");
+            foreach (DataRow x in TablePunti.Rows) {
+                var tmpRow = x;
+                var pin = new Pin();
+                pin.Position = new Position(Convert.ToDouble(x["Latitudine"]), Convert.ToDouble(x["Longitudine"]));
+                pin.Label = x["Nome"].ToString();
+                pin.MarkerClicked += (s,e) => {
+                    Device.BeginInvokeOnMainThread(() => {
+                        FrmInfo.IsVisible = true;
+                        LblDenominazione.Text = tmpRow["Titolo"].ToString();
+                        LblDescrizione.Text = tmpRow["Descrizione"].ToString();
+                        Video1.Source = tmpRow["LinkVideo"].ToString();
+                        Video1.Start();
+                    });
+                };
+                map1.Pins.Add(pin);
             }
 
         }
 
-        public void CaricaPin(Boolean MostraGestore = false)
-        {
-           
-
-            }
-
-        private void BtnScanPoint_Clicked(object sender, EventArgs e)
-        {
+        private void BtnScanPoint_Clicked(object sender, EventArgs e) {
 
         }
 
-        private void BtnDettagli_Clicked(object sender, EventArgs e)
-        {
+        private void BtnDettagli_Clicked(object sender, EventArgs e) {
 
         }
 
 
-        private async void BtnInfo_Clicked(object sender, EventArgs e)
-        {
+        private async void BtnInfo_Clicked(object sender, EventArgs e) {
             FrmDettagli.IsVisible = false;
-            _ = await FrmInfo.FadeTo(0, 1);
-            FrmInfo.IsVisible = true;
-            _ = await FrmInfo.FadeTo(1, 800);
+            
 
         }
 
-        private async void TapInfo_Tapped(object sender, EventArgs e)
-        { 
-            await DisplayAlert("Presto disponibile!", "Funzione presto disponibile", "OK");
-            await Navigation.PopAsync();
-            return;
+        private async void TapInfo_Tapped(object sender, EventArgs e) {
+            if (Debugger.IsAttached == false) {
+                await DisplayAlert("Presto disponibile!", "Funzione presto disponibile", "OK");
+                await Navigation.PopAsync();
+                return;
+            }
 
             _ = await FrmInfo.FadeTo(0, 500);
             FrmInfo.IsVisible = false;
             _ = await FrmDettagli.FadeTo(0, 1);
             FrmDettagli.IsVisible = true;
             _ = FrmDettagli.FadeTo(1, 800);
-           
+
         }
     }
 
 
 
-    }
+}
