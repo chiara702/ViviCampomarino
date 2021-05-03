@@ -274,4 +274,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\Sfondo2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\freccia.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Locandina.png" />
+  </ItemGroup>
 </Project>

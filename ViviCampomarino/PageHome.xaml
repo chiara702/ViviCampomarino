@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ViviCampomarino.PageHome" BackgroundColor="#f7d000" BackgroundImageSource="Sfondo2"  NavigationPage.HasNavigationBar="False">
     <ContentPage.Content >
-        <Grid ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
@@ -15,8 +15,8 @@
             </Grid.ColumnDefinitions>
             <Grid.Margin>
                 <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="20,65,20,20" />
-                    <On Platform="Android" Value="20,35,20,20" />
+                    <On Platform="iOS" Value="0,65,0,20" />
+                    <On Platform="Android" Value="0,35,0,20" />
                 </OnPlatform>
             </Grid.Margin>
 
@@ -29,9 +29,9 @@
                 <Button x:Name="BtnScopri" Text="Scopri Campomarino" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="22" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnScopri_Clicked" />
 
             </StackLayout>
-            <BoxView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Gray" />
-            <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40"   />
-            <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40"  />
+            <Frame Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#3c3c3b" Margin="-30,-5,-30, 0"  Opacity="0.3" />
+            <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40" Margin="0,0,0,5"  />
+            <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40" Margin="0,0,0,6" />
 
         </Grid>
 

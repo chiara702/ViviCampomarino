@@ -24,10 +24,10 @@
                     <Button x:Name="BtnCerca" Text="Cerca" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White" FontAttributes="Bold" CornerRadius="30" Clicked="BtnCerca_Clicked" />
                     <Button x:Name="BtnAccount" Text="Account" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30" Clicked="BtnAccount_Clicked"  />
                 </StackLayout>
-               
-                <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40"   />
-                <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40"  />
 
+                <Frame Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="#3c3c3b" Margin="-30,-5,-30, 0"  Opacity="0.3" />
+                <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40" Margin="0,0,0,5"  />
+                <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40" Margin="0,0,0,6" />
 
             </Grid>
 

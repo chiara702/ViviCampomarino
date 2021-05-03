@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ViviCampomarino.PageNotifiche" BackgroundColor="#3c3c3b" BackgroundImageSource="Sfondo2" Title="Notifiche">
+             x:Class="ViviCampomarino.PageNotifiche" BackgroundColor="#3c3c3b"  Title="Notifiche">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
             <ScrollView>
                 <StackLayout x:Name="StkNotifiche">
-                    <Label TextColor="Black" Margin="30,30,30,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" IsVisible="false" x:Name="LblNonDisponibile"/>
+                    <Label TextColor="White"  Margin="20,30,20,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" FontSize="18" IsVisible="false" x:Name="LblNonDisponibile"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

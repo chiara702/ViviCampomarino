@@ -4,7 +4,7 @@
              x:Class="ViviCampomarino.PageLogin" NavigationPage.HasNavigationBar="False" BackgroundColor="#3c3c3b" BackgroundImageSource="Sfondo2">
     <ContentPage.Content>
 
-        <Grid>
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -28,7 +28,7 @@
             </ContentView>
 
 
-            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="20,10, 20, 0" ColumnSpacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Margin="20,10, 20, 0" ColumnSpacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
@@ -38,6 +38,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <Frame Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" BackgroundColor="Black" Margin="-20,-5,-20, 0"  Opacity="0.3" />
                 <Image Margin="0,5,0,10"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Source="LogoBiblio3WShort"  WidthRequest="280" HeightRequest="60"  />
                 <ScrollView Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" >
                     <StackLayout  VerticalOptions="StartAndExpand" Spacing="5">
