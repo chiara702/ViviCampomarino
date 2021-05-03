@@ -29,6 +29,7 @@
                 <Button x:Name="BtnScopri" Text="Scopri Campomarino" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="22" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnScopri_Clicked" />
 
             </StackLayout>
+            <BoxView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Gray" />
             <Image Grid.Column="0" Grid.Row="2" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40"   />
             <Image  Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40"  />
 

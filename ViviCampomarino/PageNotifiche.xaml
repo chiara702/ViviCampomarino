@@ -6,7 +6,7 @@
         <StackLayout VerticalOptions="FillAndExpand">
             <ScrollView>
                 <StackLayout x:Name="StkNotifiche">
-                    <Label TextColor="WhiteSmoke" Margin="30,30,30,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" IsVisible="false" x:Name="LblNonDisponibile"/>
+                    <Label TextColor="Black" Margin="30,30,30,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" IsVisible="false" x:Name="LblNonDisponibile"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
