@@ -35,8 +35,10 @@ namespace ViviCampomarino {
                 pin.MarkerClicked += (s,e) => {
                     Device.BeginInvokeOnMainThread(() => {
                         FrmInfo.IsVisible = true;
-                        LblInfoTitolo.Text = tmpRow["Titolo"].ToString();
-                        LblInfoDescrizione.Text = tmpRow["Descrizione"].ToString();
+                        LblDenominazione.Text = tmpRow["Titolo"].ToString();
+                        LblDescrizione.Text = tmpRow["Descrizione"].ToString();
+                        Video1.Source = tmpRow["LinkVideo"].ToString();
+                        Video1.Start();
                     });
                 };
                 map1.Pins.Add(pin);
