@@ -268,4 +268,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Info.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Sfondo2.png" />
+  </ItemGroup>
 </Project>

@@ -18292,13 +18292,16 @@ namespace ViviCampomarino.Droid
 			public const int ScanCode = 2131165399;
 			
 			// aapt resource value: 0x7F0700D8
-			public const int test_custom_background = 2131165400;
+			public const int Sfondo2 = 2131165400;
 			
 			// aapt resource value: 0x7F0700D9
-			public const int tooltip_frame_dark = 2131165401;
+			public const int test_custom_background = 2131165401;
 			
 			// aapt resource value: 0x7F0700DA
-			public const int tooltip_frame_light = 2131165402;
+			public const int tooltip_frame_dark = 2131165402;
+			
+			// aapt resource value: 0x7F0700DB
+			public const int tooltip_frame_light = 2131165403;
 			
 			static Drawable()
 			{
