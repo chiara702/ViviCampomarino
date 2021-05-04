@@ -13,12 +13,45 @@ namespace ViviCampomarino {
         public PageEventiHome() {
             InitializeComponent();
             MenuTop.MenuLaterale = MenuLaterale;
+            
+        }
+        protected async override void OnAppearing() {
+            base.OnAppearing();
+            await Task.Run(AllegatoDisponibile);
         }
 
         private async void ImgMenu_Tapped(object sender, EventArgs e)
         {
             MenuLaterale.IsVisible = true;
             await MenuLaterale.Mostra();
+        }
+        private async void AllegatoDisponibile() {
+            try {
+                var rifs = FirebaseStorage.current.GetRootReference().GetChild("Eventi/Evento.pdf");
+                await rifs.GetMetadataAsync();
+                Device.BeginInvokeOnMainThread(() => {
+                    BtnDownload.IsEnabled = true;
+                });
+            } catch (Exception e) {
+                Device.BeginInvokeOnMainThread(() => { 
+                    BtnDownload.IsEnabled = false;
+                    ImgFreccia.IsAnimationPlaying = false;
+                });
+            }
+            try {
+                var rifs = FirebaseStorage.current.GetRootReference().GetChild("Eventi/Evento.jpg");
+                var st = await rifs.GetDownloadUrlAsync();
+                Device.BeginInvokeOnMainThread(() => {
+                    ImgAnteprima.Source = ImageSource.FromUri(new Uri(st));
+                });
+            } catch (Exception e) {
+                Device.BeginInvokeOnMainThread(() => {
+                    ImgAnteprima.Source = "";
+                    LblNonSonoPrevistiEventi.IsVisible = true;
+                });
+            }
+
+
         }
 
         private async void BtnDownload_Clicked(object sender, EventArgs e) {

@@ -18,12 +18,12 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.ColumnSpan="2" Text="Attualmente non sono previsti eventi!" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="20" Margin="20,0,20,0"/>
-                <Image Grid.Row="0" Grid.ColumnSpan="2" Source="Locandina"  HeightRequest="150" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label x:Name="LblNonSonoPrevistiEventi" IsVisible="false" Grid.Row="0" Grid.ColumnSpan="2" Text="Anteprima non disponibile!" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="20" Margin="20,0,20,0"/>
+                <Image Grid.Row="0" Grid.ColumnSpan="2" x:Name="ImgAnteprima" Source=""  HeightRequest="150" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
 
                 <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" x:Name="StkDownload" VerticalOptions="End" >
                     <Label Text="SCARICA LA LOCANDINA&#10;DEGLI EVENTI" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="20"  Margin="20,0,20,0"/>
-                    <Image  Source="Freccia.gif" Opacity="0.3" IsAnimationPlaying="True" HeightRequest="70" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                    <Image x:Name="ImgFreccia" Source="Freccia.gif" Opacity="0.3" IsAnimationPlaying="True" HeightRequest="70" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
 
                 </StackLayout>
                 <Image x:Name="ImgEventi"  Grid.Row="1" Grid.ColumnSpan="2" Source="" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
