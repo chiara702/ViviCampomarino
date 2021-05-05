@@ -24,6 +24,7 @@ namespace ViviCampomarino {
 
         }
         DataTable TablePunti;
+        DataRow RowSelezionata;
         public void CaricaPin(Boolean MostraGestore = false) {
             var Db = new MySqlvc();
             TablePunti = Db.EseguiQuery("Select * From PuntiInteresse");
@@ -34,6 +35,7 @@ namespace ViviCampomarino {
                 pin.Label = x["Nome"].ToString();
                 pin.MarkerClicked += (s,e) => {
                     Device.BeginInvokeOnMainThread(() => {
+                        RowSelezionata = tmpRow;
                         FrmInfo.IsVisible = true;
                         LblDenominazione.Text = tmpRow["Titolo"].ToString();
                         LblDescrizione.Text = tmpRow["Descrizione"].ToString();
@@ -51,7 +53,8 @@ namespace ViviCampomarino {
         }
 
         private void BtnDettagli_Clicked(object sender, EventArgs e) {
-
+            var f = new PageScopriCampomarinoDettagli(RowSelezionata);
+            Navigation.PushAsync(f);
         }
 
 
