@@ -16,6 +16,13 @@ namespace ViviCampomarino
 		public PageScopriCampomarinoDettagli (DataRow row)
 		{
 			InitializeComponent ();
+
+			Device.BeginInvokeOnMainThread(() => {
+				Video1.Source = row["LinkVideo"].ToString();
+				Video1.Start();
+				TxtTitolo.Text = row["Titolo"].ToString();
+			});
+
 		}
 	}
 }

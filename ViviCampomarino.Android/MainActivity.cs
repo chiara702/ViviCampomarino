@@ -29,6 +29,7 @@ namespace ViviCampomarino.Droid
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             //
 
+            ZXing.Net.Mobile.Forms.Android.Platform.Init(); //zxing init
 
             FirebaseCloudMessagingImplementation.OnNewIntent(Intent);
             CreateNotificationChannelIfNeeded();

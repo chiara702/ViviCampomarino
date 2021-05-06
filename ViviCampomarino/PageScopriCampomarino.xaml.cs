@@ -8,6 +8,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Data;
 using System.Diagnostics;
+using ZXing.Mobile;
+using ZXing.Net.Mobile.Forms;
+using Xamarin.Essentials;
 
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -36,11 +39,12 @@ namespace ViviCampomarino {
                 pin.MarkerClicked += (s,e) => {
                     Device.BeginInvokeOnMainThread(() => {
                         RowSelezionata = tmpRow;
-                        FrmInfo.IsVisible = true;
+                        FrmDettagli.FadeTo(0, 1);
+                        FrmDettagli.IsVisible = true;
+                        _ = FrmDettagli.FadeTo(1, 800);
                         LblDenominazione.Text = tmpRow["Titolo"].ToString();
                         LblDescrizione.Text = tmpRow["Descrizione"].ToString();
-                        Video1.Source = tmpRow["LinkVideo"].ToString();
-                        Video1.Start();
+                       
                     });
                 };
                 map1.Pins.Add(pin);
@@ -48,7 +52,42 @@ namespace ViviCampomarino {
 
         }
 
-        private void BtnScanPoint_Clicked(object sender, EventArgs e) {
+        private  async void BtnScanPoint_Clicked(object sender, EventArgs e) {
+            var options = new MobileBarcodeScanningOptions {
+                AutoRotate = false,
+                UseFrontCameraIfAvailable = false,
+                TryHarder = true
+            };
+            var overlay = new ZXingDefaultOverlay {
+                TopText = "SCANSIONA IL QR-CODE PER INIZIARE IL TOUR",
+                BottomText = ""
+            };
+
+            var Pagescanner = new ZXingScannerPage(options, overlay);
+            //var Pagescanner = new ZXingScannerView();
+
+            var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+            if (status != PermissionStatus.Granted) {
+                status = await Permissions.RequestAsync<Permissions.Camera>();
+            }
+            if (status != PermissionStatus.Granted)
+                return;
+            
+
+            await Navigation.PushAsync(Pagescanner);
+            Pagescanner.OnScanResult += async (x) => {
+                //Device.BeginInvokeOnMainThread(() => {
+                    Pagescanner.IsScanning = false;
+                    var rows=TablePunti.Select("QrCode='" + x.Text + "'");
+                    if (rows.Count() > 0) {
+                        var f = new PageScopriCampomarinoDettagli(rows[0]);
+                        await Navigation.PushModalAsync(f);
+                        await Navigation.PopAsync();
+                    }
+                //});
+            };
+
+
 
         }
 
@@ -58,7 +97,7 @@ namespace ViviCampomarino {
         }
 
 
-        private async void BtnInfo_Clicked(object sender, EventArgs e) {
+        private void BtnInfo_Clicked(object sender, EventArgs e) {
             FrmDettagli.IsVisible = false;
             
 
@@ -73,9 +112,7 @@ namespace ViviCampomarino {
 
             _ = await FrmInfo.FadeTo(0, 500);
             FrmInfo.IsVisible = false;
-            _ = await FrmDettagli.FadeTo(0, 1);
-            FrmDettagli.IsVisible = true;
-            _ = FrmDettagli.FadeTo(1, 800);
+            
 
         }
     }
