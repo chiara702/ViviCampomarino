@@ -24,6 +24,12 @@ namespace ViviCampomarino {
             var p = new Position(41.95582197035494, 15.03307138401569);
             var span = new MapSpan(p, 0.015, 0.015);
             map1.MoveToRegion(span);
+            
+            FrmInfo.FadeTo(1, 800);
+            
+            
+
+            
 
         }
         DataTable TablePunti;

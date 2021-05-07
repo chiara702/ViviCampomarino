@@ -44,13 +44,9 @@
                 </Grid>
 
             </Frame>
-            <Frame x:Name="FrmInfo" HeightRequest="600" IsVisible="true" HorizontalOptions="FillAndExpand" BackgroundColor="#005595" Margin="10,30,10,10" Padding="0" CornerRadius="10">
+            <Frame x:Name="FrmInfo" HeightRequest="600" IsVisible="true" Opacity="0" HorizontalOptions="FillAndExpand" BackgroundColor="#005595" Margin="10,30,10,10" Padding="0" CornerRadius="10">
                 <StackLayout Orientation="Horizontal">
                     <Image x:Name="ImgInfo" Source="Info"  Margin="0" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"  />
-                    <StackLayout>
-                        <Label x:Name="LblInfoTitolo" Text=""/>
-                        <Label x:Name="LblInfoDescrizione" Text=""/>
-                    </StackLayout>
                     
                 </StackLayout>
                 <Frame.GestureRecognizers>

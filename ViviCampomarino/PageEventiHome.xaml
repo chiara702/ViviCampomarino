@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="LblNonSonoPrevistiEventi" IsVisible="false" Grid.Row="0" Grid.ColumnSpan="2" Text="Anteprima non disponibile!" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="20" Margin="20,0,20,0"/>
+                <Label x:Name="LblNonSonoPrevistiEventi" IsVisible="false" Grid.Row="0" Grid.ColumnSpan="2" Text="Non sono previsti eventi al momento!" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="20" Margin="20,0,20,0"/>
                 <Image Grid.Row="0" Grid.ColumnSpan="2" x:Name="ImgAnteprima" Source=""  HeightRequest="150" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
 
                 <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" x:Name="StkDownload" VerticalOptions="End" >

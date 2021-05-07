@@ -31,7 +31,7 @@ namespace ViviCampomarino {
         async void BtnScopri_Clicked(object sender, EventArgs e)
         {
            
-            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarino());
+            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarino(),false);
 
         }
     }
