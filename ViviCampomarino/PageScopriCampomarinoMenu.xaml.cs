@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace ViviCampomarino
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PageScopriCampomarinoMenu : ContentPage
+    {
+        public PageScopriCampomarinoMenu()
+        {
+            InitializeComponent();
+        }
+
+        private async void BtnIndietro_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+       async void BtnAttivita_Clicked(object sender, EventArgs e)
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarinoAttivita(), false);
+
+        }
+
+        async void BtnScopri_Clicked(object sender, EventArgs e)
+        {
+
+            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarino(), false);
+
+        }
+    }
+}

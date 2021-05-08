@@ -280,4 +280,49 @@
   <ItemGroup>
     <BundleResource Include="Resources\Info.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AttCamping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AttDormire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AttMangiare.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AttNumeriUtili.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AttShopping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AttTecnico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ImgLogoAttivita.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Telefono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\OrariApertura.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\WebSite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Img3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\App.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Img2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Img1.png" />
+  </ItemGroup>
 </Project>
