@@ -65,9 +65,9 @@ namespace ViviCampomarino {
             data.Add("IdLibro", rowLibro["Id"].ToString());
             data.Add("Notifica", "Disponibile" + rowLibro["Id"].ToString());
             data.Add("Da", App.LoginUidAuth);
-            Funzioni.NotificaFcmLegacyToToken("/topics/Disponibile" + rowLibro["Id"].ToString(), data, "Libro ora disponibile", "Il libro: " + LblTitolo.Text + " è tornato ora disponibile!");
-
-
+            try {
+                Funzioni.NotificaFcmLegacyToToken("/topics/Disponibile" + rowLibro["Id"].ToString(), data, "Libro ora disponibile", "Il libro: " + LblTitolo.Text + " è tornato ora disponibile!");
+            } catch (Exception) { }
         }
     }
 }
