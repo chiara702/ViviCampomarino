@@ -39,20 +39,14 @@
 
                     <Label x:Name="LblDenominazione" Grid.Row="0" FontSize="18" TextColor="#0c4b8e"  Text="DENOMINAZIONE PUNTO DI INTERESSE" HorizontalOptions="Start" FontAttributes="Bold" VerticalOptions="Center" TextTransform="Uppercase" Style="{StaticResource UserFont}" />
                     <Label x:Name="LblDescrizione" Grid.Row="1" Text="Testo breve descrittivo" FontSize="16" HorizontalOptions="Start" VerticalOptions="Start" Style="{StaticResource UserFont}" />
-                    <Button Grid.Row="2" Margin="30,0,30,0" x:Name="BtnDettagli" Text="DETTAGLI" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="{OnPlatform Android='30', iOS='22'}" Clicked="BtnDettagli_Clicked"  />
-                    <rox:VideoView Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" x:Name="Video1" WidthRequest="100" HeightRequest="100" LoopPlay="False">
-
-                    </rox:VideoView>
+                    <Button Grid.Row="2" Margin="30,0,30,0" x:Name="BtnDettagli" Text="INIZIA IL TOUR" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="{OnPlatform Android='30', iOS='22'}" Clicked="BtnDettagli_Clicked"  />
+                    
                 </Grid>
 
             </Frame>
-            <Frame x:Name="FrmInfo" HeightRequest="600" IsVisible="true" BackgroundColor="#005595" Margin="10,30,10,10" Padding="0" CornerRadius="10">
+            <Frame x:Name="FrmInfo" HeightRequest="600" IsVisible="true" Opacity="0" HorizontalOptions="FillAndExpand" BackgroundColor="#005595" Margin="10,30,10,10" Padding="0" CornerRadius="10">
                 <StackLayout Orientation="Horizontal">
-                    <Image x:Name="ImgInfo" Source="Info"  Margin="0" VerticalOptions="FillAndExpand" />
-                    <StackLayout>
-                        <Label x:Name="LblInfoTitolo" Text=""/>
-                        <Label x:Name="LblInfoDescrizione" Text=""/>
-                    </StackLayout>
+                    <Image x:Name="ImgInfo" Source="Info"  Margin="0" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"  />
                     
                 </StackLayout>
                 <Frame.GestureRecognizers>

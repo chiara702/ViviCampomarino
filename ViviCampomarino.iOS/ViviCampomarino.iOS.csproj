@@ -269,15 +269,15 @@
     <BundleResource Include="Resources\ScanCode.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Info.png" />
+    <BundleResource Include="Resources\freccia.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Locandina.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Sfondo2.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\freccia.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Locandina.png" />
+    <BundleResource Include="Resources\Info.jpg" />
   </ItemGroup>
 </Project>

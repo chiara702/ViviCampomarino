@@ -51,7 +51,7 @@
 
                         <Button Margin="20,1,20,15" x:Name="BtnAccedi" Text="ACCEDI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="26" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAccedi_Clicked" />
                         <Button Margin="20,1,20,5" x:Name="BtnRegistrati" Text="REGISTRATI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30"  Clicked="BtnRegistrati_Clicked" />
-                        <Button Margin="20,1,20,15" x:Name="BtnRecuperaPassword" Text="Hai dimenticato la password? Recupera" TextTransform="None"  BackgroundColor="Transparent" FontSize="16" TextColor="White"   CornerRadius="30"  Clicked="BtnRecuperaPassword_Clicked" />
+                        <Button Margin="10,1,15,30" x:Name="BtnRecuperaPassword" Text="Recupera password" TextTransform="None"  BackgroundColor="Transparent" FontSize="16" TextColor="White"   CornerRadius="30"  Clicked="BtnRecuperaPassword_Clicked" />
 
 
 
