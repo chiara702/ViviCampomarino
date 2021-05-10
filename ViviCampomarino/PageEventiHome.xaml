@@ -3,11 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vivicampomarino="clr-namespace:ViviCampomarino"
              x:Class="ViviCampomarino.PageEventiHome" NavigationPage.HasNavigationBar="False" BackgroundColor="#3c3c3b" BackgroundImageSource="Sfondo2">
     <ContentPage.Content>
-        <Grid>
-            <!-- menù grid -->
-            <vivicampomarino:ViewMenuTop x:Name="MenuTop" MostraBell="True" ></vivicampomarino:ViewMenuTop>
 
-            <Grid Margin="20,100, 20, 20" ColumnSpacing="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,30,0,20" />
+                        <On Platform="Android, WinPhone, Windows" Value="0,0,0,20" />
+                    </OnPlatform>
+                </Grid.Margin>
+
+                <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
+                <ContentView Grid.Row="0" Grid.Column="1">
+                    <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
+			    HorizontalOptions="Center" VerticalOptions="Center" />
+                </ContentView>
+
+
+                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Margin="20,10, 20, 0" ColumnSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
@@ -31,13 +55,6 @@
 
             </Grid>
 
-
-
-
-
-            <!--Menu Laterale-->
-            <vivicampomarino:ViewMenuLaterale x:Name="MenuLaterale"></vivicampomarino:ViewMenuLaterale>
-            <!---->
         </Grid>
     </ContentPage.Content>
 </ContentPage>
