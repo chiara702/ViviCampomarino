@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vivicampomarino="clr-namespace:ViviCampomarino"
+             x:Class="ViviCampomarino.PageScopriCampomarinoAttivita" BackgroundImageSource="Sfondo2.png" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,30,0,20" />
+                    <On Platform="Android, WinPhone, Windows" Value="0,0,0,20" />
+                </OnPlatform>
+            </Grid.Margin>
+
+            <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
+            <ContentView Grid.Row="0" Grid.Column="1">
+                <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
+			    HorizontalOptions="Center" VerticalOptions="Center" />
+            </ContentView>
+
+            <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" >
+                <Grid  Margin="20,10, 20, 0" ColumnSpacing="20" RowSpacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="150" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <vivicampomarino:ViewBtnAttivita Grid.Row="0" Grid.Column="0" ></vivicampomarino:ViewBtnAttivita>
+                    
+                        <ImageButton x:Name="BtnMangiare" Grid.Row="0" Grid.Column="1" Source="AttMangiare" BackgroundColor="transparent"   Clicked="BtnMangiare_Clicked"/>
+                        <ImageButton x:Name="BtnTecnico" Grid.Row="1" Grid.Column="0" Source="AttTecnico" BackgroundColor="transparent"   Clicked="BtnTecnico_Clicked"/>
+                        <ImageButton x:Name="BtnCamping" Grid.Row="1" Grid.Column="1" Source="AttCamping" BackgroundColor="transparent"   Clicked="BtnCamping_Clicked"/>
+                        <ImageButton x:Name="BtnShopping" Grid.Row="2" Grid.Column="0" Source="AttShopping" BackgroundColor="transparent"   Clicked="BtnShopping_Clicked"/>
+                        <ImageButton x:Name="BtnNumeriUtili" Grid.Row="2" Grid.Column="1" Source="AttNumeriUtili" BackgroundColor="transparent"   Clicked="BtnNumeriUtili_Clicked"/>
+
+                </Grid>
+            </ScrollView>
+
+        </Grid>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

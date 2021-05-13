@@ -7,7 +7,7 @@
 
            
 
-            <maps:Map Grid.Column="0" x:Name="map1" HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
+            <maps:Map Grid.Column="0" x:Name="map1" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" IsShowingUser="True">
                 <x:Arguments>
                     
                 </x:Arguments>
@@ -17,7 +17,7 @@
 
             </maps:Map>
             
-            <ImageButton  Grid.Column="0" x:Name="BtnScanPoint" Source="ScanCode.png" VerticalOptions="Start" HorizontalOptions="End"  Margin="15,30,15,0"  HeightRequest="120" BackgroundColor="Transparent" Clicked="BtnScanPoint_Clicked" />
+            <ImageButton  Grid.Column="0" x:Name="BtnScanPoint" Source="ScanCode.png"  VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand"  Margin="15,30,15,0"  HeightRequest="120" BackgroundColor="Transparent" Clicked="BtnScanPoint_Clicked" />
 
             <Frame Grid.Column="0" VerticalOptions="End"  x:Name="FrmDettagli" IsVisible="false" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0" CornerRadius="10" BackgroundColor="White" Margin="10,0,10,10" Padding="0,0,0,0"   >
                 <Frame.HasShadow>
@@ -44,11 +44,10 @@
                 </Grid>
 
             </Frame>
-            <Frame x:Name="FrmInfo" HeightRequest="600" IsVisible="true" Opacity="0" HorizontalOptions="FillAndExpand" BackgroundColor="#005595" Margin="10,30,10,10" Padding="0" CornerRadius="10">
-                <StackLayout Orientation="Horizontal">
-                    <Image x:Name="ImgInfo" Source="Info"  Margin="0" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"  />
-                    
-                </StackLayout>
+            <Frame x:Name="FrmInfo"  IsVisible="true" Opacity="0" HorizontalOptions="FillAndExpand" BackgroundColor="#005595" Margin="{OnPlatform Android='10,30,10,10', iOS='10,30,10,30'}" Padding="0" CornerRadius="10">
+  
+                    <Image x:Name="ImgInfo" Source="Info"  Margin="0" HorizontalOptions="Center"   />
+               
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="TapInfo" Tapped="TapInfo_Tapped" />
                 </Frame.GestureRecognizers>

@@ -31,8 +31,12 @@ namespace ViviCampomarino {
         async void BtnScopri_Clicked(object sender, EventArgs e)
         {
            
-            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarino(),false);
+            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarinoMenu(),true);
 
+        }
+
+        private async void BtnBell_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new PageNotifiche());
         }
     }
 }
