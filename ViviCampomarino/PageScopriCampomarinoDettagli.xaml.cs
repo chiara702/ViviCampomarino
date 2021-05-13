@@ -25,10 +25,14 @@ namespace ViviCampomarino {
             });
             var child=FirebaseStorage.current.GetRootReference().GetChild("VideoTour/" + row["Id"].ToString() + ".mpeg4");
             var url = await child.GetDownloadUrlAsync();
+            Video1.SetStopAction(() => Navigation.PopAsync());
+            Video1.SetStartAction(() => {
+                
+            });
             Device.BeginInvokeOnMainThread(() => {
-                Act1.IsVisible = false;
                 Video1.Source = url;
                 Video1.Start();
+                Act1.IsVisible = false;
             });
 
 
