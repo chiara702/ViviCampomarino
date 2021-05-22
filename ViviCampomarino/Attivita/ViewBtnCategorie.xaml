@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ViviCampomarino.ViewBtnAttivita">
+             x:Class="ViviCampomarino.ViewBtnCategorie">
     <ContentView.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -12,7 +12,7 @@
                 <ColumnDefinition Width="180" />
             </Grid.ColumnDefinitions>
             <Frame BackgroundColor="White" Grid.Row="0" Grid.RowSpan="2"  Opacity="0.6" HasShadow="True" CornerRadius="10"/>
-            <Image x:Name="BtnImg" Grid.Row="0" Source="AttNumeriUtili" VerticalOptions="End" Margin="2,5,2,0" />
+            <Image x:Name="BtnImg" Grid.Row="0" Source="AttNumeriUtili" VerticalOptions="End" Margin="0,5,0,0" />
             <Label x:Name="BtnLabel" Grid.Row="1" Text="numeri utili" TextTransform="Uppercase" Margin="0,0,0,5" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalOptions="Center" FontSize="18"  TextColor="#a4182f" />
 
         </Grid>

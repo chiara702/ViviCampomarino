@@ -26,10 +26,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Attivita\ViewBtnCategorie.xaml.cs">
+      <DependentUpon>ViewBtnCategorie.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Attivita\ListViewPageSottocategorieAttivita.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Attivita\ListViewPageElencoAttivita.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Attivita\ViewBtnAttivita.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="PageAccount.xaml">
@@ -83,7 +92,7 @@
     <EmbeddedResource Update="ViewAccountLibro.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Attivita\ViewBtnAttivita.xaml">
+    <EmbeddedResource Update="Attivita\ViewBtnCategorie.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="ViewMenuLaterale.xaml">

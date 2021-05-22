@@ -14,7 +14,7 @@
     <AssemblyName>ViviCampomarino.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <ProvisioningType>automatic</ProvisioningType>
+    <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup>
     <UseShortFileNames>True</UseShortFileNames>
@@ -68,7 +68,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Fabio Di Maria (9HAAQ267G2)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>AppStoreViviCampomarino</CodesignProvision>
+    <CodesignProvision>ViviCampomarinoAppStore</CodesignProvision>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchSdkVersion>
     </MtouchSdkVersion>

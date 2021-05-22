@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -9,19 +9,19 @@ using Xamarin.Forms.Xaml;
 
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ViewBtnAttivita : ContentView {
+    public partial class ViewBtnCategorie : ContentView {
         public event EventHandler Cliccato;
         public int idCategoria;
-        public ViewBtnAttivita(int id) {
+
+        public ViewBtnCategorie(int id) {
             InitializeComponent();
             idCategoria = id;
             BtnImg.Source = "App.png";
         }
-        
 
-        public byte[] ImageLogoByte {
+        public byte[] ImageByte {
             set {
-                BtnImg.Source = ImageSource.FromStream(() => new System.IO.MemoryStream(value));
+                BtnImg.Source = ImageSource.FromStream(()=>new System.IO.MemoryStream(value));
             }
         }
         public String Label {
@@ -34,13 +34,10 @@ namespace ViviCampomarino {
         }
 
 
-
-
-
         private void TapBtn_Tapped(object sender, EventArgs e) {
-            //await App.Current.MainPage.Navigation.PushAsync(new ListViewPageSottocategorieAttivita());
             Cliccato.Invoke(this, null);
         }
+
 
     }
 }

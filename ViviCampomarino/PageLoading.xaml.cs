@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,11 +17,13 @@ namespace ViviCampomarino {
         }
 
         private async void Animazione() {
-            await LogoCampomarino.FadeTo(0, 1);
-            _ = LogoCampomarino.RelScaleTo(0.1, 1);
-            _ = LogoCampomarino.RelScaleTo(0.4, 3000);
-            await LogoCampomarino.FadeTo(1, 3000);
-            await Task.Delay(1000);
+            if (Debugger.IsAttached == false) {
+                await LogoCampomarino.FadeTo(0, 1);
+                _ = LogoCampomarino.RelScaleTo(0.1, 1);
+                _ = LogoCampomarino.RelScaleTo(0.4, 3000);
+                await LogoCampomarino.FadeTo(1, 3000);
+                await Task.Delay(1000);
+            }
             Device.BeginInvokeOnMainThread(() => {
                 if (App.Current.MainPage is PageNotifiche == false) {
                     var Nav = new NavigationPage(new PageHome());

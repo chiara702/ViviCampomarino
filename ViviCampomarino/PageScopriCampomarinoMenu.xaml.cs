@@ -23,7 +23,7 @@ namespace ViviCampomarino
         }
        async void BtnAttivita_Clicked(object sender, EventArgs e)
         {
-            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarinoAttivita(), false);
+            await App.Current.MainPage.Navigation.PushAsync(new PageScopriCampomarinoAttivita(0), false);
 
         }
 

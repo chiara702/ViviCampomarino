@@ -36,7 +36,7 @@ namespace ViviCampomarino
                 return;
 
             await DisplayAlert("Item Tapped", "Dettagli pagina", "OK");
-            await App.Current.MainPage.Navigation.PushAsync(new PageAttivita());
+            await App.Current.MainPage.Navigation.PushAsync(new PageAttivita(null));
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
