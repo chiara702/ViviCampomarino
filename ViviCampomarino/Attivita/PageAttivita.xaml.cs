@@ -34,7 +34,11 @@ namespace ViviCampomarino {
         }
 
         private void TapTelefono_Tapped(object sender, EventArgs e) {
-            Xamarin.Essentials.PhoneDialer.Open(LblTelefono.Text);
+            try {
+                Xamarin.Essentials.PhoneDialer.Open(LblTelefono.Text);
+            } catch (Exception) {
+                
+            }
         }
 
         private void TapWebSite_Tapped(object sender, EventArgs e) {

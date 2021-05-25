@@ -42,7 +42,7 @@
                 </StackLayout>
                 <StackLayout Grid.Row="7" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center"  >
                     <Image   Source="Telefono"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
-                    <Label x:Name="LblTelefono"  Margin="0, 5,5,0" FontFamily="" FontSize="30" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
+                    <Label x:Name="LblTelefono"  Margin="0, 5,5,0" FontFamily="" FontSize="20" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer x:Name="TapTelefono" Tapped="TapTelefono_Tapped" />
                     </StackLayout.GestureRecognizers>
