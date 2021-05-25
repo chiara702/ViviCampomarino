@@ -110,11 +110,11 @@ namespace ViviCampomarino {
         }
 
         private async void TapInfo_Tapped(object sender, EventArgs e) {
-            if (Debugger.IsAttached == false) {
-                await DisplayAlert("Presto disponibile!", "Funzione presto disponibile", "OK");
-                await Navigation.PopAsync();
-                return;
-            }
+            ////if (Debugger.IsAttached == false) {
+            ////    await DisplayAlert("Presto disponibile!", "Funzione presto disponibile", "OK");
+            ////    await Navigation.PopAsync();
+            ////    return;
+            ////}
 
             _ = await FrmInfo.FadeTo(0, 500);
             FrmInfo.IsVisible = false;
