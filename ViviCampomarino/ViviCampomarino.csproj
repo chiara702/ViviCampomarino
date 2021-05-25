@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Attivita\ListViewPageSottocategorieAttivita.xaml.cs" />
     <Compile Remove="ModuloSqlLite.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Attivita\ListViewPageSottocategorieAttivita.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,9 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Attivita\ListViewPageSottocategorieAttivita.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Attivita\ListViewPageElencoAttivita.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

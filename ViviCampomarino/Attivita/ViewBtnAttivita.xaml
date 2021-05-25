@@ -12,8 +12,8 @@
                 <ColumnDefinition Width="180" />
             </Grid.ColumnDefinitions>
             <Frame BackgroundColor="White" Grid.Row="0" Grid.RowSpan="2"  Opacity="0.6" HasShadow="True" CornerRadius="10"/>
-            <Image x:Name="BtnImg" Grid.Row="0" Source="AttNumeriUtili" VerticalOptions="End" Margin="2,5,2,0" />
-            <Label x:Name="BtnLabel" Grid.Row="1" Text="numeri utili" TextTransform="Uppercase" Margin="0,0,0,5" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalOptions="Center" FontSize="18"  TextColor="#a4182f" />
+            <Image x:Name="BtnImg" Grid.Row="0" Source="AttNumeriUtili" VerticalOptions="Center" Margin="2,5,2,0" />
+            <Label x:Name="BtnLabel" Grid.Row="1" Text="numeri utili" TextTransform="Uppercase" Margin="0,0,0,5" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" LineBreakMode="TailTruncation" MaxLines="2"  TextColor="#a4182f" />
 
         </Grid>
 

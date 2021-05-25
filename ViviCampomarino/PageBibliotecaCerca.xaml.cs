@@ -44,7 +44,7 @@ namespace ViviCampomarino {
             Act1.IsVisible = true;
             var CercaSoloDisponibili = false;
             if (CheckSoloDisponibili.IsChecked == true) CercaSoloDisponibili = true;
-            var Db = new MySqlvc();
+            
             var Where = "";
             if (CheckAutori.IsChecked == false && CheckGenere.IsChecked == false && CheckTitoli.IsChecked == false) {
                 CheckAutori.IsChecked = true; CheckGenere.IsChecked = true; CheckAutori.IsChecked = true;
@@ -60,9 +60,8 @@ namespace ViviCampomarino {
             }
             Where += "1=0";
 
+            var Db = new MySqlvc();
             var Table = Db.EseguiQuery("Select * From Libri Where " + Where + " limit " + DaRecord +",100");
-
-
             Db.CloseCommit();
 
             StackView.Children.Clear();
@@ -129,8 +128,13 @@ namespace ViviCampomarino {
 
         }
 
-        private async void BtnCerca_Clicked(object sender, EventArgs e) {
-            Cerca(0); //Cerca(LastRecord);
+        private void BtnCerca_Clicked(object sender, EventArgs e) {
+            try {
+                Cerca(0); //Cerca(LastRecord);
+            } catch (Exception) {
+                DisplayAlert("Errore", "Ricerca non riuscita! Verifica connessione internet.","OK");
+            }
+
         }
 
 
@@ -143,8 +147,12 @@ namespace ViviCampomarino {
         }
 
         private void BtnMostraAltri_Clicked(object sender, EventArgs e) {
-            Cerca(LastRecord);
-            ScrollLibri.ScrollToAsync(0, 0, true);
+            try {
+                Cerca(LastRecord);
+                ScrollLibri.ScrollToAsync(0, 0, true);
+            } catch (Exception) {
+                DisplayAlert("Errore", "Ricerca non riuscita! Verifica connessione internet.", "OK");
+            }
         }
     }
 }

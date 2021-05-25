@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vivicampomarino="clr-namespace:ViviCampomarino"
              x:Class="ViviCampomarino.PageScopriCampomarinoAttivita" BackgroundImageSource="Sfondo2.png" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <Grid >
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -25,7 +25,8 @@
                 <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
 			    HorizontalOptions="Center" VerticalOptions="Center" />
             </ContentView>
-
+            <ActivityIndicator x:Name="Act1" IsVisible="true" IsRunning="true" Grid.Row="0" Grid.Column="2" />
+            
             <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" >
                 <Grid x:Name="GridCategorie" Margin="20,10, 20, 0" ColumnSpacing="20" RowSpacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
