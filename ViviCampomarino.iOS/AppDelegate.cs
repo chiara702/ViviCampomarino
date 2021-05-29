@@ -26,13 +26,13 @@ namespace ViviCampomarino.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            CrossFirebase.Initialize(app, options, new Plugin.Firebase.Shared.CrossFirebaseSettings(isCloudMessagingEnabled: true));
             LoadApplication(new App());
 
             //Plugin.FirebaseAuth Wrapper
             //Firebase.Core.App.Configure();
-            
-            CrossFirebase.Initialize(app, options, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
-            CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+
+           
             //Local notification
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0)) {
                 // Ask the user for permission to get notifications on iOS 10.0+
