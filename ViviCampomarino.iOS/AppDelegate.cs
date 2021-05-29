@@ -27,7 +27,7 @@ namespace ViviCampomarino.iOS
             LoadApplication(new App());
 
             //Plugin.FirebaseAuth Wrapper
-            //Firebase.Core.App.Configure();
+            Firebase.Core.App.Configure();
 
             //Local notification
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0)) {
