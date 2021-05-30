@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ViviCampomarino.Attivita;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,15 +21,20 @@ namespace ViviCampomarino {
         }
 
         public void CaricaCategorie(int idCategoria) {
-            DataTable table, tableAtt;
+            DataTable table, tableAtt, tableHtml=null;
             try {
                 var Db = new MySqlvc();
                 table = Db.EseguiQuery("Select * From Categorie Where ParentId=" + idCategoria.ToString() + " Order By Ordine");
                 tableAtt = Db.EseguiQuery("Select * From Aziende Where CategoriaId=" + idCategoria.ToString() + " Order By Denominazione");
+                if (idCategoria == 0) {
+                    tableHtml = Db.EseguiQuery("Select Id From VarieHtml Where CHAR_LENGTH(HTML)>10");
+                }
                 Db.CloseCommit();
             } catch (Exception) {
-                Device.BeginInvokeOnMainThread(() => Act1.IsVisible = false);
-                DisplayAlert("Errore", "Connessione internet assente o operazione impossibile in questo momento!", "OK");
+                Device.BeginInvokeOnMainThread(() => {
+                    Act1.IsVisible = false;
+                    DisplayAlert("Errore", "Connessione internet assente o operazione impossibile in questo momento!", "OK");
+                });
                 return;
             }
             if (table.Rows.Count == 0) { //se non sono presenti sottocategorie visualizza attivita
@@ -81,6 +86,50 @@ namespace ViviCampomarino {
                             var p = new PageScopriCampomarinoAttivita(view.idCategoria);
                             Navigation.PushAsync(p);
                         };
+                    }
+                    if (idCategoria == 0) {
+                        if (tableHtml.Select("Id=1").Length == 1) { //View Taxy
+                            var view = new ViewBtnCategorie(0);
+                            view.Label = "NUMERI TAXI";
+                            view.SetImageSource("taxi.jpg");
+                            Grid.SetColumn(view, count % 2);
+                            Grid.SetRow(view, count / 2);
+                            GridCategorie.Children.Add(view);
+                            count++;
+                            view.Cliccato += (s, e) => {
+                                ViewBtnCategorie view = (ViewBtnCategorie)s;
+                                var p = new PageSimpleHtml(1, "NUMERI TAXI");
+                                Navigation.PushAsync(p);
+                            };
+                        }
+                        if (tableHtml.Select("Id=2").Length == 1) { //View Taxy
+                            var view = new ViewBtnCategorie(0);
+                            view.Label = "INFO PULMAN";
+                            view.SetImageSource("pulman.png");
+                            Grid.SetColumn(view, count % 2);
+                            Grid.SetRow(view, count / 2);
+                            GridCategorie.Children.Add(view);
+                            count++;
+                            view.Cliccato += (s, e) => {
+                                ViewBtnCategorie view = (ViewBtnCategorie)s;
+                                var p = new PageSimpleHtml(2, "INFO PULMAN");
+                                Navigation.PushAsync(p);
+                            };
+                        }
+                        if (tableHtml.Select("Id=3").Length == 1) { //View Taxy
+                            var view = new ViewBtnCategorie(0);
+                            view.Label = "NUMERI UTILI";
+                            view.SetImageSource("AttNumeriUtili.png");
+                            Grid.SetColumn(view, count % 2);
+                            Grid.SetRow(view, count / 2);
+                            GridCategorie.Children.Add(view);
+                            count++;
+                            view.Cliccato += (s, e) => {
+                                ViewBtnCategorie view = (ViewBtnCategorie)s;
+                                var p = new PageSimpleHtml(3, "NUMERI UTILI");
+                                Navigation.PushAsync(p);
+                            };
+                        }
                     }
                 });
             }

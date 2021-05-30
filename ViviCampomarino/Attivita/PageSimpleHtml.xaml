@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.Attivita.PageSimpleHtml" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Label HorizontalOptions="CenterAndExpand" Text="" x:Name="LblTitolo" FontSize="18"/>
+            
+                
+                    <WebView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" MinimumHeightRequest="100" MinimumWidthRequest="100" x:Name="WebView1"></WebView>
+                
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
