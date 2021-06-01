@@ -7,7 +7,7 @@
 
            
 
-            <maps:Map Grid.Column="0" x:Name="map1" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" IsShowingUser="True">
+            <maps:Map HeightRequest="100" Grid.Column="0" MinimumHeightRequest="30" MinimumWidthRequest="30" x:Name="map1" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" IsShowingUser="True">
                 <x:Arguments>
                     
                 </x:Arguments>
@@ -19,7 +19,7 @@
             
             <ImageButton  Grid.Column="0" x:Name="BtnScanPoint" Source="ScanCode.png"  VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand"  Margin="15,30,15,0"  HeightRequest="120" BackgroundColor="Transparent" Clicked="BtnScanPoint_Clicked" />
 
-            <Frame Grid.Column="0" VerticalOptions="End"  x:Name="FrmDettagli" IsVisible="false" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0" CornerRadius="10" BackgroundColor="White" Margin="10,0,10,10" Padding="0,0,0,0"   >
+            <Frame Grid.Column="0" VerticalOptions="End"  x:Name="FrmDettagli" IsVisible="false" HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0" CornerRadius="10" BackgroundColor="White" Margin="10,0,10,10" Padding="0,0,0,0">
                 <Frame.HasShadow>
                     <OnPlatform x:TypeArguments="x:Boolean">
                         <On Platform="iOS" Value="false" />
@@ -46,7 +46,7 @@
             </Frame>
             <Frame x:Name="FrmInfo"  IsVisible="true" Opacity="0" HorizontalOptions="FillAndExpand" BackgroundColor="#005595" Margin="{OnPlatform Android='10,30,10,10', iOS='10,30,10,30'}" Padding="0" CornerRadius="10">
   
-                    <Image x:Name="ImgInfo" Source="Info"  Margin="0" HorizontalOptions="Center"   />
+                    <Image x:Name="ImgInfo" Source="Info.jpg"  Margin="0" HorizontalOptions="Center"   />
                
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer x:Name="TapInfo" Tapped="TapInfo_Tapped" />

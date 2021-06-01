@@ -26,7 +26,11 @@ namespace ViviCampomarino.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            CrossFirebase.Initialize(app, options, new Plugin.Firebase.Shared.CrossFirebaseSettings(isCloudMessagingEnabled: true));
+
+            Xamarin.FormsMaps.Init();
+            Rox.VideoIos.Init();
+
+            //CrossFirebase.Initialize(app, options, new Plugin.Firebase.Shared.CrossFirebaseSettings(isCloudMessagingEnabled: true));
             LoadApplication(new App());
 
             //Plugin.FirebaseAuth Wrapper

@@ -27,15 +27,25 @@ namespace ViviCampomarino {
             var url = await child.GetDownloadUrlAsync();
             Video1.SetStopAction(() => Navigation.PopAsync());
             Video1.SetStartAction(() => {
-                
+                Act1.IsVisible = false;
             });
             Device.BeginInvokeOnMainThread(() => {
                 Video1.Source = url;
                 Video1.Start();
-                Act1.IsVisible = false;
+                
             });
+            
 
 
+        }
+        protected override void OnDisappearing(){
+            Task.Run(async() => {await Video1.Pause(); });
+            base.OnDisappearing();
+        }
+        
+        protected override bool OnBackButtonPressed(){
+            
+            return base.OnBackButtonPressed();
         }
     }
 }

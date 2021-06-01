@@ -86,9 +86,12 @@ namespace ViviCampomarino {
                     Pagescanner.IsScanning = false;
                     var rows=TablePunti.Select("QrCode='" + x.Text + "'");
                     if (rows.Count() > 0) {
+                    Device.BeginInvokeOnMainThread(async() =>
+                    {
                         var f = new PageScopriCampomarinoDettagli(rows[0]);
-                        await Navigation.PushModalAsync(f);
-                        await Navigation.PopAsync();
+                        await Navigation.PushAsync(f);
+                        //await Navigation.PopAsync();
+                    });
                     }
                 //});
             };
@@ -132,6 +135,7 @@ namespace ViviCampomarino {
                 await DisplayAlert("", "Non riesco a visualizzare l'indirizzo!", "OK");
             }
         }
+        
     }
 
 
