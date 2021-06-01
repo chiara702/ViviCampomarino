@@ -72,9 +72,13 @@ namespace ViviCampomarino {
             }
         }
         private async void TapIndirizzo_Tapped(object sender, EventArgs e) {
-            Location location = (await Geocoding.GetLocationsAsync(LblNomeAttivita.Text + " " + LblIndirizzo.Text + " " + LblPaese.Text)).FirstOrDefault();
-            if (location == null) { await DisplayAlert("", "Non riesco a trovare l'attività su maps!", "OK"); return; }
-            await Map.OpenAsync(location);
+            try {
+                Location location = (await Geocoding.GetLocationsAsync(LblNomeAttivita.Text + " " + LblIndirizzo.Text + " " + LblPaese.Text)).FirstOrDefault();
+                if (location == null) { await DisplayAlert("", "Non riesco a trovare l'attività su maps!", "OK"); return; }
+                await Map.OpenAsync(location);
+            } catch (Exception) {
+                await DisplayAlert("", "Non riesco a visualizzare l'indirizzo!", "OK");
+            }
         }
     }
 }

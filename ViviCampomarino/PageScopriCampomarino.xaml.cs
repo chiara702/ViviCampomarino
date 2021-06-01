@@ -121,6 +121,17 @@ namespace ViviCampomarino {
             
 
         }
+
+        private async void BtnNavigaVerso_Clicked(object sender, EventArgs e) {
+            try {
+                //Location location = (await Geocoding.GetLocationsAsync(RowSelezionata["Latitudine"].ToString() + "," + (RowSelezionata["Longitudine"].ToString()).FirstOrDefault();
+                Location location = new Location(Convert.ToDouble(RowSelezionata["Latitudine"]), Convert.ToDouble(RowSelezionata["Longitudine"]));
+                if (location == null) { await DisplayAlert("", "Non riesco a trovare l'attività su maps!", "OK"); return; }
+                await Xamarin.Essentials.Map.OpenAsync(location);
+            } catch (Exception) {
+                await DisplayAlert("", "Non riesco a visualizzare l'indirizzo!", "OK");
+            }
+        }
     }
 
 
