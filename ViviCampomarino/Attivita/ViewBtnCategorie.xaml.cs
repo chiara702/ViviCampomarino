@@ -24,6 +24,9 @@ namespace ViviCampomarino {
                 BtnImg.Source = ImageSource.FromStream(()=>new System.IO.MemoryStream(value));
             }
         }
+        public void SetImageSource(String Source) {
+            BtnImg.Source = Source;
+        }
         public String Label {
             set {
                 BtnLabel.Text = value;

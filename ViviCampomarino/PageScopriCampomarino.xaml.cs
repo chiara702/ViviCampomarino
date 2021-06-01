@@ -86,9 +86,12 @@ namespace ViviCampomarino {
                     Pagescanner.IsScanning = false;
                     var rows=TablePunti.Select("QrCode='" + x.Text + "'");
                     if (rows.Count() > 0) {
+                    Device.BeginInvokeOnMainThread(async() =>
+                    {
                         var f = new PageScopriCampomarinoDettagli(rows[0]);
-                        await Navigation.PushModalAsync(f);
-                        await Navigation.PopAsync();
+                        await Navigation.PushAsync(f);
+                        //await Navigation.PopAsync();
+                    });
                     }
                 //});
             };
@@ -121,6 +124,18 @@ namespace ViviCampomarino {
             
 
         }
+
+        private async void BtnNavigaVerso_Clicked(object sender, EventArgs e) {
+            try {
+                //Location location = (await Geocoding.GetLocationsAsync(RowSelezionata["Latitudine"].ToString() + "," + (RowSelezionata["Longitudine"].ToString()).FirstOrDefault();
+                Location location = new Location(Convert.ToDouble(RowSelezionata["Latitudine"]), Convert.ToDouble(RowSelezionata["Longitudine"]));
+                if (location == null) { await DisplayAlert("", "Non riesco a trovare l'attività su maps!", "OK"); return; }
+                await Xamarin.Essentials.Map.OpenAsync(location);
+            } catch (Exception) {
+                await DisplayAlert("", "Non riesco a visualizzare l'indirizzo!", "OK");
+            }
+        }
+        
     }
 
 

@@ -326,4 +326,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\Img1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\taxi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pulman.png" />
+  </ItemGroup>
 </Project>

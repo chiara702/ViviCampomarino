@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Plugin.Firebase.CloudMessaging;
+using Plugin.Firebase.iOS;
 using UIKit;
 using UserNotifications;
 
@@ -24,12 +26,18 @@ namespace ViviCampomarino.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+
+            Xamarin.FormsMaps.Init();
+            Rox.VideoIos.Init();
+
+            //CrossFirebase.Initialize(app, options, new Plugin.Firebase.Shared.CrossFirebaseSettings(isCloudMessagingEnabled: true));
             LoadApplication(new App());
             
 
             //Plugin.FirebaseAuth Wrapper
             //Firebase.Core.App.Configure();
 
+           
             //Local notification
             if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0)) {
                 // Ask the user for permission to get notifications on iOS 10.0+
