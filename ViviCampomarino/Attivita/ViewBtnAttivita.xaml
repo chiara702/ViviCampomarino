@@ -5,11 +5,11 @@
     <ContentView.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="120" />
-                <RowDefinition Height="60" />
+                <RowDefinition Height="110" />
+                <RowDefinition Height="55" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="165" />
             </Grid.ColumnDefinitions>
             <Frame BackgroundColor="White" Grid.Row="0" Grid.RowSpan="2"  Opacity="1" HasShadow="True" CornerRadius="10"/>
             <Image x:Name="BtnImg" Grid.Row="0" Source="ImgLogoAttivita" VerticalOptions="Center" Margin="2,5,2,0" />

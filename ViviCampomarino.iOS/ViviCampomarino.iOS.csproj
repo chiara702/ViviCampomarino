@@ -327,9 +327,9 @@
     <BundleResource Include="Resources\Img1.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\taxi.jpg" />
+    <BundleResource Include="Resources\pulman.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\pulman.png" />
+    <BundleResource Include="Resources\taxi.png" />
   </ItemGroup>
 </Project>
