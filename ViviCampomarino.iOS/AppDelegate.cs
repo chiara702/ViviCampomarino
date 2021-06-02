@@ -32,6 +32,7 @@ namespace ViviCampomarino.iOS
 
             //CrossFirebase.Initialize(app, options, new Plugin.Firebase.Shared.CrossFirebaseSettings(isCloudMessagingEnabled: true));
             LoadApplication(new App());
+            
 
             //Plugin.FirebaseAuth Wrapper
             //Firebase.Core.App.Configure();
