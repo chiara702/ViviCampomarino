@@ -332,4 +332,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\taxi.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\IntroLoghi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NavigaVerso.png" />
+  </ItemGroup>
 </Project>

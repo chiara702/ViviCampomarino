@@ -26,21 +26,27 @@
                         <On Platform="Android" Value="true" />
                     </OnPlatform>
                 </Frame.HasShadow>
-                <Grid Margin="10,10,10,10" RowSpacing="2">
+                <Grid Margin="10,10,10,10" RowSpacing="2" ColumnSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
                         <RowDefinition Height="50" />
                         <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="75" />
+                    </Grid.ColumnDefinitions>
 
                     <BoxView Grid.Row="0" BackgroundColor="Transparent" />
                     <BoxView Grid.Row="1" BackgroundColor="Transparent"/>
                     <BoxView Grid.Row="2" BackgroundColor="Transparent" />
 
-                    <Label x:Name="LblDenominazione" Grid.Row="0" FontSize="18" TextColor="#0c4b8e"  Text="DENOMINAZIONE PUNTO DI INTERESSE" HorizontalOptions="Start" FontAttributes="Bold" VerticalOptions="Center" TextTransform="Uppercase" Style="{StaticResource UserFont}" />
-                    <Label x:Name="LblDescrizione" Grid.Row="1" Text="Testo breve descrittivo" FontSize="16" HorizontalOptions="Start" VerticalOptions="Start" Style="{StaticResource UserFont}" />
-                    <Button Grid.Row="2" Margin="30,0,30,0" x:Name="BtnDettagli" Text="INIZIA IL TOUR" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="{OnPlatform Android='30', iOS='22'}" Clicked="BtnDettagli_Clicked"  />
-                    <Button Grid.Row="3" Margin="30,0,30,0" x:Name="BtnNavigaVerso" Text="NAVIGA VERSO" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="20" TextColor="White" FontAttributes="Bold" CornerRadius="{OnPlatform Android='30', iOS='22'}" Clicked="BtnNavigaVerso_Clicked"  />
+                    <Label x:Name="LblDenominazione" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" TextColor="#0c4b8e"  Text="DENOMINAZIONE PUNTO DI INTERESSE" HorizontalOptions="Start" FontAttributes="Bold" VerticalOptions="Center" TextTransform="Uppercase" Style="{StaticResource UserFont}" />
+                    <Label x:Name="LblDescrizione" Grid.Row="1" Grid.ColumnSpan="2" Text="Testo breve descrittivo" FontSize="16" HorizontalOptions="Start" VerticalOptions="Start" Style="{StaticResource UserFont}" />
+                    <Button Grid.Row="2" Grid.Column="0" Margin="10,0,0,0" x:Name="BtnDettagli" Text="INIZIA IL TOUR" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="22" TextColor="White" FontAttributes="Bold" CornerRadius="{OnPlatform Android='30', iOS='22'}" Clicked="BtnDettagli_Clicked"  />
+                    <ImageButton Grid.Row="2" Grid.Column="1" x:Name="BtnNavigaVerso" Margin="15,0,10,0" Source="NavigaVerso" Clicked="BtnNavigaVerso_Clicked" BackgroundColor="Transparent" />
+
+                    <!--<Button Grid.Row="3" Margin="30,0,30,0" x:Name="BtnNavigaVerso" Text="NAVIGA VERSO" TextTransform="Uppercase" BackgroundColor="#0c4b8e" FontSize="20" TextColor="White" FontAttributes="Bold" CornerRadius="{OnPlatform Android='30', iOS='22'}" Clicked="BtnNavigaVerso_Clicked"  /> -->
                 </Grid>
 
             </Frame>

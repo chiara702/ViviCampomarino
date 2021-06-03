@@ -6,6 +6,7 @@
         <Grid  VerticalOptions="FillAndExpand"  Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="80" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -14,11 +15,15 @@
 
             <StackLayout Grid.Row="0" VerticalOptions="Center" >
 
-                <Image x:Name="LogoCampomarino" VerticalOptions="Center" Source="LogoViviCampomarino"  Margin="40,30,40, 0" WidthRequest="180" />
+                    <Image x:Name="LogoCampomarino" VerticalOptions="Center" Source="LogoViviCampomarino"  Margin="40,30,40, 0" WidthRequest="180" />
                    
                     <ActivityIndicator IsRunning="True" WidthRequest="100"  HorizontalOptions="Center" Margin="0,30,0, 0" />
+
+
             </StackLayout>
-            <Label Grid.Row="1" x:Name="LblVersion" Text="ver." HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0, 35" TextColor="White" />
+            <Image Grid.Row="1" x:Name="IntroLoghi" VerticalOptions="End" Source="IntroLoghi" HorizontalOptions="FillAndExpand"  Margin="0,0,0, 10"  />
+
+            <Label Grid.Row="2" x:Name="LblVersion" Text="ver." HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0, 35" TextColor="White" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
