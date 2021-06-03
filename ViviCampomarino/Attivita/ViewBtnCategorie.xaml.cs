@@ -16,7 +16,7 @@ namespace ViviCampomarino {
         public ViewBtnCategorie(int id) {
             InitializeComponent();
             idCategoria = id;
-            BtnImg.Source = "App.png";
+            BtnImg.Source = "ImgLogoAttivita.jpg";
         }
 
         public byte[] ImageByte {

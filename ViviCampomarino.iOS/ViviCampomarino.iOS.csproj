@@ -338,4 +338,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\NavigaVerso.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\NavigaVerso1.png" />
+  </ItemGroup>
 </Project>

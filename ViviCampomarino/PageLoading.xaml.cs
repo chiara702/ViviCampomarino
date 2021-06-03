@@ -19,9 +19,11 @@ namespace ViviCampomarino {
         private async void Animazione() {
             if (Debugger.IsAttached == false) {
                 await LogoCampomarino.FadeTo(0, 1);
+                IntroLoghi.FadeTo(0, 1);
                 _ = LogoCampomarino.RelScaleTo(0.1, 1);
                 _ = LogoCampomarino.RelScaleTo(0.4, 3000);
                 await LogoCampomarino.FadeTo(1, 3000);
+                IntroLoghi.FadeTo(1, 3000);
                 await Task.Delay(1000);
             }
             Device.BeginInvokeOnMainThread(() => {
