@@ -25,7 +25,7 @@ namespace ViviCampomarino {
             try {
                 var Db = new MySqlvc();
                 table = Db.EseguiQuery("Select * From Categorie Where ParentId=" + idCategoria.ToString() + " Order By Ordine");
-                tableAtt = Db.EseguiQuery("Select * From Aziende Where CategoriaId=" + idCategoria.ToString() + " Order By Denominazione");
+                tableAtt = Db.EseguiQuery("Select * From Aziende Where CategoriaId=" + idCategoria.ToString() + " Order By Id");
                 if (idCategoria == 0) {
                     tableHtml = Db.EseguiQuery("Select Id From VarieHtml Where CHAR_LENGTH(HTML)>10");
                 }
