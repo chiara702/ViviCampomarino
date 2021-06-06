@@ -14,6 +14,17 @@ namespace ViviCampomarino {
         public static String LoginUidAuth = "";
         public static DataRow login=null;
         public static Boolean InterrompiLoading = false;
+        
+
+        public App(Boolean IntentExtras) {
+            InitializeComponent();
+            if (IntentExtras == false) {
+                var home = new PageLoading();
+                MainPage = home;
+            } else {
+                MainPage = new PageNotifiche();
+            }
+        }
         public App() {
             InitializeComponent();
             InterrompiLoading = false;
@@ -26,7 +37,10 @@ namespace ViviCampomarino {
             //CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
             
             LeggiImpostazioni();
+            var home = new PageLoading();
+            MainPage = home;
             
+
 
         }
         public static void SalvaImpostazioni() {
@@ -62,6 +76,7 @@ namespace ViviCampomarino {
             App.InterrompiLoading = true;
             Device.BeginInvokeOnMainThread(() => {
                 //Application.Current.MainPage.DisplayAlert("Tapped", e.Notification.Body, "OK");
+
                 App.Current.MainPage = new PageNotifiche();
             });
             //throw new NotImplementedException();
@@ -84,8 +99,8 @@ namespace ViviCampomarino {
         }
 
         protected override void OnStart() {
-            var home = new PageLoading();
-            MainPage = home;
+            //var home = new PageLoading();
+            //MainPage = home;
         }
 
         protected override void OnSleep() {

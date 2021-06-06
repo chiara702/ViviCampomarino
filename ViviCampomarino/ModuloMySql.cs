@@ -20,7 +20,7 @@ namespace ViviCampomarino {
         }
         public MySqlConnection ApriConnessione() {
             // Dim Conn As SqlConnection
-            Connessione = new MySqlConnection("Server=212.237.39.62;Database=y95qsb0vrv;Uid=spbkm3j6f6;Pwd=Fabio123456!; convert zero datetime=True; Allow User Variables=True");
+            Connessione = new MySqlConnection("Server=212.237.39.62;Database=y95qsb0vrv;Uid=spbkm3j6f6;Pwd=Fabio123456!; convert zero datetime=True; Allow User Variables=True; Connection Timeout=180;");
             try {
                 Connessione.Open();
             } catch (Exception ex) {

@@ -20,21 +20,27 @@ namespace ViviCampomarino {
         }
 
         public async void ScaricaLinkVideo() {
-            Device.BeginInvokeOnMainThread(() => {
-                Act1.IsVisible = true;
-            });
-            var child=FirebaseStorage.current.GetRootReference().GetChild("VideoTour/" + row["Id"].ToString() + ".mpeg4");
-            var url = await child.GetDownloadUrlAsync();
-            Video1.SetStopAction(() => Navigation.PopAsync());
-            Video1.SetStartAction(() => {
-                Act1.IsVisible = false;
-            });
-            Device.BeginInvokeOnMainThread(() => {
-                Video1.Source = url;
-                Video1.Start();
-                
-            });
+            try {
+                Device.BeginInvokeOnMainThread(() => {
+                    Act1.IsVisible = true;
+                });
             
+                var child = FirebaseStorage.current.GetRootReference().GetChild("VideoTour/" + row["Id"].ToString() + ".mpeg4");
+                var url = await child.GetDownloadUrlAsync();
+                Video1.SetStopAction(() => Navigation.PopAsync());
+            
+                Video1.SetStartAction(() => {
+                    Act1.IsVisible = false;
+                });
+                Device.BeginInvokeOnMainThread(() => {
+                    Video1.Source = url;
+                    Video1.Start();
+                });
+            } catch (Exception) {
+                Device.BeginInvokeOnMainThread(() => {
+                    Act1.IsVisible = false;
+                });
+            }
 
 
         }

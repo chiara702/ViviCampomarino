@@ -9,6 +9,7 @@
                     <Label TextColor="White"  Margin="20,30,20,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" FontSize="18" IsVisible="false" x:Name="LblNonDisponibile"/>
                 </StackLayout>
             </ScrollView>
+            <Button Text="Torna all'APP" Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

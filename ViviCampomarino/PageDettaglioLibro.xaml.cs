@@ -82,7 +82,7 @@ namespace ViviCampomarino {
                     await DisplayAlert("Errore", "Errore nel salvataggio! " + err.Message, "OK");
                     return;
                 }
-                MySqlvc.WriteLog("Peenotazione Libro Ok: " + rowLibro["Id"].ToString());
+                MySqlvc.WriteLog("Prenotazione Libro Ok: " + rowLibro["Id"].ToString());
                 await DisplayAlert("Prenotazione", "Prenotazione avvenuta con successo!", "OK");
 
                 await Navigation.PushAsync(new PageAccount(),true);

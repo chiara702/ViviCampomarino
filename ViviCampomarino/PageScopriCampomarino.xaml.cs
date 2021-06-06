@@ -37,6 +37,7 @@ namespace ViviCampomarino {
         public void CaricaPin(Boolean MostraGestore = false) {
             var Db = new MySqlvc();
             TablePunti = Db.EseguiQuery("Select * From PuntiInteresse");
+            Db.CloseCommit();
             foreach (DataRow x in TablePunti.Rows) {
                 var tmpRow = x;
                 var pin = new Pin();

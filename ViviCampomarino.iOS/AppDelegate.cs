@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Firebase.CloudMessaging;
+//using Firebase.CloudMessaging;
 using Foundation;
 using Plugin.Firebase.CloudMessaging;
 using Plugin.Firebase.iOS;
+using Plugin.Firebase.Shared;
 using UIKit;
 using UserNotifications;
 
@@ -14,7 +15,7 @@ namespace ViviCampomarino.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate, IUNUserNotificationCenterDelegate, IMessagingDelegate {
+    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -29,18 +30,19 @@ namespace ViviCampomarino.iOS
             Xamarin.FormsMaps.Init();
             Rox.VideoIos.Init();
 
-            //CrossFirebase.Initialize(app, options, new Plugin.Firebase.Shared.CrossFirebaseSettings(isCloudMessagingEnabled: true));
-            LoadApplication(new App());
-            
+
+            //Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
+            CrossFirebase.Initialize(app, options, new CrossFirebaseSettings(isCloudMessagingEnabled: true));
 
             //Plugin.FirebaseAuth Wrapper
             //Firebase.Core.App.Configure();
 
-           
-            
+
+
 
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 
+            LoadApplication(new App());
             return base.FinishedLaunching(app, options);
         }
     }

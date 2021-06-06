@@ -21,7 +21,8 @@ namespace ViviCampomarino.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             CrossFirebase.Initialize(this, savedInstanceState, new Plugin.Firebase.Shared.CrossFirebaseSettings(isFirestoreEnabled: true, isStorageEnabled: true, isAuthEnabled: true, isCloudMessagingEnabled: true));
             CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
             
@@ -31,11 +32,17 @@ namespace ViviCampomarino.Droid
 
             ZXing.Net.Mobile.Forms.Android.Platform.Init(); //zxing init
 
-            FirebaseCloudMessagingImplementation.OnNewIntent(Intent);
+            //FirebaseCloudMessagingImplementation.OnNewIntent(Intent);
             CreateNotificationChannelIfNeeded();
 
-
-            LoadApplication(new App());
+            App app;
+            if (Intent.Extras != null) {
+                app = new App(true);
+            } else {
+                app = new App();
+            }
+            
+            LoadApplication(app);
             
         }
 
@@ -58,7 +65,7 @@ namespace ViviCampomarino.Droid
         }
         protected override void OnNewIntent(Intent intent) {
             base.OnNewIntent(intent);
-            FirebaseCloudMessagingImplementation.OnNewIntent(intent);
+            //FirebaseCloudMessagingImplementation.OnNewIntent(intent);
         }
 
         private void CreateNotificationChannelIfNeeded() {
