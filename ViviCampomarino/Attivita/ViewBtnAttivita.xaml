@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ViviCampomarino.ViewBtnAttivita">
     <ContentView.Content>
-        <Grid RowSpacing="0">
+        <Grid RowSpacing="0" Margin="10,10,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="110" />
                 <RowDefinition Height="55" />
@@ -13,7 +13,7 @@
             </Grid.ColumnDefinitions>
             <Frame BackgroundColor="White" Grid.Row="0" Grid.RowSpan="2"  Opacity="1" HasShadow="True" CornerRadius="10"/>
             <Image x:Name="BtnImg" Grid.Row="0" Source="ImgLogoAttivita" VerticalOptions="Center" Margin="2,5,2,0" />
-            <Label x:Name="BtnLabel" Grid.Row="1" Text="numeri utili" TextTransform="Uppercase" Margin="5,0,5,5" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" LineBreakMode="TailTruncation" MaxLines="2"  TextColor="#a4182f" />
+            <Label x:Name="BtnLabel" Grid.Row="1" Text="numeri utili" TextTransform="Uppercase" Margin="5,0,5,5" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" VerticalOptions="Center" FontSize="14" LineBreakMode="TailTruncation" MaxLines="2"  TextColor="#a4182f" />
 
         </Grid>
 

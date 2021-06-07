@@ -37,9 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Attivita\ListViewPageElencoAttivita.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Attivita\PageSimpleHtml.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

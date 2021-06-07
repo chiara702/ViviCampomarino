@@ -15,7 +15,7 @@ namespace ViviCampomarino {
         public PageScopriCampomarinoAttivita(int idCategoriaPartenza) {
             InitializeComponent();
             IdCategoriaPartenza = idCategoriaPartenza;
-            GridCategorie.Children.Clear();
+            FlexCategorie.Children.Clear();
             Task.Run(() => CaricaCategorie(idCategoriaPartenza));
 
         }
@@ -45,9 +45,7 @@ namespace ViviCampomarino {
                         var view = new ViewBtnAttivita(Convert.ToInt32(x["Id"]));
                         view.Label = x["Denominazione"].ToString();
                         if (Convert.IsDBNull(x["Logo"]) == false) view.ImageLogoByte = (byte[])x["Logo"];
-                        Grid.SetColumn(view, count % 2);
-                        Grid.SetRow(view, count / 2);
-                        GridCategorie.Children.Add(view);
+                        FlexCategorie.Children.Add(view);
                         count++;
                         var tmprow = x;
                         view.Cliccato += (s, e) => {
@@ -63,10 +61,11 @@ namespace ViviCampomarino {
                         Lbl.FontSize = 18;
                         Lbl.HorizontalTextAlignment = TextAlignment.Center;
                         Lbl.HorizontalOptions = LayoutOptions.FillAndExpand;
-                        Grid.SetColumn(Lbl, 0);
-                        Grid.SetRow(Lbl, 0);
-                        Grid.SetColumnSpan(Lbl, 2);
-                        GridCategorie.Children.Add(Lbl);
+                        //Grid.SetColumn(Lbl, 0);
+                        //Grid.SetRow(Lbl, 0);
+                        //Grid.SetColumnSpan(Lbl, 2);
+                        
+                        FlexCategorie.Children.Add(Lbl);
                     }
                 });
             } else {
@@ -77,9 +76,9 @@ namespace ViviCampomarino {
                         var view = new ViewBtnCategorie(Convert.ToInt32(x["Id"]));
                         view.Label = x["Categoria"].ToString();
                         if (Convert.IsDBNull(x["Image"]) == false) view.ImageByte = (byte[])x["Image"];
-                        Grid.SetColumn(view, count % 2);
-                        Grid.SetRow(view, count / 2);
-                        GridCategorie.Children.Add(view);
+                        //Grid.SetColumn(view, count % 2);
+                        //Grid.SetRow(view, count / 2);
+                        FlexCategorie.Children.Add(view);
                         count++;
                         view.Cliccato += (s, e) => {
                             ViewBtnCategorie view = (ViewBtnCategorie)s;
@@ -92,9 +91,9 @@ namespace ViviCampomarino {
                             var view = new ViewBtnCategorie(0);
                             view.Label = "NUMERI TAXI";
                             view.SetImageSource("taxi.jpg");
-                            Grid.SetColumn(view, count % 2);
-                            Grid.SetRow(view, count / 2);
-                            GridCategorie.Children.Add(view);
+                            //Grid.SetColumn(view, count % 2);
+                            //Grid.SetRow(view, count / 2);
+                            FlexCategorie.Children.Add(view);
                             count++;
                             view.Cliccato += (s, e) => {
                                 ViewBtnCategorie view = (ViewBtnCategorie)s;
@@ -102,13 +101,13 @@ namespace ViviCampomarino {
                                 Navigation.PushAsync(p);
                             };
                         }
-                        if (tableHtml.Select("Id=2").Length == 1) { //View Taxy
+                        if (tableHtml.Select("Id=2").Length == 1) { //View Info Pulman
                             var view = new ViewBtnCategorie(0);
                             view.Label = "INFO PULMAN";
                             view.SetImageSource("pulman.png");
-                            Grid.SetColumn(view, count % 2);
-                            Grid.SetRow(view, count / 2);
-                            GridCategorie.Children.Add(view);
+                            //Grid.SetColumn(view, count % 2);
+                            //Grid.SetRow(view, count / 2);
+                            FlexCategorie.Children.Add(view);
                             count++;
                             view.Cliccato += (s, e) => {
                                 ViewBtnCategorie view = (ViewBtnCategorie)s;
@@ -116,13 +115,13 @@ namespace ViviCampomarino {
                                 Navigation.PushAsync(p);
                             };
                         }
-                        if (tableHtml.Select("Id=3").Length == 1) { //View Taxy
+                        if (tableHtml.Select("Id=3").Length == 1) { //View Numeri Utili
                             var view = new ViewBtnCategorie(0);
                             view.Label = "NUMERI UTILI";
                             view.SetImageSource("AttNumeriUtili.png");
-                            Grid.SetColumn(view, count % 2);
-                            Grid.SetRow(view, count / 2);
-                            GridCategorie.Children.Add(view);
+                            //Grid.SetColumn(view, count % 2);
+                            //Grid.SetRow(view, count / 2);
+                            FlexCategorie.Children.Add(view);
                             count++;
                             view.Cliccato += (s, e) => {
                                 ViewBtnCategorie view = (ViewBtnCategorie)s;
