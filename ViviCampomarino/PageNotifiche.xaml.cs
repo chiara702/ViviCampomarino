@@ -33,7 +33,7 @@ namespace ViviCampomarino {
                     if (Funzioni.Antinull(x["Token"]).Length > 100) {
                         if (App.login == null) continue;
                         if (Funzioni.Antinull(x["Token"]) != Funzioni.Antinull(App.login["TokenFcm"])) continue;
-
+                        //Da cambiare con la gestione per loginid e non per tokenfcm
                     }
                     //if (x["Token"].ToString() != "" && x["Token"].ToString() != "Generale" && x["Token"].ToString() != App.login["TokenFcm"].ToString()) continue;
                     var el = new ViewNotifica();

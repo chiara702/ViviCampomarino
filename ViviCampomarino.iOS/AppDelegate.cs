@@ -6,6 +6,7 @@ using Foundation;
 using Plugin.Firebase.CloudMessaging;
 using Plugin.Firebase.iOS;
 using Plugin.Firebase.Shared;
+using Plugin.FirebasePushNotification;
 using UIKit;
 using UserNotifications;
 
@@ -31,19 +32,26 @@ namespace ViviCampomarino.iOS
             Rox.VideoIos.Init();
 
 
-            //Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
-            CrossFirebase.Initialize(app, options, new CrossFirebaseSettings(isCloudMessagingEnabled: true));
-            CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+            
 
             //Plugin.FirebaseAuth Wrapper
             //Firebase.Core.App.Configure();
 
-
+            
 
 
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 
             LoadApplication(new App());
+
+            //Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
+            CrossFirebase.Initialize(app, options, new CrossFirebaseSettings(isCloudMessagingEnabled: true));
+            CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+
+            //FirebasePushNotificationPlugin
+            FirebasePushNotificationManager.Initialize(options, true);
+            //
+
             return base.FinishedLaunching(app, options);
         }
     }
