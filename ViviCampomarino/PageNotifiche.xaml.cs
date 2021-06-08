@@ -13,10 +13,11 @@ namespace ViviCampomarino {
     public partial class PageNotifiche : ContentPage {
         public PageNotifiche() {
             InitializeComponent();
-            if (App.login != null) Task.Run(LeggiNotifiche); else {
-                LblNonDisponibile.IsVisible = true;
-            }
-            
+            //if (App.login != null) Task.Run(LeggiNotifiche); else {
+            //    LblNonDisponibile.IsVisible = true;
+            //}
+            Task.Run(LeggiNotifiche);
+
         }
 
         public void LeggiNotifiche() {
@@ -29,6 +30,11 @@ namespace ViviCampomarino {
                 foreach (DataRow x in TableNotifiche.Rows) {
                     if (NotificheNascoste.Contains(x["Id"].ToString())) continue;
                     if (Convert.IsDBNull(x["DataEnd"])==false && Convert.ToDateTime(x["DataEnd"]) < DateTime.Now) continue;
+                    if (Funzioni.Antinull(x["Token"]).Length > 100) {
+                        if (App.login == null) continue;
+                        if (Funzioni.Antinull(x["Token"]) != Funzioni.Antinull(App.login["TokenFcm"])) continue;
+
+                    }
                     //if (x["Token"].ToString() != "" && x["Token"].ToString() != "Generale" && x["Token"].ToString() != App.login["TokenFcm"].ToString()) continue;
                     var el = new ViewNotifica();
                     el.IdNotifica = Convert.ToInt32(x["Id"]);
@@ -45,6 +51,7 @@ namespace ViviCampomarino {
                     //el.MinimumHeightRequest = 60;
                     StkNotifiche.Children.Add(el);
                 }
+                if (StkNotifiche.Children.Count==0) LblNonDisponibile.IsVisible = true;
             });
 
         }

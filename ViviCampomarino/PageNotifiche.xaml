@@ -4,9 +4,9 @@
              x:Class="ViviCampomarino.PageNotifiche" BackgroundColor="#3c3c3b"  Title="Notifiche">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
-            <ScrollView>
-                <StackLayout x:Name="StkNotifiche">
-                    <Label TextColor="White"  Margin="20,30,20,30" Text="Notifiche non disponibili. Effettua il Login o Registrati!" FontSize="18" IsVisible="false" x:Name="LblNonDisponibile"/>
+            <Label TextColor="White"  Margin="20,30,20,30" Text="Notifiche non disponibili." FontSize="18" IsVisible="false" x:Name="LblNonDisponibile"/>
+            <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout x:Name="StkNotifiche" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 </StackLayout>
             </ScrollView>
             <Button Text="Torna all'APP" Clicked="Button_Clicked"/>
