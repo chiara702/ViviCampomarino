@@ -17,6 +17,7 @@ namespace ViviCampomarino {
             rowAttivita = RowAttivita;
             CaricaImage(ImgLogoAttivita, RowAttivita["Logo"]);
             LblNomeAttivita.Text = Funzioni.Antinull(rowAttivita["Denominazione"]);
+            LblDescrizione.Text = Funzioni.Antinull(rowAttivita["Descrizione"]);
             LblPaese.Text = Funzioni.Antinull(rowAttivita["Paese"]);
             LblIndirizzo.Text = Funzioni.Antinull(rowAttivita["Indirizzo"]);
             LblEmail.Text = Funzioni.Antinull(rowAttivita["Email"]);
@@ -35,6 +36,15 @@ namespace ViviCampomarino {
             CaricaImage(Img2, RowAttivita["Image2"]);
             CaricaImage(Img3, RowAttivita["Image3"]);
             CaricaImage(Img4, RowAttivita["Image4"]);
+            if (Funzioni.Antinull(RowAttivita["OrarioLunedi"]) == "") StackOrari.IsVisible = false;
+            LblOrari.Text = "Lunedì: " + Funzioni.Antinull(RowAttivita["OrarioLunedi"]) + "\n\r";
+            LblOrari.Text += "Martedì: " + Funzioni.Antinull(RowAttivita["OrarioMartedi"]) + "\n\r";
+            LblOrari.Text += "Mercoledì: " + Funzioni.Antinull(RowAttivita["OrarioMercoledi"]) + "\n\r";
+            LblOrari.Text += "Giovedì: " + Funzioni.Antinull(RowAttivita["OrarioGiovedi"]) + "\n\r";
+            LblOrari.Text += "Venerdì: " + Funzioni.Antinull(RowAttivita["OrarioVenerdi"]) + "\n\r";
+            LblOrari.Text += "Sabato: " + Funzioni.Antinull(RowAttivita["OrarioSabato"]) + "\n\r";
+            LblOrari.Text += "Domenica: " + Funzioni.Antinull(RowAttivita["OrarioDomenica"]);
+
 
         }
         private void CaricaImage(Image Pic, Object data) {
