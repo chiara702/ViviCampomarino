@@ -43,7 +43,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="LblNonSonoPrevistiEventi" IsVisible="false" Grid.Row="0" Grid.ColumnSpan="2" Text="Non sono previsti eventi al momento!" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="20" Margin="20,0,20,0"/>
-                <Image Grid.Row="0" Grid.ColumnSpan="2" x:Name="ImgAnteprima" Source=""  HeightRequest="150" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Image Grid.Row="0" Grid.ColumnSpan="2" x:Name="ImgAnteprima" Source=""  Aspect="AspectFit" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
                 <StackLayout  Grid.Row="1" Grid.ColumnSpan="2" x:Name="StkDownload" VerticalOptions="End" >
                     <Label Text="SCARICA LA LOCANDINA&#10;DEGLI EVENTI" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center" TextColor="Black" FontSize="20"  Margin="20,0,20,0"/>

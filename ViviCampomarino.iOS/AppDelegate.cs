@@ -30,12 +30,7 @@ namespace ViviCampomarino.iOS
 
             Xamarin.FormsMaps.Init();
             Rox.VideoIos.Init();
-
-
-            
-
-            //Plugin.FirebaseAuth Wrapper
-            //Firebase.Core.App.Configure();
+        
 
             
 
@@ -45,12 +40,11 @@ namespace ViviCampomarino.iOS
             LoadApplication(new App());
 
             //Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
-            //CrossFirebase.Initialize(app, options, new CrossFirebaseSettings(isCloudMessagingEnabled: true));
-            //CrossFirebaseCloudMessaging.Current.CheckIfValidAsync();
+            
 
             //FirebasePushNotificationPlugin
             FirebasePushNotificationManager.Initialize(options, true);
-            CrossFirebasePushNotification.Current.Subscribe("testios");
+            //CrossFirebasePushNotification.Current.Subscribe("testios");
             //
 
             return base.FinishedLaunching(app, options);
