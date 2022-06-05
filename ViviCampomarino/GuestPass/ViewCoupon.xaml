@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.GuestPass.ViewCoupon">
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" Margin="10" Padding="5,5,5,5" HorizontalOptions="FillAndExpand" BackgroundColor="#80ffffff">
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="E-Mail: " VerticalOptions="CenterAndExpand"/>
+                    <Label x:Name="LblEmail" Text="" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"  >
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Check-In: " VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="LblCheckIn" Text="" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" Margin="20,0,0,0">
+                        <Label Text="Check-Out: " VerticalOptions="CenterAndExpand"/>
+                        <Label x:Name="LblCheckOut" Text="" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <ImageButton x:Name="BtnDelete" BackgroundColor="Transparent" Source="Delete" WidthRequest="40" Clicked="BtnDelete_Clicked" HorizontalOptions="End"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

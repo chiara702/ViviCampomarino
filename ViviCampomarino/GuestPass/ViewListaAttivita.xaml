@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.GuestPass.ViewListaAttivita">
+  <ContentView.Content>
+        <Grid RowSpacing="5" ColumnSpacing="5" Margin="10,10,10,10">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+            </Grid.GestureRecognizers>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="70*"/>
+            </Grid.ColumnDefinitions>
+            <Frame BackgroundColor="White" Grid.RowSpan="2" Grid.ColumnSpan="2"  Opacity="1" HasShadow="True" CornerRadius="10"/>
+            <Image x:Name="ImgLogo" Grid.Row="0" Grid.Column="0"  />
+            <Image x:Name="ImgSconto" Grid.Row="1" Grid.Column="0" WidthRequest="80"/>
+            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+                <Label x:Name="LblDenominazione" FontAttributes="Bold"/>
+                <Label x:Name="LblDescrizione"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="LblIndirizzo"/>
+                    <ImageButton BackgroundColor="Transparent" x:Name="BtnNaviga" WidthRequest="20" Source="NavigaVerso1.png" Clicked="BtnNaviga_Clicked" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                <Label x:Name="LblPaese"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="LblTelefono"/>
+                    <ImageButton BackgroundColor="Transparent" x:Name="BtnChiama" WidthRequest="20" Source="Telefono.png" Clicked="BtnChiama_Clicked"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="LblCellulare"/>
+                    <ImageButton BackgroundColor="Transparent" x:Name="BtnChiamaCellulare" WidthRequest="20" Source="Telefono.png" Clicked="BtnChiamaCellulare_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

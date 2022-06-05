@@ -3,16 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ViviCampomarino {
+namespace ViviCampomarino.GuestPass {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageLogin : ContentPage {
         private IFirebaseAuth authCurrent = Plugin.FirebaseAuth.CrossFirebaseAuth.Current;
-        
+        public SemaphoreSlim semaforo = new SemaphoreSlim(0);
         public PageLogin() {
             InitializeComponent();
         }
@@ -25,8 +26,8 @@ namespace ViviCampomarino {
             String[] ListaUtentiRegistratiConEmail = null;
             try {
                 ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(email);
-            }catch(FirebaseAuthException err) {
-                await DisplayAlert("Errore", "Errore nel controllo esistenza email! Verificare connessione internet o attendere qualche minuto!","OK");
+            } catch (FirebaseAuthException err) {
+                await DisplayAlert("Errore", "Errore nel controllo esistenza email! Verificare connessione internet o attendere qualche minuto!", "OK");
                 return;
             }
             if (ListaUtentiRegistratiConEmail.Count() == 0) {
@@ -48,8 +49,8 @@ namespace ViviCampomarino {
                 App.LoginUidAuth = tmp.User.Uid;
                 App.SalvaImpostazioni();
                 App.LeggiImpostazioni();
-                
-                var token=await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.GetTokenAsync();
+
+                var token = await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.GetTokenAsync();
                 var Db = new MySqlvc();
                 Db.UpdateRapido("Login", Convert.ToInt32(App.login["Id"]), "TokenFcm", token);
                 Db.UpdateRapido("Login", Convert.ToInt32(App.login["Id"]), "UltimoAccesso", DateTime.Now);
@@ -58,34 +59,34 @@ namespace ViviCampomarino {
                 App.FcmTopicsRefresh();
                 MySqlvc.WriteLog("Login Ok");
                 await Navigation.PopAsync();
-            }catch (FirebaseAuthException err) { //FirebaseAuthInvalidCredentialsException
+            } catch (FirebaseAuthException err) { //FirebaseAuthInvalidCredentialsException
                 var DataError = err.Data;
-                if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!","Ok");
+                if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!", "Ok");
                 else await DisplayAlert("Login", "Errore generale: " + err.Message + " " + err.ErrorCode, "Ok");
                 MySqlvc.WriteLog("Login Error: " + err.Message);
                 return;
             }
-            
+
         }
 
         private void BtnRegistrati_Clicked(object sender, EventArgs e) {
             App.Current.MainPage.Navigation.PushAsync(new PageRegistrazione());
         }
-        protected override bool OnBackButtonPressed()
-        {
+        protected override bool OnBackButtonPressed() {
             BtnIndietro_Clicked(null, null);
             return true;
         }
-        private async void BtnIndietro_Clicked(object sender, EventArgs e)
-        {
+        private async void BtnIndietro_Clicked(object sender, EventArgs e) {
             await Navigation.PopAsync();
+            
         }
 
-        private void BtnRecuperaPassword_Clicked(object sender, EventArgs e)
-        {
+        private void BtnRecuperaPassword_Clicked(object sender, EventArgs e) {
             App.Current.MainPage.Navigation.PushAsync(new PageRecuperaPass());
         }
-
- 
+        protected override void OnDisappearing() {
+            semaforo.Release();
+            base.OnDisappearing();
+        }
     }
 }

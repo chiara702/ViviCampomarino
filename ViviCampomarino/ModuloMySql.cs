@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace ViviCampomarino {
     public class MySqlvc {
-        public static string ServerSql = "185.58.119.77";
+        //public static string ServerSql = "185.58.119.77";
         // Public Transazione As SqlTransaction
         public MySqlConnection Connessione;
 

@@ -41,7 +41,9 @@ namespace ViviCampomarino.Droid
             } else {
                 app = new App();
             }
+
             
+
             LoadApplication(app);
             
         }

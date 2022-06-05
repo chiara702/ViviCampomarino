@@ -119,16 +119,20 @@
             <Style TargetType="Entry" x:Key="EntryReg">
                 <Setter Property="PlaceholderColor" Value="LightGray" />
                 <Setter Property="TextColor" Value="#3c3c3b"  />
-                <Setter Property="PlaceholderColor" Value="LightGray" />
                 <Setter Property="FontSize" Value="Medium"  />
                 <Setter Property="BackgroundColor" Value="White"  />
             </Style>
             <Style TargetType="Entry" x:Key="EntryDisable">
                 <Setter Property="PlaceholderColor" Value="LightGray" />
                 <Setter Property="TextColor" Value="LightGray"  />
-                <Setter Property="PlaceholderColor" Value="LightGray" />
                 <Setter Property="FontSize" Value="Medium"  />
                 <Setter Property="BackgroundColor" Value="#f4f4f4"  />
+            </Style>
+            <Style TargetType="DatePicker" x:Key="DateReg">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="#3c3c3b"  />
+                <Setter Property="Margin" Value="0,0,0,0" />
+                <Setter Property="FontSize" Value="Medium"  />
             </Style>
 
        

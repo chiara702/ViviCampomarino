@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.41" package="com.companyname.vivicampomarino" android:installLocation="auto" android:versionCode="141">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.42" package="com.companyname.vivicampomarino" android:installLocation="auto" android:versionCode="142">
 	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="30" />
 	<application android:label="ViviCampomarino" android:theme="@style/MainTheme" android:icon="@drawable/LogoViviCampomarino">
 		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA65sNRgaMjKdaS7JmfpHGA5l2qAIOZDjU" />
-		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="true" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE" />

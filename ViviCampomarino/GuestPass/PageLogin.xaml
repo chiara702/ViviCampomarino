@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.GuestPass.PageLogin" NavigationPage.HasNavigationBar="False" BackgroundImageSource="Sfondo2.png">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="70"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="0,30,0,20" />
+                    <On Platform="Android, WinPhone, Windows" Value="0,0,0,20" />
+                </OnPlatform>
+            </Grid.Margin>
+
+            <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
+            <ContentView Grid.Row="0" Grid.Column="1">
+                <Image Source="LogoViviCampomarino" Margin="0,0,0,5"
+			    HorizontalOptions="Center" VerticalOptions="Center" />
+            </ContentView>
+
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Margin="20,10, 20, 0" ColumnSpacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Frame Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Column="0" BackgroundColor="Black" Margin="-20,-5,-20, 0"  Opacity="0.3" />
+                <ScrollView Grid.Row="1" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never" >
+                    <StackLayout  VerticalOptions="StartAndExpand" Spacing="5">
+                        <Label Margin="0,0,0,10" Text="Effettua l'accesso oppure registrati" Style="{StaticResource LabReg}" HorizontalTextAlignment="Center" TextColor="White" FontSize="18" />
+
+                        <Label Text="Indirizzo e-mail" Style="{StaticResource LabReg}" TextColor="White"/>
+                        <Entry x:Name="TxtEmail" Margin="10,1,10,15" Placeholder="E-mail" Style="{StaticResource EntryReg}" />
+                        <Label Text="Password" Style="{StaticResource LabReg}" TextColor="White"/>
+                        <Entry x:Name="TxtPassword" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" />
+
+                        <Button Margin="20,1,20,15" x:Name="BtnAccedi" Text="ACCEDI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="26" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAccedi_Clicked" />
+                        <Button Margin="20,1,20,5" x:Name="BtnRegistrati" Text="REGISTRATI" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#a4182f" FontSize="26" TextColor="White"  FontAttributes="Bold" CornerRadius="30"  Clicked="BtnRegistrati_Clicked" />
+                        <Button Margin="10,1,15,30" x:Name="BtnRecuperaPassword" Text="Recupera password" TextTransform="None"  BackgroundColor="Transparent" FontSize="16" TextColor="White"   CornerRadius="30"  Clicked="BtnRecuperaPassword_Clicked" />
+
+
+
+                    </StackLayout>
+                </ScrollView>
+
+
+            </Grid>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

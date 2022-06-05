@@ -21,19 +21,19 @@ namespace ViviCampomarino {
         }
 
         public void CaricaCategorie(int idCategoria) {
-            DataTable table, tableAtt, tableHtml=null;
+            DataTable table=null, tableAtt=null, tableHtml=null;
             try {
-                var Db = new MySqlvc();
-                table = Db.EseguiQuery("Select * From Categorie Where ParentId=" + idCategoria.ToString() + " Order By Ordine");
-                tableAtt = Db.EseguiQuery("Select * From Aziende Where CategoriaId=" + idCategoria.ToString() + " Order By Id");
+                var Db1 = new MySqlvc();
+                table = Db1.EseguiQuery("Select * From Categorie Where ParentId=" + idCategoria.ToString() + " Order By Ordine");
+                tableAtt = Db1.EseguiQuery("Select * From Aziende Where CategoriaId=" + idCategoria.ToString() + " Order By Id");
                 if (idCategoria == 0) {
-                    tableHtml = Db.EseguiQuery("Select Id From VarieHtml Where CHAR_LENGTH(HTML)>10");
+                    tableHtml = Db1.EseguiQuery("Select Id From VarieHtml Where CHAR_LENGTH(HTML)>10");
                 }
-                Db.CloseCommit();
-            } catch (Exception) {
+                Db1.CloseCommit();
+            } catch (Exception err) {
                 Device.BeginInvokeOnMainThread(() => {
                     Act1.IsVisible = false;
-                    DisplayAlert("Errore", "Connessione internet assente o operazione impossibile in questo momento!", "OK");
+                    DisplayAlert("Errore", "Connessione internet assente o operazione impossibile in questo momento! " + err.Message, "OK");
                 });
                 return;
             }

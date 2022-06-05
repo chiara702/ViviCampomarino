@@ -14,7 +14,7 @@ namespace ViviCampomarino {
         public static String LoginUidAuth = "";
         public static DataRow login=null;
         public static Boolean InterrompiLoading = false;
-        
+        public static DataRow RowAzienda=null;
 
         public App(Boolean IntentExtras) {
             InitializeComponent();
@@ -32,9 +32,12 @@ namespace ViviCampomarino {
             
             CrossFirebaseCloudMessaging.Current.NotificationReceived += Current_NotificationReceived;
             CrossFirebaseCloudMessaging.Current.NotificationTapped += Current_NotificationTapped;
+            
             CrossFirebaseCloudMessaging.Current.Error += Current_Error;
             CrossFirebaseCloudMessaging.Current.TokenChanged += Current_TokenChanged;
-            //CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("generale");
+            
+            //Da Togliere
+            CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("debug");
             
             LeggiImpostazioni();
             var home = new PageLoading();
@@ -51,8 +54,11 @@ namespace ViviCampomarino {
             if (LoginUidAuth != "") {
                 try {
                     var Db = new MySqlvc();
-                    login=Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'")).GetAwaiter().GetResult();
-                    //login = Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'");
+                    //login=Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'")).GetAwaiter().GetResult();
+                    login = Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'");
+                    if (login!= null && Convert.ToInt32(login["IdAzienda"])>0) {
+                        RowAzienda=Db.EseguiRow($"Select * From Aziende Where Id={Convert.ToInt32(login["IdAzienda"])}");
+                    }
                     Db.CloseCommit();
                 }catch(Exception) {
                     Console.WriteLine("errore Login");
@@ -76,8 +82,8 @@ namespace ViviCampomarino {
             App.InterrompiLoading = true;
             Device.BeginInvokeOnMainThread(() => {
                 //Application.Current.MainPage.DisplayAlert("Tapped", e.Notification.Body, "OK");
-
-                App.Current.MainPage = new PageNotifiche();
+                App.Current.MainPage.Navigation.PushAsync(new PageNotifiche());
+                //App.Current.MainPage = new PageNotifiche();
             });
             //throw new NotImplementedException();
         }

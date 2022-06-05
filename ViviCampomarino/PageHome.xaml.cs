@@ -38,5 +38,9 @@ namespace ViviCampomarino {
         private async void BtnBell_Clicked(object sender, EventArgs e) {
             await Navigation.PushAsync(new PageNotifiche());
         }
+
+        private async void BtnGuestPass_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new GuestPass.PageGuestPassIntro());
+        }
     }
 }
