@@ -12,6 +12,14 @@ namespace ViviCampomarino {
     public partial class PageHome : ContentPage {
         public PageHome() {
             InitializeComponent();
+            
+        }
+        protected override void OnAppearing() {
+            base.OnAppearing();
+            if (App.login != null) {
+                StackLogin.IsVisible=true;
+                TxtLogin.Text=App.login["Nome"].ToString();
+            } else StackLogin.IsVisible = false;
         }
 
         async void BtnBiblioteca_Clicked(object sender, EventArgs e) {
@@ -41,6 +49,14 @@ namespace ViviCampomarino {
 
         private async void BtnGuestPass_Clicked(object sender, EventArgs e) {
             await Navigation.PushAsync(new GuestPass.PageGuestPassIntro());
+        }
+
+        private async void TapLogout_Tapped(object sender, EventArgs e) {
+            App.LoginUidAuth = "";
+            App.login = null;
+            App.SalvaImpostazioni();
+            await Navigation.PopToRootAsync();
+            StackLogin.IsVisible = false;
         }
     }
 }

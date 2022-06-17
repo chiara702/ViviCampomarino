@@ -6,7 +6,7 @@ using Foundation;
 using Plugin.Firebase.CloudMessaging;
 using Plugin.Firebase.iOS;
 using Plugin.Firebase.Shared;
-using Plugin.FirebasePushNotification;
+//using Plugin.FirebasePushNotification;
 using UIKit;
 using UserNotifications;
 
@@ -40,23 +40,24 @@ namespace ViviCampomarino.iOS
             LoadApplication(new App());
 
             //Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
-            
 
             //FirebasePushNotificationPlugin
-            FirebasePushNotificationManager.Initialize(options, true);
+            //FirebasePushNotificationManager.Initialize(options, true);
             //CrossFirebasePushNotification.Current.Subscribe("testios");
             //
+
+            
 
             return base.FinishedLaunching(app, options);
         }
 
         //FirebasePushNotificationPlugin
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken) {
-            FirebasePushNotificationManager.DidRegisterRemoteNotifications(deviceToken);
+            //FirebasePushNotificationManager.DidRegisterRemoteNotifications(deviceToken);
         }
 
         public override void FailedToRegisterForRemoteNotifications(UIApplication application, NSError error) {
-            FirebasePushNotificationManager.RemoteNotificationRegistrationFailed(error);
+            ////FirebasePushNotificationManager.RemoteNotificationRegistrationFailed(error);
 
         }
         // To receive notifications in foregroung on iOS 9 and below.
@@ -68,7 +69,7 @@ namespace ViviCampomarino.iOS
             // If you disable method swizzling, you'll need to call this method. 
             // This lets FCM track message delivery and analytics, which is performed
             // automatically with method swizzling enabled.
-            FirebasePushNotificationManager.DidReceiveMessage(userInfo);
+            ////FirebasePushNotificationManager.DidReceiveMessage(userInfo);
             // Do your magic to handle the notification data
             System.Console.WriteLine(userInfo);
 

@@ -24,7 +24,7 @@
 
             <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
             <ContentView Grid.Row="0" Grid.Column="1">
-                <Image Source="LogoViviCampomarino" Margin="0,0,0,5"
+                <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
 			    HorizontalOptions="Center" VerticalOptions="Center" />
             </ContentView>
 
@@ -38,10 +38,10 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Frame CornerRadius="50" BackgroundColor="White" Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand">
+                <Frame CornerRadius="20" Margin="0,0,0,5" BackgroundColor="White" Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="CenterAndExpand">
 
-                    <StackLayout Margin="15,0,15,0" VerticalOptions="CenterAndExpand">
-                        <ScrollView Orientation="Vertical">
+                    <StackLayout Margin="5,0,5,0" VerticalOptions="CenterAndExpand">
+                        <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
                             <Label TextType="Html">
                                 <![CDATA[
                                 <h1 style="text-align:center">Benvenuto nella sezione <b>GUEST PASS</b></h1>
@@ -65,7 +65,7 @@
                                 </div>
                                 <br>
                                 <div style="text-align:center">
-                                    <b>3.</b> Ora avrai a disposposizione il tuo <b>Coupon</b>, che scadrà al termine del tuo soggiorno nella struttura.<br>
+                                    <b>3.</b> Ora avrai a disposposizione il tuo <b>Coupon</b>, che scadrà al termine del tuo soggiorno nella struttura.
                                     Mostra questo <b>Coupon</b> a una delle attività che aderiscono all'iniziativa e che comunque vedrai elencate visualizzando il coupon, per accedere agli sconti riservati. 
                                 </div>
                                 <br>

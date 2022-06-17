@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ViviCampomarino.GuestPass.ViewListaAttivita">
   <ContentView.Content>
-        <Grid RowSpacing="5" ColumnSpacing="5" Margin="10,10,10,10">
+        <Grid Padding="5,5,5,5" RowSpacing="5" ColumnSpacing="5" Margin="5,5,5,5">
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
             </Grid.GestureRecognizers>
@@ -16,9 +16,9 @@
                 <ColumnDefinition Width="70*"/>
             </Grid.ColumnDefinitions>
             <Frame BackgroundColor="White" Grid.RowSpan="2" Grid.ColumnSpan="2"  Opacity="1" HasShadow="True" CornerRadius="10"/>
-            <Image x:Name="ImgLogo" Grid.Row="0" Grid.Column="0"  />
-            <Image x:Name="ImgSconto" Grid.Row="1" Grid.Column="0" WidthRequest="80"/>
-            <StackLayout Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+            <Image Margin="5,5,5,5" x:Name="ImgLogo" Grid.Row="0" Grid.Column="0"  />
+            <Image Margin="5,5,5,5" x:Name="ImgSconto" Grid.Row="1" Grid.Column="0" WidthRequest="80"/>
+            <StackLayout Margin="0,5,0,0" Orientation="Vertical" Grid.Row="0" Grid.Column="1">
                 <Label x:Name="LblDenominazione" FontAttributes="Bold"/>
                 <Label x:Name="LblDescrizione"/>
                 <StackLayout Orientation="Horizontal">

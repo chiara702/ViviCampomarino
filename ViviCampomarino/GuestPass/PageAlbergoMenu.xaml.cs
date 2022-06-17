@@ -26,5 +26,9 @@ namespace ViviCampomarino.GuestPass {
         private void BtnModificaCoupon_Clicked(object sender, EventArgs e) {
             Navigation.PushAsync(new PageAlbergoModificaCoupon());
         }
+
+        private void BtnVisualizzaListaAttivita_Clicked(object sender, EventArgs e) {
+            Navigation.PushAsync(new PageAlbergoListaAttivita());
+        }
     }
 }

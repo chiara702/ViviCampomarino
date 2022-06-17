@@ -38,6 +38,7 @@ namespace ViviCampomarino.GuestPass {
                 if (rowAzienda["PercentualeSconto"].ToString()=="15") ImgCoupon.Source="Coupon15p.png";
                 if (rowAzienda["PercentualeSconto"].ToString()=="20") ImgCoupon.Source="Coupon20p.png";
                 if (rowAzienda["PercentualeSconto"].ToString()=="30") ImgCoupon.Source="Coupon30p.png";
+                Attesa.IsVisible=false;
             });
         }
 

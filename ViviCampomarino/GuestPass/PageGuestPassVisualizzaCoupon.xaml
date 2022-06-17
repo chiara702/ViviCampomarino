@@ -24,7 +24,7 @@
 
             <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
             <ContentView Grid.Row="0" Grid.Column="1">
-                <Image Source="LogoViviCampomarino" Margin="0,0,0,5"
+                <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
 			    HorizontalOptions="Center" VerticalOptions="Center" />
             </ContentView>
             <ActivityIndicator IsVisible="false" IsRunning="true" Grid.Row="0" Grid.Column="0"/>
@@ -40,47 +40,45 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackLayout Margin="0,0,0,0" Padding="5,5,5,5" Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Start" BackgroundColor="#80ffffff">
+                <StackLayout Margin="0,0,0,0" Padding="5,5,5,5" Grid.Row="0" Grid.ColumnSpan="2" VerticalOptions="Start" BackgroundColor="#00ffffff">
                     <ScrollView Orientation="Vertical">
                         <StackLayout Orientation="Vertical">
-                            <Grid HeightRequest="150">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <Image x:Name="ImgViviCampomarino" Source="LogoViviCampomarinoC.png" Grid.Column="0"/>
-                                <Image x:Name="ImgCoupon" Source="Delete.png" Grid.Column="1"/>
-                            </Grid>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="DATA ORA: " FontSize="18"/>
-                                <Label x:Name="LblDataOra" Text="..-..-.." FontSize="18" FontAttributes="Bold"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <!--<Label Text="DATA ORA: " FontSize="18" TextColor="Black"/>-->
+                                <Label x:Name="LblDataOra" Text="..-..-.." FontSize="18" FontAttributes="Bold" TextColor="Black"/>
                             </StackLayout>
-                            <Image Margin="0,30,0,0" x:Name="LogoAzienda" Source="ImgLogoAttivita" WidthRequest="100"/>
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="LblDenominazione" FontSize="20" FontAttributes="Bold"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label x:Name="LblDescrizione"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Indirizzo: "/>
-                                <Label x:Name="LblIndirizzo"/>
-                                
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Paese: "/>
-                                <Label x:Name="LblPaese"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Tel: "/>
-                                <Label x:Name="LblTelefono"/>
-                                <Label Text=" Cel1: "/>
-                                <Label x:Name="LblCell1"/>
-                            </StackLayout>
+                            <ActivityIndicator x:Name="Attesa" IsVisible="true" IsRunning="True" HeightRequest="50"/>
+                            <Image x:Name="ImgCoupon" HeightRequest="150" Source="" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            
 
+                            <Frame CornerRadius="20">
+                                <StackLayout>
+                                    <Image Margin="0,30,0,0" x:Name="LogoAzienda" Source="ImgLogoAttivita" WidthRequest="100"/>
+                                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                                        <Label x:Name="LblDenominazione" FontSize="20" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label x:Name="LblDescrizione" FontSize="18"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Indirizzo: " FontSize="18"/>
+                                        <Label x:Name="LblIndirizzo" FontSize="18"/>
+                                
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Paese: " FontSize="18"/>
+                                        <Label x:Name="LblPaese" FontSize="18"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Tel: " FontSize="18"/>
+                                        <Label x:Name="LblTelefono" FontSize="18"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Cel1: " FontSize="18"/>
+                                        <Label x:Name="LblCell1" FontSize="18"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
 
                         </StackLayout>
                     </ScrollView>

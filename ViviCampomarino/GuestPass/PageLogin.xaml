@@ -22,7 +22,7 @@
 
             <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
             <ContentView Grid.Row="0" Grid.Column="1">
-                <Image Source="LogoViviCampomarino" Margin="0,0,0,5"
+                <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
 			    HorizontalOptions="Center" VerticalOptions="Center" />
             </ContentView>
 
