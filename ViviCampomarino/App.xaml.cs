@@ -36,6 +36,8 @@ namespace ViviCampomarino {
             
             CrossFirebaseCloudMessaging.Current.Error += Current_Error;
             CrossFirebaseCloudMessaging.Current.TokenChanged += Current_TokenChanged;
+
+            
             
             //Da Togliere
             //CrossFirebaseCloudMessaging.Current.SubscribeToTopicAsync("debug");
