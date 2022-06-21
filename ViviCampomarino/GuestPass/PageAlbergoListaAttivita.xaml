@@ -38,9 +38,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-
-                <StackLayout x:Name="StkListaAttivita" Margin="15,0,15,0"  Grid.Row="0" Grid.ColumnSpan="2">
-                    
+                <StackLayout Margin="0,0,0,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#00ffffff" Grid.Row="0" Grid.ColumnSpan="2">
+                    <ScrollView Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" x:Name="StkListaAttivita">
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
                 <Label x:Name="LblNoAttivita" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="22" Text="Ci dispiace ma nessuna attività al momento aderisce all'iniziativa." IsVisible="false"/>
 

@@ -17,7 +17,7 @@ namespace ViviCampomarino.iOS
             // you can specify it here.
             
 
-            UIApplication.Main(args, null, "AppDelegate");
+            UIApplication.Main(args, null, typeof(AppDelegate));
             
             
 

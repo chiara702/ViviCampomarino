@@ -1,4 +1,6 @@
-﻿using Plugin.FirebaseAuth;
+﻿//using Plugin.FirebaseAuth;
+using Plugin.Firebase.Auth;
+using Plugin.Firebase.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,6 @@ using Xamarin.Forms.Xaml;
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageLogin : ContentPage {
-        private IFirebaseAuth authCurrent = Plugin.FirebaseAuth.CrossFirebaseAuth.Current;
         
         public PageLogin() {
             InitializeComponent();
@@ -21,10 +22,11 @@ namespace ViviCampomarino {
             var email = Funzioni.Antinull(TxtEmail.Text).Trim();
             var password = Funzioni.Antinull(TxtPassword.Text).Trim();
             if (email=="1") { email = "dimariafabio@gmail.com"; password = "123456"; }
+            if (email=="2") { email = "maddalenaspidalieri@gmail.com"; password="abc123456"; }
             if (Funzioni.IsValidEmail(email) == false) { await DisplayAlert("Errore", "E-mail in formato non corretto!", "OK"); return; }
             String[] ListaUtentiRegistratiConEmail = null;
             try {
-                ListaUtentiRegistratiConEmail = await authCurrent.Instance.FetchSignInMethodsForEmailAsync(email);
+                ListaUtentiRegistratiConEmail = await CrossFirebaseAuth.Current.FetchSignInMethodsAsync(email);
             }catch(FirebaseAuthException err) {
                 await DisplayAlert("Errore", "Errore nel controllo esistenza email! Verificare connessione internet o attendere qualche minuto!","OK");
                 return;
@@ -38,19 +40,21 @@ namespace ViviCampomarino {
                 return;
             }
             try {
-                var tmp = await authCurrent.Instance.SignInWithEmailAndPasswordAsync(email, password);
-                if (tmp.User.IsEmailVerified == false) {
+                var tmp = await CrossFirebaseAuth.Current.SignInWithEmailAndPasswordAsync(email, password);
+                if (tmp.IsEmailVerified == false) {
                     await DisplayAlert("Login", "Account non ancora validato. E' stata inviata una nuova e-mail di validazione! Controlla la tua email e clicca il link per confermare la registrazione!", "OK");
-                    await tmp.User.SendEmailVerificationAsync();
+                    await tmp.SendEmailVerificationAsync();
                     return;
                 }
                 //Login OK
-                App.LoginUidAuth = tmp.User.Uid;
+                App.LoginUidAuth = tmp.Uid;
+                App.LoginEmail = tmp.Email;
                 App.SalvaImpostazioni();
                 App.LeggiImpostazioni();
                 
                 var token=await Plugin.Firebase.CloudMessaging.CrossFirebaseCloudMessaging.Current.GetTokenAsync();
                 var Db = new MySqlvc();
+                Db.UpdateRapido("Login", Convert.ToInt32(App.login["Id"]), "UidAuth", tmp.Uid);
                 Db.UpdateRapido("Login", Convert.ToInt32(App.login["Id"]), "TokenFcm", token);
                 Db.UpdateRapido("Login", Convert.ToInt32(App.login["Id"]), "UltimoAccesso", DateTime.Now);
                 Db.UpdateRapido("Login", Convert.ToInt32(App.login["Id"]), "NumeroAccessi", Convert.ToInt32(App.login["NumeroAccessi"])+1);
@@ -61,7 +65,7 @@ namespace ViviCampomarino {
             }catch (FirebaseAuthException err) { //FirebaseAuthInvalidCredentialsException
                 var DataError = err.Data;
                 if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!","Ok");
-                else await DisplayAlert("Login", "Errore generale: " + err.Message + " " + err.ErrorCode, "Ok");
+                else await DisplayAlert("Login", "Errore generale: " + err.Message + " " + err.Message, "Ok");
                 MySqlvc.WriteLog("Login Error: " + err.Message);
                 return;
             }

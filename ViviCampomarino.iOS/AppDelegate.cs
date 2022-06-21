@@ -30,7 +30,6 @@ namespace ViviCampomarino.iOS
 
             Xamarin.FormsMaps.Init();
             Rox.VideoIos.Init();
-        
 
             
 
@@ -39,7 +38,7 @@ namespace ViviCampomarino.iOS
 
             LoadApplication(new App());
 
-            //Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
+            Firebase.Core.App.Configure(); //Inizializzazione per Plugin.FirebaseAuth
 
             //FirebasePushNotificationPlugin
             //FirebasePushNotificationManager.Initialize(options, true);

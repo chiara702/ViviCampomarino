@@ -45,7 +45,7 @@
                         <Label Margin="0,0,0,10" Text="Effettua l'accesso oppure registrati per prenotare un libro" Style="{StaticResource LabReg}" HorizontalTextAlignment="Center" TextColor="White" FontSize="18" />
 
                         <Label Text="Indirizzo e-mail" Style="{StaticResource LabReg}" TextColor="White"/>
-                        <Entry x:Name="TxtEmail" Margin="10,1,10,15" Placeholder="E-mail" Style="{StaticResource EntryReg}" />
+                        <Entry x:Name="TxtEmail" Margin="10,1,10,15" Placeholder="E-mail" Style="{StaticResource EntryReg}" Keyboard="Email" />
                         <Label Text="Password" Style="{StaticResource LabReg}" TextColor="White"/>
                         <Entry x:Name="TxtPassword" Margin="10,1,10,20" Placeholder="Password" Style="{StaticResource EntryReg}" />
 

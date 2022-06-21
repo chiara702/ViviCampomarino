@@ -19,8 +19,9 @@ namespace ViviCampomarino.GuestPass {
         }
 
         private async void BtnAvanti_Clicked(object sender, EventArgs e) {
-            if (App.LoginUidAuth=="") {
-                var np = new PageLogin();
+            //if (App.LoginUidAuth=="") {
+            if (Plugin.Firebase.Auth.CrossFirebaseAuth.Current.CurrentUser==null || App.login==null) {
+                var np = new ViviCampomarino.GuestPass.PageLogin();
                 await Navigation.PushAsync(np);
                 await np.semaforo.WaitAsync();
             } else {
@@ -38,8 +39,8 @@ namespace ViviCampomarino.GuestPass {
                         } else {
                             await Navigation.PushAsync(new PageGuestPassNessunCoupon());
                         }
-                    }catch(Exception) {
-                        await DisplayAlert("", "Internet non disponibile o funzione al momento non disponibile!", "OK");
+                    }catch(Exception ex) {
+                        await DisplayAlert("", "Internet non disponibile o funzione al momento non disponibile! " + ex.Message, "OK");
                         return;
                     }
                     var CouponDisponibile = false;

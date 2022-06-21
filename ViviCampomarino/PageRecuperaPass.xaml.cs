@@ -1,4 +1,4 @@
-﻿using Plugin.FirebaseAuth;
+﻿using Plugin.Firebase.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace ViviCampomarino {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageRecuperaPass : ContentPage {
-        private IFirebaseAuth authCurrent = Plugin.FirebaseAuth.CrossFirebaseAuth.Current;
+        //private IFirebaseAuth authCurrent = Plugin.FirebaseAuth.CrossFirebaseAuth.Current;
         public PageRecuperaPass() {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace ViviCampomarino {
                 return;
             }
             try {
-                await authCurrent.Instance.SendPasswordResetEmailAsync(TxtEmail.Text);
+                await CrossFirebaseAuth.Current.SendPasswordResetEmailAsync(TxtEmail.Text);
             } catch (Exception error) {
                 await DisplayAlert("", error.Message, "OK");
             }

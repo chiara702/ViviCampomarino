@@ -12,6 +12,7 @@ namespace ViviCampomarino {
     public partial class App : Application {
 
         public static String LoginUidAuth = "";
+        public static String LoginEmail = "";
         public static DataRow login=null;
         public static Boolean InterrompiLoading = false;
         public static DataRow RowAzienda=null;
@@ -55,7 +56,7 @@ namespace ViviCampomarino {
                 try {
                     var Db = new MySqlvc();
                     //login=Task.Run(()=> Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'")).GetAwaiter().GetResult();
-                    login = Db.EseguiRow("Select * From Login Where UidAuth='" + LoginUidAuth + "'");
+                    login = Db.EseguiRow($"Select * From Login Where UidAuth='{LoginUidAuth}' Or (Email='{LoginEmail}' And Email <> '')");
                     if (login!= null && Convert.ToInt32(login["IdAzienda"])>0) {
                         RowAzienda=Db.EseguiRow($"Select * From Aziende Where Id={Convert.ToInt32(login["IdAzienda"])}");
                     }
