@@ -68,8 +68,7 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchArch>
-    </MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Distribution: Fabio Di Maria (9HAAQ267G2)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>ViviCampomarino AppStore</CodesignProvision>
