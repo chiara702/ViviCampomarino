@@ -31,6 +31,7 @@ namespace ViviCampomarino {
                 return;
             }
             try {
+                
                 await CrossFirebaseAuth.Current.SendPasswordResetEmailAsync(TxtEmail.Text);
             } catch (Exception error) {
                 await DisplayAlert("", error.Message, "OK");
