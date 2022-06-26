@@ -31,7 +31,7 @@ namespace ViviCampomarino.GuestPass {
             String[] ListaUtentiRegistratiConEmail = null;
             try {
                 ListaUtentiRegistratiConEmail = await CrossFirebaseAuth.Current.FetchSignInMethodsAsync(email);
-            } catch (FirebaseAuthException err) {
+            } catch (FirebaseException err) {
                 await DisplayAlert("Errore", "Errore nel controllo esistenza email! Verificare connessione internet o attendere qualche minuto!", "OK");
                 return;
             }
@@ -70,7 +70,7 @@ namespace ViviCampomarino.GuestPass {
                 App.FcmTopicsRefresh();
                 MySqlvc.WriteLog("Login Ok");
                 await Navigation.PopAsync();
-            } catch (FirebaseAuthException err) { //FirebaseAuthInvalidCredentialsException
+            } catch (FirebaseException err) { //FirebaseAuthInvalidCredentialsException
                 var DataError = err.Data;
                 if (err.Message.Contains("The password is invalid")) await DisplayAlert("Login", "Password errata!", "Ok");
                 else await DisplayAlert("Login", "Errore generale: " + err.Message + " " + err.Message, "Ok");
