@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 //using Firebase.CloudMessaging;
 using Foundation;
-using Plugin.Firebase.CloudMessaging;
-using Plugin.Firebase.iOS;
-using Plugin.Firebase.Shared;
+
 //using Plugin.FirebasePushNotification;
 using UIKit;
 using UserNotifications;

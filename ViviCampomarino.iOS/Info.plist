@@ -15,7 +15,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>9.0</string>
+	<string>15.4</string>
 	<key>CFBundleDisplayName</key>
 	<string>ViviCampomarino</string>
 	<key>CFBundleIdentifier</key>
