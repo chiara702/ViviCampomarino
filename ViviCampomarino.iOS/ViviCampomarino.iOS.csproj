@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <UseShortFileNames>True</UseShortFileNames>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
@@ -299,7 +302,10 @@
     <BundleResource Include="Resources\taxi.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\IntroLoghi.png" />
+    <AndroidResource Include="Resources\IntroLoghi.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\NavigaVerso.png" />
