@@ -41,6 +41,8 @@
                 <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="15,0,15,0" VerticalOptions="CenterAndExpand" Spacing="30">
                     <Button x:Name="BtnScopri" Text="Virtual tour" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnScopri_Clicked" />
                     <Button x:Name="BtnAttivita" Text="Stavo cercando..." TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAttivita_Clicked" />
+                    <Button x:Name="BtnPercorsoOlioVino" Text="Percorso Vino/Olio" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnPercorsoOlioVino_Clicked" />
+                    <Button x:Name="BtnEbike" Text="E-BIKE" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnEbike_Clicked" />
                 </StackLayout>
                 <Frame Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="#3c3c3b" Margin="-30,-5,-30, 0"  Opacity="0.3" />
                 <Image Grid.Column="0" Grid.Row="1" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40" Margin="0,0,0,5"  />

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.VinoEOlio.PagePercorsoVinoEOlioDettaglio">
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid RowSpacing="5" Margin="20,10,20,0">
+                <Grid.ColumnDefinitions>
+
+                </Grid.ColumnDefinitions >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="250"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" x:Name="ImgLogoAttivita"  Source="ImgLogoAttivita" HorizontalOptions="Center" Margin="0,10,0,10" />
+                <Label Grid.Row="1" x:Name="LblNomeAttivita"  Text="" TextTransform="Uppercase" FontAttributes="Bold" FontSize="20" Margin="0,10,0,5" />
+                <Label Grid.Row="2" x:Name="LblDescrizione"  Text="" FontSize="20" Margin="0,10,0,5" />
+                <Label Grid.Row="3" x:Name="LblPaese" Text=""   FontSize="18" Margin="0,5,0,0" />
+                <StackLayout Grid.Row="4" Orientation="Horizontal" VerticalOptions="Center"  >
+                    <Label  x:Name="LblIndirizzo"  Text="" FontSize="18" Margin="0,0,0,5">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapIndirizzo_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" x:Name="StackIndicazioni" >
+                        <Image   Source="NavigaVerso1"  VerticalOptions="Center"  Margin="10,0,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblIndIndicazioni"  Margin="0,0,5,0" FontFamily="" FontSize="16" Text="VAI" VerticalOptions="Center" TextColor="#a4182f" HorizontalTextAlignment="Start" LineBreakMode="TailTruncation">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapIndirizzo_Tapped"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="5" Grid.Column="0">
+                    <StackLayout   Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" x:Name="StackEmail"  >
+                        <Image   Source="email"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblEmail"  Margin="0,5,5,0" FontFamily="" FontSize="18" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" x:Name="StackWebSite"  >
+                        <Image   Source="WebSite"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblWebSite"  Margin="0,5,5,0" FontFamily="" FontSize="16" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" LineBreakMode="TailTruncation">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapWebSite_Tapped"></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout  Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" x:Name="StackApp"  >
+                        <Image   Source="App"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblAppStore"  Margin="0, 5,5,0" FontFamily="" FontSize="18" Text="Non ancora disponibile" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="6" Grid.Column="0" Orientation="Vertical" HorizontalOptions="Start" VerticalOptions="Center"  >
+                    <StackLayout Orientation="Horizontal" x:Name="StackTelefono">
+                        <Image   Source="Telefono"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblTelefono"  Margin="0, 5,5,0" FontFamily="" FontSize="20" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapTelefono_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" x:Name="StackCellulare1">
+                        <Image   Source="Telefono"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblCellulare1"  Margin="0,5,5,0" FontFamily="" FontSize="20" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapCellulare1_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" x:Name="StackCellulare2">
+                        <Image   Source="Telefono"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblCellulare2"  Margin="0,5,5,0" FontFamily="" FontSize="20" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapCellulare2_Tapped" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" x:Name="StackOrari">
+                        <Image   Source="OrariApertura.png"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="30"  />
+                        <Label x:Name="LblOrari"  Margin="0,5,5,0" FontFamily="" FontSize="20" Text="" VerticalOptions="Center"  HorizontalTextAlignment="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <ScrollView Grid.Row="7" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
+                    <StackLayout Orientation="Horizontal">
+                        <Image x:Name="Img1" Source="Img1"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
+                        <Image x:Name="Img2" Source="Img2"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
+                        <Image x:Name="Img3" Source="Img3"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
+                        <Image x:Name="Img4" Source="Img4"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
+                    </StackLayout>
+                </ScrollView>
+
+
+
+
+            </Grid>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
