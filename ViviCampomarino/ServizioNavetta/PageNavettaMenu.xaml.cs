@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace ViviCampomarino.ServizioNavetta {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class PageNavettaMenu : ContentPage {
+        public PageNavettaMenu() {
+            InitializeComponent();
+        }
+
+        private void BtnPrenota_Clicked(object sender, EventArgs e) {
+
+        }
+
+        private void BtnAmministratore_Clicked(object sender, EventArgs e) {
+
+        }
+
+        private async void BtnIndietro_Clicked(object sender, EventArgs e) {
+            await Navigation.PopAsync();
+        }
+    }
+}

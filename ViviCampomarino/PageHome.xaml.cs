@@ -58,5 +58,9 @@ namespace ViviCampomarino {
             await Navigation.PopToRootAsync();
             StackLogin.IsVisible = false;
         }
+
+        private async void BtnNavetta_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new ServizioNavetta.PageNavettaMenu());
+        }
     }
 }
