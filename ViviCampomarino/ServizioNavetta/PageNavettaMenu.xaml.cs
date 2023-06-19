@@ -14,8 +14,8 @@ namespace ViviCampomarino.ServizioNavetta {
             InitializeComponent();
         }
 
-        private void BtnPrenota_Clicked(object sender, EventArgs e) {
-
+        private async void BtnPrenota_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new PageNavettaPrenotaCalendario());
         }
 
         private void BtnAmministratore_Clicked(object sender, EventArgs e) {
@@ -24,6 +24,10 @@ namespace ViviCampomarino.ServizioNavetta {
 
         private async void BtnIndietro_Clicked(object sender, EventArgs e) {
             await Navigation.PopAsync();
+        }
+
+        private async void BtnMappa_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new PageNavettaMappa());
         }
     }
 }

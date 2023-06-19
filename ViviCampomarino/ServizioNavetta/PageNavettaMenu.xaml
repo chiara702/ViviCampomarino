@@ -39,21 +39,25 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="15,0,15,0" VerticalOptions="CenterAndExpand" Spacing="30">
-                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#A0ffffff" Padding="5,5,5,5">
-                        <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center">SERVIZIO NAVETTA TRASPORTO DISABILI ESTATE 2023</Label>
-                        <Label LineBreakMode="WordWrap" HorizontalTextAlignment="Center">
-                            Servizio di prenotazione navetta Campomarino-Campomarino Lido per disabili Estate 2023. Servizio offerto in collaborazione con l'associazizone AISA e con il Comune di Campomarino.
-                        </Label>
-                        <Label LineBreakMode="WordWrap" HorizontalTextAlignment="Center">
-                            Questo servizio permette a una persona disabile, incluso un eventuale accompagnatore, di prenotare uno dei tre posti disponibili per carrozzine disabili per ogni corsa del pulmino. Sulla prenotazione è possibile indicare un numero di telefono di contatto che verrà usato in caso di necessità, un indirizzo o zona dove verrà effettuato il prelevamento, e un indirizzo/lido di destinazione. Il servizio è completamente gratuito per il disabile ed eventuale accompagnatore.
-                        </Label>
-                        
-                    </StackLayout>
+                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="15,0,15,10" VerticalOptions="CenterAndExpand" Spacing="30">
+                    <ScrollView VerticalScrollBarVisibility="Always">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#A0ffffff">
+                                <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center">SERVIZIO NAVETTA TRASPORTO DISABILI ESTATE 2023</Label>
+                                <Label LineBreakMode="WordWrap" HorizontalTextAlignment="Center">
+                                    Servizio di prenotazione navetta Campomarino-Campomarino Lido per disabili Estate 2023. Servizio offerto in collaborazione con l'associazizone AISA e con il Comune di Campomarino.
+                                </Label>
+                                <Label LineBreakMode="WordWrap" HorizontalTextAlignment="Center">
+                                    Questo servizio permette a una persona disabile, incluso un eventuale accompagnatore, di prenotare uno dei tre posti disponibili per carrozzine disabili per ogni corsa del pulmino. Sulla prenotazione è possibile indicare un numero di telefono di contatto che verrà usato in caso di necessità, un indirizzo o zona dove verrà effettuato il prelevamento, e un indirizzo/lido di destinazione. Il servizio è completamente gratuito per il disabile ed eventuale accompagnatore.
+                                </Label>
+                            </StackLayout>
+                            <Button x:Name="BtnPrenota" Text="Prenota" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnPrenota_Clicked" />
+                            <Button x:Name="BtnMappa" Text="Mappa" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnMappa_Clicked" />
+                            <Button x:Name="BtnAmministratore" Text="Amministrazione" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAmministratore_Clicked" />
+
+                        </StackLayout>
+                    </ScrollView>
                     
-                    
-                    <Button x:Name="BtnPrenota" Text="Prenota" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnPrenota_Clicked" />
-                    <Button x:Name="BtnAmministratore" Text="Amministrazione" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAmministratore_Clicked" />
                 </StackLayout>
                 <Frame Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="#3c3c3b" Margin="-30,-5,-30, 0"  Opacity="0.3" />
                 <Image Grid.Column="0" Grid.Row="1" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40" Margin="0,0,0,5"  />
