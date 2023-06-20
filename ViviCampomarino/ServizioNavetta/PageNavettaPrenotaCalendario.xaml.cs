@@ -68,10 +68,23 @@ namespace ViviCampomarino.ServizioNavetta {
             var row = 2;
             var col = (int)firstDayOfMonth;
             while (currentDay <= daysInMonth) {
+                //Tondo
+                var pallino = new Frame();
+                pallino.HorizontalOptions=LayoutOptions.Center;
+                pallino.VerticalOptions=LayoutOptions.Center;
+                pallino.CornerRadius = 10;
+                pallino.WidthRequest=10;
+                pallino.HeightRequest=10;
+                pallino.BorderColor = Color.Blue;
+                pallino.BackgroundColor=Color.LightBlue;
+                grid.Children.Add(pallino, col, row);
+                //
                 var dayLabel = new Label();
                 dayLabel.Text = currentDay.ToString();
                 dayLabel.HorizontalOptions = LayoutOptions.Center;
+                dayLabel.VerticalOptions = LayoutOptions.Center;
                 grid.Children.Add(dayLabel, col, row);
+                
                 currentDay++;
                 col++;
 
