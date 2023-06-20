@@ -16,6 +16,7 @@ namespace ViviCampomarino {
         public static DataRow login=null;
         public static Boolean InterrompiLoading = false;
         public static DataRow RowAzienda=null;
+        public static String Guid = "";
 
         public App(Boolean IntentExtras) {
             InitializeComponent();
@@ -45,7 +46,13 @@ namespace ViviCampomarino {
             LeggiImpostazioni();
             var home = new PageLoading();
             MainPage = home;
-            
+
+            //Crea o legge GUID
+            Guid=Preferences.Get("Guid", "");
+            if (Guid == "") {
+                Guid=System.Guid.NewGuid().ToString();
+                Preferences.Set("Guid", Guid);
+            }
 
 
         }
