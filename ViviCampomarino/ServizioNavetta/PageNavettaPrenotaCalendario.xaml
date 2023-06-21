@@ -38,7 +38,15 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackLayout x:Name="StkContainer" Grid.Row="0" Grid.ColumnSpan="2" Margin="15,0,15,0" VerticalOptions="CenterAndExpand" Spacing="30">
+                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="15,0,15,0" VerticalOptions="CenterAndExpand" Spacing="30">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Button x:Name="BtnMesePrec" Text="Mese Prec." Clicked="BtnMesePrec_Clicked" Padding="5,5,5,5"/>
+                        <Button x:Name="BtnMeseAttuale" Text="Mese Prec." Clicked="BtnMeseAttuale_Clicked" Padding="5,5,5,5"/>
+                        <Button x:Name="BtnMeseSucc" Text="Mese Prec." Clicked="BtnMeseSucc_Clicked" Padding="5,5,5,5"/>
+                    </StackLayout>
+                    <StackLayout x:Name="StkContainer">
+                        
+                    </StackLayout>
                     <!--CONTENUTO-->
                     <!--<Grid x:Name="GridCalendario" Grid.Row="6" Grid.Column="7">
                         <Grid.RowDefinitions>

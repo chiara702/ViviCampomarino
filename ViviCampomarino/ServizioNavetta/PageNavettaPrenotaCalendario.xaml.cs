@@ -14,6 +14,9 @@ namespace ViviCampomarino.ServizioNavetta {
             InitializeComponent();
             //InizializzaCalendario(7);
             StkContainer.Children.Add( CreateCalendar(2023, 6));
+            BtnMesePrec.Text=DateTime.Now.AddMonths(-1).ToString("MMMM");
+            BtnMeseAttuale.Text=DateTime.Now.AddMonths(0).ToString("MMMM");
+            BtnMeseSucc.Text=DateTime.Now.AddMonths(1).ToString("MMMM");
         }
         private View CreaLabelGiorno(String Giorno) {
             var tmp = new AbsoluteLayout();
@@ -106,5 +109,16 @@ namespace ViviCampomarino.ServizioNavetta {
             return grid;
         }
 
+        private void BtnMesePrec_Clicked(object sender, EventArgs e) {
+            
+        }
+
+        private void BtnMeseAttuale_Clicked(object sender, EventArgs e) {
+
+        }
+
+        private void BtnMeseSucc_Clicked(object sender, EventArgs e) {
+
+        }
     }
 }
