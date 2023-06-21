@@ -23,9 +23,10 @@ namespace ViviCampomarino.ServizioNavetta {
             BtnMeseAttuale_Clicked(null, null);
         }
 
-        private async void RiempiGiorniAbilitatiFromDB(int Mese) {
+        private void RiempiGiorniAbilitatiFromDB(int Mese) {
+            RowGiorniMeseAbilitati.Clear();
             var Db = new MySqlvc();
-            TableGiorniAbilitati=Db.EseguiQuery("Select * From NavettaGiorniAbilitati");
+            TableGiorniAbilitati=Db.EseguiQuery("Select * From NavettaGiorniAbilitati Order By GiornoAbilitato");
             foreach (DataRow x in TableGiorniAbilitati.Rows) {
                 if (Convert.ToDateTime(x["GiornoAbilitato"].ToString()).Month==Mese) RowGiorniMeseAbilitati.Add(x);
             }
@@ -42,7 +43,7 @@ namespace ViviCampomarino.ServizioNavetta {
             DisplayAlert("", label.ToString(), "ok");
         }
         private void CreateCalendar(int year, int month) {
-            var grid = new Grid();
+            var grid = new Grid ();
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
@@ -91,16 +92,21 @@ namespace ViviCampomarino.ServizioNavetta {
                 //
                 var dayLabel = new Label();
                 dayLabel.TextColor = Color.Black;
-                dayLabel.FontSize=12;
+                dayLabel.FontSize=14;
                 dayLabel.Text = currentDay.ToString();
-                dayLabel.HorizontalOptions = LayoutOptions.Center;
-                dayLabel.VerticalOptions = LayoutOptions.Center;
+                dayLabel.HorizontalOptions = LayoutOptions.CenterAndExpand;
+                dayLabel.VerticalOptions = LayoutOptions.CenterAndExpand;
                 grid.Children.Add(dayLabel, col, row);
                 //add event
-                pallino.GestureRecognizers.Add(new TapGestureRecognizer() {
-                    Command=new Command(dayClick),
-                    CommandParameter = dayLabel.Text
-                });
+                if (RowGiorniMeseAbilitati.Where(row => row.Field<DateTime>("GiornoAbilitato").Day==currentDay).Count()>0) {
+                    dayLabel.TextDecorations=TextDecorations.Underline;
+                    dayLabel.FontAttributes=FontAttributes.Bold;
+                    dayLabel.TextColor=Color.Red;
+                    dayLabel.GestureRecognizers.Add(new TapGestureRecognizer() {
+                        Command=new Command(dayClick),
+                        CommandParameter = dayLabel.Text
+                    });
+                }
                 
                 currentDay++;
                 col++;
@@ -117,18 +123,21 @@ namespace ViviCampomarino.ServizioNavetta {
         static Color ColoreBottoniStandard=Color.LightGray;
         static Color ColoreBottoniSelezionato = Color.LightSalmon;
         private void BtnMesePrec_Clicked(object sender, EventArgs e) {
+            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month-1); }).Wait(3000);
             CreateCalendar(DateTime.Now.Year, DateTime.Now.Month-1);
             BtnMesePrec.BackgroundColor=ColoreBottoniStandard; BtnMeseAttuale.BackgroundColor=ColoreBottoniStandard; BtnMeseSucc.BackgroundColor=ColoreBottoniStandard;
             BtnMesePrec.BackgroundColor=ColoreBottoniSelezionato;
         }
 
         private void BtnMeseAttuale_Clicked(object sender, EventArgs e) {
+            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month); }).Wait(3000);
             CreateCalendar(DateTime.Now.Year, DateTime.Now.Month);
             BtnMesePrec.BackgroundColor=ColoreBottoniStandard; BtnMeseAttuale.BackgroundColor=ColoreBottoniStandard; BtnMeseSucc.BackgroundColor=ColoreBottoniStandard;
             BtnMeseAttuale.BackgroundColor=ColoreBottoniSelezionato;
         }
 
         private void BtnMeseSucc_Clicked(object sender, EventArgs e) {
+            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month+1); }).Wait(3000);
             CreateCalendar(DateTime.Now.Year, DateTime.Now.Month+1);
             BtnMesePrec.BackgroundColor=ColoreBottoniStandard; BtnMeseAttuale.BackgroundColor=ColoreBottoniStandard; BtnMeseSucc.BackgroundColor=ColoreBottoniStandard;
             BtnMeseSucc.BackgroundColor=ColoreBottoniSelezionato;
