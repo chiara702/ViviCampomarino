@@ -31,7 +31,9 @@ namespace ViviCampomarino.ServizioNavetta {
             await Navigation.PopAsync();
         }
 
-
+        private void dayClick(Object label) {
+            DisplayAlert("", label.ToString(), "ok");
+        }
         private Grid CreateCalendar(int year, int month) {
             var grid = new Grid();
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
@@ -41,23 +43,24 @@ namespace ViviCampomarino.ServizioNavetta {
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
 
-            // Header
-            var headerLabel = new Label();
-            headerLabel.Text = $"{month}/{year}";
-            //headerLabel.FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label));
-            headerLabel.FontAttributes=FontAttributes.Bold;
-            headerLabel.HorizontalOptions = LayoutOptions.Center;
-            grid.Children.Add(headerLabel, 0, 0);
-            Grid.SetColumnSpan(headerLabel, 7);
 
             // Days of the week
             var daysOfWeek = new string[] { "DOM", "LUN", "MAR", "MER", "GIO", "VEN", "SAB" };
             for (int i = 0; i < daysOfWeek.Length; i++) {
                 var dayLabel = new Label();
+                dayLabel.FontSize=12;
+                dayLabel.FontAttributes=FontAttributes.Bold;
                 dayLabel.Text = daysOfWeek[i];
                 dayLabel.HorizontalOptions = LayoutOptions.Center;
-                grid.Children.Add(dayLabel, i, 1);
+                grid.Children.Add(dayLabel, i, 0);
             }
 
             // Calendar days
@@ -65,7 +68,7 @@ namespace ViviCampomarino.ServizioNavetta {
             var firstDayOfMonth = new DateTime(year, month, 1).DayOfWeek;
 
             var currentDay = 1;
-            var row = 2;
+            var row = 1;
             var col = (int)firstDayOfMonth;
             while (currentDay <= daysInMonth) {
                 //Tondo
@@ -73,17 +76,24 @@ namespace ViviCampomarino.ServizioNavetta {
                 pallino.HorizontalOptions=LayoutOptions.Center;
                 pallino.VerticalOptions=LayoutOptions.Center;
                 pallino.CornerRadius = 10;
-                pallino.WidthRequest=10;
-                pallino.HeightRequest=10;
-                pallino.BorderColor = Color.Blue;
-                pallino.BackgroundColor=Color.LightBlue;
+                pallino.WidthRequest=8;
+                pallino.HeightRequest=8;
+                pallino.BorderColor = Color.Black;
+                pallino.BackgroundColor=Color.FromHex("55b7a8");
                 grid.Children.Add(pallino, col, row);
                 //
                 var dayLabel = new Label();
+                dayLabel.TextColor = Color.Black;
+                dayLabel.FontSize=12;
                 dayLabel.Text = currentDay.ToString();
                 dayLabel.HorizontalOptions = LayoutOptions.Center;
                 dayLabel.VerticalOptions = LayoutOptions.Center;
                 grid.Children.Add(dayLabel, col, row);
+                //add event
+                pallino.GestureRecognizers.Add(new TapGestureRecognizer() {
+                    Command=new Command(dayClick),
+                    CommandParameter = dayLabel.Text
+                });
                 
                 currentDay++;
                 col++;
