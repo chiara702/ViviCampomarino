@@ -28,6 +28,8 @@ namespace ViviCampomarino.ServizioNavetta {
             var Db = new MySqlvc();
             TableGiorniAbilitati=Db.EseguiQuery("Select * From NavettaGiorniAbilitati Order By GiornoAbilitato");
             foreach (DataRow x in TableGiorniAbilitati.Rows) {
+                if ((Convert.ToDateTime(x["GiornoAbilitato"])-DateTime.Now).Days>Convert.ToInt16(NavettaImpostazioni.LeggiImpostazione("GiorniMaxPrenotazione"))) continue;
+                
                 if (Convert.ToDateTime(x["GiornoAbilitato"].ToString()).Month==Mese) RowGiorniMeseAbilitati.Add(x);
             }
         }
