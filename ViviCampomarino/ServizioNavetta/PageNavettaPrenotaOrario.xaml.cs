@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZXing;
 
 namespace ViviCampomarino.ServizioNavetta {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageNavettaPrenotaOrario : ContentPage {
         public List<DateTime> ListaOrariAndata;
         public List<DateTime> ListaOrariRitorno;
+        public DateTime DataSelezionata;
         public PageNavettaPrenotaOrario(DateTime DataSelezionata) {
             InitializeComponent();
+            this.DataSelezionata= DataSelezionata;  
             LblData.Text = DataSelezionata.ToString("dd/MM/yyyy");
             var t=Task.Run(() => {
                 var Db = new MySqlvc();
@@ -29,14 +32,14 @@ namespace ViviCampomarino.ServizioNavetta {
                 }
                 Device.BeginInvokeOnMainThread(() => {
                     foreach (DateTime dt in ListaOrariAndata) {
-                        var Label = new Label();
-                        Label.Text = dt.ToString();
-                        StkAndata.Children.Add(Label);
+                        var BtnOrario = new Button() {Text=dt.ToString("HH:mm"), HeightRequest=40,BackgroundColor=Color.White, FontSize=14, TextColor=Color.FromHex("3C3C3B"), CornerRadius=15 };
+                        BtnOrario.Clicked+=BtnOrario_Clicked;
+                        StkAndata.Children.Add(BtnOrario);
                     }
                     foreach (DateTime dt in ListaOrariRitorno) {
-                        var Label = new Label();
-                        Label.Text = dt.ToString();
-                        StkRitorno.Children.Add(Label);
+                        var BtnOrario = new Button() { Text=dt.ToString("HH:mm"), HeightRequest=40, BackgroundColor=Color.White, FontSize=14, TextColor=Color.FromHex("3C3C3B"), CornerRadius=15 };
+                        BtnOrario.Clicked+=BtnOrario_Clicked;
+                        StkRitorno.Children.Add(BtnOrario);
                     }
                 });
             }
@@ -44,6 +47,13 @@ namespace ViviCampomarino.ServizioNavetta {
             
         }
 
+        private void BtnOrario_Clicked(object sender, EventArgs e) {
+            var form = new PageNavettaPrenotaPosto();
+            form.DataOra=DateTime.Parse(DataSelezionata.ToString("dd/MM/yyyy") + " " + ((Button)sender).Text);
+            
+
+            Navigation.PushAsync(form);
+        }
 
         private void BtnIndietro_Clicked(object sender, EventArgs e) {
             Navigation.PopAsync();  

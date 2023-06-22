@@ -45,7 +45,6 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private void dayClick(Object label) {
-            DisplayAlert("", label.ToString(), "ok");
             var DataComponi = new DateTime(AnnoVisualizzato, MeseVisualizzato, Convert.ToInt16(label.ToString()));
             var page = new PageNavettaPrenotaOrario(DataComponi);
             Navigation.PushAsync(page);
@@ -138,7 +137,7 @@ namespace ViviCampomarino.ServizioNavetta {
         static Color ColoreBottoniStandard=Color.LightGray;
         static Color ColoreBottoniSelezionato = Color.LightSalmon;
         private void BtnMesePrec_Clicked(object sender, EventArgs e) {
-            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month-1); }).Wait(3000);
+            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month-1); }).Wait(5000);
             CreateCalendar(DateTime.Now.Year, DateTime.Now.Month-1);
             BtnMesePrec.BackgroundColor=ColoreBottoniStandard; BtnMeseAttuale.BackgroundColor=ColoreBottoniStandard; BtnMeseSucc.BackgroundColor=ColoreBottoniStandard;
             BtnMesePrec.BackgroundColor=ColoreBottoniSelezionato;

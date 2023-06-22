@@ -124,6 +124,9 @@
     <EmbeddedResource Update="ServizioNavetta\PageNavettaPrenotaOrario.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="ServizioNavetta\PageNavettaPrenotaPosto.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="VinoEOlio\PagePercorsoVinoEOlio.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
