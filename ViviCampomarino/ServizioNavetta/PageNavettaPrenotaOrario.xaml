@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             x:Class="ViviCampomarino.ServizioNavetta.PageNavettaPrenotaCalendario"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViviCampomarino.ServizioNavetta.PageNavettaPrenotaOrario"
              BackgroundImageSource="Sfondo2.png" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid >
@@ -41,17 +41,28 @@
                 <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="15,0,15,0" VerticalOptions="CenterAndExpand" Spacing="30">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Label Text="SERVIZIO PRENOTAZIONE NAVETTA DISABILI" FontSize="Large" HorizontalTextAlignment="Center"/>
-                        <Label Text="Seleziona il giorno di prenotazione. Puoi prenotare un posto disabile con eventuale accompagnatore." FontSize="Default"/>
+                        <Label Text="Seleziona l'orario di prenotazione. Puoi prenotare un posto disabile con eventuale accompagnatore." FontSize="Default"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <Button x:Name="BtnMesePrec" Text="Mese Prec." Clicked="BtnMesePrec_Clicked" Padding="5,5,5,5"/>
-                        <Button x:Name="BtnMeseAttuale" Text="Mese Prec." Clicked="BtnMeseAttuale_Clicked" Padding="5,5,5,5"/>
-                        <Button x:Name="BtnMeseSucc" Text="Mese Prec." Clicked="BtnMeseSucc_Clicked" Padding="5,5,5,5"/>
-                    </StackLayout>
-                    <StackLayout x:Name="StkContainer">
-                        
+                        <Label Text="DATA SELEZIONATA: "/>
+                        <Label x:Name="LblData" Text="" FontAttributes="Bold"/>
                     </StackLayout>
                     
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="ORARI ANDATA" FontSize="Medium"/>
+                            <StackLayout Orientation="Vertical" x:Name="StkAndata">
+
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="ORARI RITORNO" FontSize="Medium"/>
+                            <StackLayout Orientation="Vertical" x:Name="StkRitorno">
+                                
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
                 </StackLayout>
                 <Frame Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="#3c3c3b" Margin="-30,-5,-30, 0"  Opacity="0.3" />
                 <Image Grid.Column="0" Grid.Row="1" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40" Margin="0,0,0,5"  />

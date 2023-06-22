@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace ViviCampomarino.ServizioNavetta {
     public partial class PageNavettaPrenotaCalendario : ContentPage {
         private DataTable TableGiorniAbilitati;
         private List<DataRow> RowGiorniMeseAbilitati = new List<DataRow>();
+        private int MeseVisualizzato = 0;
+        private int AnnoVisualizzato = 0;
         public PageNavettaPrenotaCalendario() {
             InitializeComponent();
             
@@ -28,8 +31,8 @@ namespace ViviCampomarino.ServizioNavetta {
             var Db = new MySqlvc();
             TableGiorniAbilitati=Db.EseguiQuery("Select * From NavettaGiorniAbilitati Order By GiornoAbilitato");
             foreach (DataRow x in TableGiorniAbilitati.Rows) {
-                if ((Convert.ToDateTime(x["GiornoAbilitato"])-DateTime.Now).Days>Convert.ToInt16(NavettaImpostazioni.LeggiImpostazione("GiorniMaxPrenotazione"))) continue;
-                
+                if ((Convert.ToDateTime(x["GiornoAbilitato"])-DateTime.Now).Days<0) continue;
+                if ((Convert.ToDateTime(x["GiornoAbilitato"])-DateTime.Now).Days>=Convert.ToInt16(NavettaImpostazioni.LeggiImpostazione("GiorniMaxPrenotazione"))) continue;
                 if (Convert.ToDateTime(x["GiornoAbilitato"].ToString()).Month==Mese) RowGiorniMeseAbilitati.Add(x);
             }
         }
@@ -43,8 +46,13 @@ namespace ViviCampomarino.ServizioNavetta {
 
         private void dayClick(Object label) {
             DisplayAlert("", label.ToString(), "ok");
+            var DataComponi = new DateTime(AnnoVisualizzato, MeseVisualizzato, Convert.ToInt16(label.ToString()));
+            var page = new PageNavettaPrenotaOrario(DataComponi);
+            Navigation.PushAsync(page);
         }
         private void CreateCalendar(int year, int month) {
+            MeseVisualizzato=month;
+            AnnoVisualizzato=year;
             var grid = new Grid ();
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
@@ -109,6 +117,11 @@ namespace ViviCampomarino.ServizioNavetta {
                         CommandParameter = dayLabel.Text
                     });
                 }
+                //Cambiamenti per giorno corrente
+                if (month==DateTime.Now.Month && currentDay==DateTime.Now.Day){
+                    pallino.BackgroundColor=Color.FromHex("ffffff");
+                }
+
                 
                 currentDay++;
                 col++;
