@@ -60,13 +60,13 @@ namespace ViviCampomarino.ServizioNavetta {
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
             grid.RowDefinitions.Add(new RowDefinition { Height = 30 });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=40 });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=GridLength.Star });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=GridLength.Star });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=GridLength.Star });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=GridLength.Star });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=GridLength.Star });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=GridLength.Star });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width=GridLength.Star });
 
 
             // Days of the week
@@ -134,8 +134,8 @@ namespace ViviCampomarino.ServizioNavetta {
             StkContainer.Children.Add(grid);
         }
 
-        static Color ColoreBottoniStandard=Color.LightGray;
-        static Color ColoreBottoniSelezionato = Color.LightSalmon;
+        static Color ColoreBottoniStandard=Color.Gray;
+        static Color ColoreBottoniSelezionato = Color.FromHex("55b7a8");
         private void BtnMesePrec_Clicked(object sender, EventArgs e) {
             Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month-1); }).Wait(5000);
             CreateCalendar(DateTime.Now.Year, DateTime.Now.Month-1);
@@ -144,14 +144,14 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private void BtnMeseAttuale_Clicked(object sender, EventArgs e) {
-            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month); }).Wait(3000);
+            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month); }).Wait(5000);
             CreateCalendar(DateTime.Now.Year, DateTime.Now.Month);
             BtnMesePrec.BackgroundColor=ColoreBottoniStandard; BtnMeseAttuale.BackgroundColor=ColoreBottoniStandard; BtnMeseSucc.BackgroundColor=ColoreBottoniStandard;
             BtnMeseAttuale.BackgroundColor=ColoreBottoniSelezionato;
         }
 
         private void BtnMeseSucc_Clicked(object sender, EventArgs e) {
-            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month+1); }).Wait(3000);
+            Task.Run(() => { RiempiGiorniAbilitatiFromDB(DateTime.Now.Month+1); }).Wait(5000);
             CreateCalendar(DateTime.Now.Year, DateTime.Now.Month+1);
             BtnMesePrec.BackgroundColor=ColoreBottoniStandard; BtnMeseAttuale.BackgroundColor=ColoreBottoniStandard; BtnMeseSucc.BackgroundColor=ColoreBottoniStandard;
             BtnMeseSucc.BackgroundColor=ColoreBottoniSelezionato;

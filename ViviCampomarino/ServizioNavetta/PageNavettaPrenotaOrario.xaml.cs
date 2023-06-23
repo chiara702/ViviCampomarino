@@ -48,10 +48,7 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private void BtnOrario_Clicked(object sender, EventArgs e) {
-            var form = new PageNavettaPrenotaPosto();
-            form.DataOra=DateTime.Parse(DataSelezionata.ToString("dd/MM/yyyy") + " " + ((Button)sender).Text);
-            
-
+            var form = new PageNavettaPrenotaPosto(DateTime.Parse(DataSelezionata.ToString("dd/MM/yyyy") + " " + ((Button)sender).Text));
             Navigation.PushAsync(form);
         }
 

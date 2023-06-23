@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViviCampomarino.VinoEOlio;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -13,11 +14,12 @@ namespace ViviCampomarino.ServizioNavetta {
     public partial class PageNavettaMappa : ContentPage {
         public PageNavettaMappa() {
             InitializeComponent();
+            StkWhatsUpChat.IsVisible=(NavettaImpostazioni.LeggiImpostazione("MostraChatWhatsUp")=="1");
+            //Mappa
             LblInfo.Text="Attesa localizzazione navetta...";
             var p = new Xamarin.Forms.Maps.Position(41.95582197035494, 15.03307138401569);
             var span = new MapSpan(p, 0.100, 0.100);
             map1.MoveToRegion(span);
-
             Task.Run(() => { AggiornaPosizione();});
             Device.StartTimer(TimeSpan.FromSeconds(30), () =>{
                 LblInfo.Text="Attesa localizzazione navetta...";
@@ -50,8 +52,9 @@ namespace ViviCampomarino.ServizioNavetta {
             });
         }
 
-        
-
-        
+        private async void ApriChat_Tapped(object sender, EventArgs e) {
+            string phoneNumber = NavettaImpostazioni.LeggiImpostazione("NumeroTelefonoAutista");
+            await Launcher.OpenAsync($"https://api.whatsapp.com/send?phone={phoneNumber}");
+        }
     }
 }

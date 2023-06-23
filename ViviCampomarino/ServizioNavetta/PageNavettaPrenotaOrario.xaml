@@ -38,24 +38,26 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="15,0,15,0" VerticalOptions="CenterAndExpand" Spacing="30" BackgroundColor="#55FFFFFF" Padding="5,5,5,5">
+                <StackLayout Grid.Row="0" Grid.ColumnSpan="2" Margin="10,0,10,0" VerticalOptions="CenterAndExpand" Spacing="30" BackgroundColor="#A0ffffff" Padding="10,10,10,10">
                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <Label Text="SERVIZIO PRENOTAZIONE NAVETTA DISABILI" FontSize="Large" HorizontalTextAlignment="Center"/>
                         <Label Text="Seleziona l'orario di prenotazione. Puoi prenotare un posto disabile con eventuale accompagnatore." FontSize="Default"/>
+                        <Label Text="Corsa di ANDATA: Campomarino - Campomarino Lido"/>
+                        <Label Text="Corsa di RITORNO: Campomarino Lido - Campomarino"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <Label Text="DATA SELEZIONATA: "/>
-                        <Label x:Name="LblData" Text="" FontAttributes="Bold"/>
+                        <Label Text="DATA SELEZIONATA: " VerticalOptions="End"/>
+                        <Label x:Name="LblData" Text="" FontAttributes="Bold" VerticalOptions="End"/>
                     </StackLayout>
                     
-                    <StackLayout Orientation="Horizontal">
-                        <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
                             <Label Text="ANDATA" FontSize="Medium"/>
                             <StackLayout Orientation="Vertical" x:Name="StkAndata">
 
                             </StackLayout>
                         </StackLayout>
-                        <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="End">
                             <Label Text="RITORNO" FontSize="Medium"/>
                             <StackLayout Orientation="Vertical" x:Name="StkRitorno">
                                 

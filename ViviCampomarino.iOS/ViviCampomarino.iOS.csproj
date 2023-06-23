@@ -331,4 +331,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Coupon5p.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\whatsapp.png" />
+  </ItemGroup>
 </Project>

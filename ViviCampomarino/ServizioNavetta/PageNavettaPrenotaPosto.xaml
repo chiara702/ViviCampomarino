@@ -48,23 +48,23 @@
                         <Label x:Name="LblData" Text="" FontAttributes="Bold"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                         <StackLayout Orientation="Vertical">
-                            <ImageButton Source="Account" WidthRequest="50"></ImageButton>
+                            <Image Source="Account" WidthRequest="50"></Image>
                             <Label Text="Disponibile"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="1" Tapped="TapGestureRecognizer_Tapped"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
-                            <ImageButton Source="Account" WidthRequest="50"></ImageButton>
+                            <Image Source="Account" WidthRequest="50"></Image>
                             <Label Text="Disponibile"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="2" Tapped="TapGestureRecognizer_Tapped"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
-                            <ImageButton Source="Account" WidthRequest="50"></ImageButton>
+                            <Image Source="Account" WidthRequest="50"></Image>
                             <Label Text="Disponibile"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="3" Tapped="TapGestureRecognizer_Tapped"/>
