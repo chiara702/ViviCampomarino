@@ -334,4 +334,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\whatsapp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\LogoAisa.png" />
+  </ItemGroup>
 </Project>

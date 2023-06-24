@@ -55,7 +55,7 @@
                 </StackLayout>
                 <Frame Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="#3c3c3b" Margin="-30,-5,-30, 0"  Opacity="0.3" />
                 <Image Grid.Column="0" Grid.Row="1" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand"   Source="LogoComune" HeightRequest="40" Margin="0,0,0,5"  />
-                <Image  Grid.Column="1" Grid.Row="1" VerticalOptions="FillAndExpand" Source="LogoIstituzione"  HeightRequest="40" Margin="0,0,0,6" />
+                <Image  Grid.Column="1" Grid.Row="1" VerticalOptions="FillAndExpand" Source="LogoAisa.png"  HeightRequest="40" Margin="0,0,0,6" />
 
 
 
