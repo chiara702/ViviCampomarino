@@ -19,12 +19,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ServizioNavetta\PageNavettaRegistrazione.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ServizioNavetta\PageNavettaRegistrazione.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="ModuloSqlLite.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MySqlConnector" Version="2.1.10" />
     <PackageReference Include="Plugin.Firebase" Version="1.1.0" />
+    <PackageReference Include="Plugin.Firebase.Legacy" Version="1.1.5" />
     <PackageReference Include="Rox.Xamarin.Video" Version="2.1.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />  
