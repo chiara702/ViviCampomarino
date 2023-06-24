@@ -16,29 +16,47 @@ namespace ViviCampomarino.ServizioNavetta {
             InitializeComponent();
             this.DataSelezionata = DataSelezionata;
             LblData.Text=DataSelezionata.ToString("dd/MM/yyyy");
+            SetOccupatoLibero(LblPosto1, ImgPosto1, false);
+            SetOccupatoLibero(LblPosto2, ImgPosto2, false);
+            SetOccupatoLibero(LblPosto3, ImgPosto3, false);
+
+        }
+        public void SetOccupatoLibero(Label lbl, Image img, Boolean Stato) {
+            if (Stato==false) {
+                lbl.Text="Libero";
+            } else {
+                lbl.Text="Occupato";
+            }
+        }
+        protected override void OnAppearing() {
+            base.OnAppearing();
             //Verifica posti 
-            Task.Run(() => { 
+            Task.Run(() => {
                 var Db = new MySqlvc();
                 var Table = Db.EseguiQuery($"Select * From NavettaPrenotazioni Where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}'");
                 Device.BeginInvokeOnMainThread(() => {
                     foreach (DataRow x in Table.Rows) {
-                        if ((int)x["Posto"]==1) {
-                            LblPosto1.Text="Occupato";
-                        }
-                        if ((int)x["Posto"]==2) {
-                            LblPosto2.Text="Occupato";
-                        }
-                        if ((int)x["Posto"]==3) {
-                            LblPosto3.Text="Occupato";
-                        }
-
+                        SetOccupatoLibero(LblPosto1, ImgPosto1, (int)x["Posto"]==1);
+                        SetOccupatoLibero(LblPosto2, ImgPosto2, (int)x["Posto"]==2);
+                        SetOccupatoLibero(LblPosto3, ImgPosto3, (int)x["Posto"]==3);
                     }
                 });
             });
         }
 
+
+
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e) {
             var Posto = Convert.ToInt16(((TappedEventArgs)e).Parameter);
+            //Controllo se prenotazione già eseguita su altro posto
+            var Db = new MySqlvc();
+            var rowP = Db.EseguiRow($"Select * from NavettaPrenotazioni where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}'");
+            Db.CloseCommit();
+            if (rowP !=null && (int)rowP["Posto"]!=Posto) {
+                DisplayAlert("Prenotazione", "Hai già prenotato con un altro posto!", "ok");
+                return;
+            }
+            //
             var form = new PageNavettaRegistrazione(DataSelezionata, Posto);
             Navigation.PushAsync(form); 
         }

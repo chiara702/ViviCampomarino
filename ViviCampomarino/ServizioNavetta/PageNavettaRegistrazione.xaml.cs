@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,12 @@ namespace ViviCampomarino.ServizioNavetta {
                     IdPrenotazione=(int)rowP["Id"];
                     TxtNome.Text=rowP["Nome"].ToString();
                     TxtTelefono.Text=rowP["Telefono"].ToString();
-
+                    SwitchAccompagnatore.IsToggled=Convert.ToBoolean(rowP["Accompagnatore"]);
+                    TxtAccompagnatoreNome.Text=rowP["NomeAccompagnatore"].ToString();
+                    TxtAccompagnatoreTelefono.Text=rowP["TelefonoAccompagnatore"].ToString();
+                    TxtIndirizzoPrelievo.Text=rowP["IndirizzoPresa"].ToString();
+                    TxtIndirizzoDestinazione.Text=rowP["IndirizzoRilascio"].ToString();
+                    TxtNote.Text=rowP["Note"].ToString();
                 }
             }
         }
@@ -44,7 +50,7 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private void BtnAnnulla_Clicked(object sender, EventArgs e) {
-
+            Navigation.PopAsync(true);
         }
 
         private void BtnConferma_Clicked(object sender, EventArgs e) {
@@ -67,7 +73,7 @@ namespace ViviCampomarino.ServizioNavetta {
             }
             //Verifica posto già occupato
             var Db = new MySqlvc();
-            var rowP=Db.EseguiRow($"Select * from NavettaPrenotazioni where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}' and Posto={Posto}");
+            var rowP=Db.EseguiRow($"Select * from NavettaPrenotazioni where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}' and Posto={Posto} and GuidDevice!='{App.Guid}'");
             Db.CloseCommit();
             if (rowP != null) {
                 DisplayAlert("Errore", $"Posto già prenotato da {rowP["GuidDevice"]}! Provare con un altro posto o altro orario.", "ok");
@@ -80,7 +86,6 @@ namespace ViviCampomarino.ServizioNavetta {
                 var bis = new MySqlvc.DBSqlBis(Db, "NavettaPrenotazioni");
                 bis.GetParam.AddWithValue("Giorno", DataSelezionata);
                 bis.GetParam.AddWithValue("Posto", Posto);
-                bis.GetParam.AddWithValue("GuidDevice", App.Guid);
                 bis.GetParam.AddWithValue("GuidDevice", App.Guid);
                 bis.GetParam.AddWithValue("Nome", Funzioni.Antinull(TxtNome.Text));
                 bis.GetParam.AddWithValue("Telefono", Funzioni.Antinull(TxtTelefono.Text));
@@ -105,20 +110,25 @@ namespace ViviCampomarino.ServizioNavetta {
             } catch(Exception ex) {
                 DisplayAlert("Errore", "Prenotazione non registrata a causa di un problema di connessione!", "Ok");
             }
-            if (SalvaOk==1) { Navigation.PopAsync(); }
+            if (SalvaOk==1) { Navigation.PopAsync(true); }
+            _=Task.Run(() => { EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Nuova prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione creata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}"); });
 
         }
 
-        private void BtnAnnullaPrenotazione_Clicked(object sender, EventArgs e) {
+        private async void BtnAnnullaPrenotazione_Clicked(object sender, EventArgs e) {
+            DataRow rowPrenotazione;
             try {
                 var Db = new MySqlvc();
-                Db.EseguiScalare("Delete From NavettaPrenotaqzioni Where Id=" + IdPrenotazione);
+                rowPrenotazione=Db.EseguiRow("Select * From NavettaPrenotazioni Where Id=" + IdPrenotazione);
+                Db.EseguiScalare("Delete From NavettaPrenotazioni Where Id=" + IdPrenotazione);
                 Db.CloseCommit();
             } catch(Exception ex) {
-                DisplayAlert("Errore", "Prenotazione non annullata a causa di un problema di connessione!", "Ok");
+                await DisplayAlert("Errore", "Prenotazione non annullata a causa di un problema di connessione!", "Ok");
+                return;
             }
-            DisplayAlert("Prenotazione", "Prenotazione annullata con successo!", "Ok");
-            Navigation.PopAsync();
+            await DisplayAlert("Prenotazione", "Prenotazione annullata con successo!", "Ok");
+            await Navigation.PopAsync(true);
+            _=Task.Run(() => { EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Nuova prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione annullata: {Convert.ToDateTime(rowPrenotazione["Giorno"]).ToString("dd/MM/yyyy HH:mm")}"); });
         }
     }
 }

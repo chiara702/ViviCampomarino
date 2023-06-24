@@ -48,24 +48,24 @@
                         <Label x:Name="LblData" Text="" FontAttributes="Bold"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
                             <Image Source="Account" WidthRequest="50" x:Name="ImgPosto1"/>
-                            <Label Text="Disponibile" x:Name="LblPosto1"/>
+                            <Label Text="" x:Name="LblPosto1"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="1" Tapped="TapGestureRecognizer_Tapped"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
                             <Image Source="Account" WidthRequest="50" x:Name="ImgPosto2"/>
-                            <Label Text="Disponibile" x:Name="LblPosto2"/>
+                            <Label Text="" x:Name="LblPosto2"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="2" Tapped="TapGestureRecognizer_Tapped"/>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
                             <Image Source="Account" WidthRequest="50" x:Name="ImgPosto3"/>
-                            <Label Text="Disponibile" x:Name="LblPosto3"/>
+                            <Label Text="" x:Name="LblPosto3"/>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="3" Tapped="TapGestureRecognizer_Tapped"/>
                             </StackLayout.GestureRecognizers>
