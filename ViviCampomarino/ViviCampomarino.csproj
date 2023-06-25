@@ -18,6 +18,10 @@
     <EmbeddedResource Remove="Attivita\ListViewPageSottocategorieAttivita.xaml" />
   </ItemGroup>
 
+  
+
+  
+
   <ItemGroup>
     <None Include="ModuloSqlLite.cs" />
   </ItemGroup>

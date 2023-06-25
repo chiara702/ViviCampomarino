@@ -19,7 +19,7 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private void BtnAmministratore_Clicked(object sender, EventArgs e) {
-
+            Navigation.PushAsync(new PageNavettaMenuAmministratore());
         }
 
         private async void BtnIndietro_Clicked(object sender, EventArgs e) {

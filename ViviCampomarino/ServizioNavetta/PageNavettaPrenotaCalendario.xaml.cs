@@ -31,8 +31,19 @@ namespace ViviCampomarino.ServizioNavetta {
             var Db = new MySqlvc();
             TableGiorniAbilitati=Db.EseguiQuery("Select * From NavettaGiorniAbilitati Order By GiornoAbilitato");
             foreach (DataRow x in TableGiorniAbilitati.Rows) {
-                if ((Convert.ToDateTime(x["GiornoAbilitato"])-DateTime.Now).Days<0) continue;
-                if ((Convert.ToDateTime(x["GiornoAbilitato"])-DateTime.Now).Days>=Convert.ToInt16(NavettaImpostazioni.LeggiImpostazione("GiorniMaxPrenotazione"))) continue;
+                DateTime GiornoAbilitato = Convert.ToDateTime(x["GiornoAbilitato"]);
+                DateTime Oggi = DateTime.Today;
+                if ((GiornoAbilitato-Oggi).Days<0) continue;
+                if ((GiornoAbilitato-Oggi).Days>=Convert.ToInt16(NavettaImpostazioni.LeggiImpostazione("GiorniMaxPrenotazione"))) continue;
+                if ((GiornoAbilitato-Oggi).Days==0) {
+                    TimeSpan OrarioMaxStessoGiorno = TimeSpan.Parse(NavettaImpostazioni.LeggiImpostazione("OrarioMaxPrenotazioneGiornoStesso"));
+                    if (DateTime.Now.TimeOfDay>OrarioMaxStessoGiorno) continue;
+                }
+                if ((GiornoAbilitato-Oggi).Days==1) {
+                    TimeSpan OrarioMaxGiornoPrec= TimeSpan.Parse(NavettaImpostazioni.LeggiImpostazione("OrarioMaxPrenotazioneGiornoPrecedente"));
+                    if (DateTime.Now.TimeOfDay>OrarioMaxGiornoPrec) continue;
+                }
+
                 if (Convert.ToDateTime(x["GiornoAbilitato"].ToString()).Month==Mese) RowGiorniMeseAbilitati.Add(x);
             }
         }

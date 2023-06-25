@@ -52,7 +52,7 @@
                     </maps:Map>
                     <StackLayout x:Name="StkWhatsUpChat" Orientation="Horizontal">
                         <Image Source="whatsapp.png" HeightRequest="30" VerticalOptions="Center"/>
-                        <Label Text="Apri Chat WhatsUp" TextDecorations="Underline" VerticalOptions="Center" TextColor="White" FontAttributes="Bold"></Label>
+                        <Label Text="Apri Chat Whats App" TextDecorations="Underline" VerticalOptions="Center" TextColor="White" FontAttributes="Bold"></Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ApriChat_Tapped" />
                         </StackLayout.GestureRecognizers>
