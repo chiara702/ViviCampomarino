@@ -23,5 +23,9 @@ namespace ViviCampomarino.ServizioNavetta {
         private void BtnIndietro_Clicked(object sender, EventArgs e) {
             Navigation.PopAsync();
         }
+
+        private void BtnCalendario_Clicked(object sender, EventArgs e) {
+
+        }
     }
 }

@@ -39,7 +39,8 @@ namespace ViviCampomarino.ServizioNavetta {
 
         private void BtnSave_Clicked(object sender, EventArgs e) {
             var Db = new MySqlvc();
-            Db.EseguiCommand($"Update NavettaImpostazione Set Valore='{TxtValue.Text}' Where Impostazione='{PickerSettings.SelectedItem}'");
+            Db.EseguiCommand($"Update NavettaImpostazioni Set Valore='{TxtValue.Text}' Where Impostazione='{PickerSettings.SelectedItem}'");
+            NavettaImpostazioni=Db.EseguiQuery("Select * From NavettaImpostazioni");
             Db.CloseCommit();
             BtnSave.IsEnabled=false;
         }

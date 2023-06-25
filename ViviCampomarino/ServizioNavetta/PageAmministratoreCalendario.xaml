@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ViviCampomarino.ServizioNavetta.PageNavettaMenuAmministratore"
+             x:Class="ViviCampomarino.ServizioNavetta.PageAmministratoreCalendario"
              BackgroundImageSource="Sfondo2.png" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid >
@@ -27,8 +27,7 @@
 			    HorizontalOptions="Center" VerticalOptions="Center" />
             </ContentView>
             <StackLayout Grid.Row="1" Grid.ColumnSpan="3" Margin="15,15,15,15" VerticalOptions="FillAndExpand"  BackgroundColor="#55FFFFFF" Padding="5,5,5,5">
-                <Button Text="Settings" Clicked="BtnSettings_Clicked"/>
-                <Button x:Name="BtnCalendario" Text="Calendario" Clicked="BtnCalendario_Clicked"/>
+                
             </StackLayout>
 
 

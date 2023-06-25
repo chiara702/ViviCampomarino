@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace ViviCampomarino.ServizioNavetta {
     public partial class PageNavettaMenu : ContentPage {
         public PageNavettaMenu() {
             InitializeComponent();
+            if (Convert.ToBoolean(App.login["AdminNavetta"])==true || Debugger.IsAttached==true) BtnAmministratore.IsEnabled=true;
         }
 
         private async void BtnPrenota_Clicked(object sender, EventArgs e) {
