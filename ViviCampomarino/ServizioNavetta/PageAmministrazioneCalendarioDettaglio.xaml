@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ViviCampomarino.ServizioNavetta.PageAmministratoreCalendario"
+             x:Class="ViviCampomarino.ServizioNavetta.PageAmministrazioneCalendarioDettaglio"
              BackgroundImageSource="Sfondo2.png" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid >
@@ -27,13 +27,12 @@
 			    HorizontalOptions="Center" VerticalOptions="Center" />
             </ContentView>
             <StackLayout Grid.Row="1" Grid.ColumnSpan="3" Margin="15,15,15,15" VerticalOptions="FillAndExpand"  BackgroundColor="#55FFFFFF" Padding="5,5,5,5">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    <Button x:Name="BtnMesePrec" HorizontalOptions="FillAndExpand" Clicked="BtnMesePrec_Clicked" Padding="5,5,5,5"/>
-                    <Button x:Name="BtnMeseAttuale" Clicked="BtnMeseAttuale_Clicked" Padding="5,5,5,5"/>
-                    <Button x:Name="BtnMeseSucc" Clicked="BtnMeseSucc_Clicked" Padding="5,5,5,5"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Text="DATA SELEZIONATA: "/>
+                    <Label x:Name="LblData" Text="" FontAttributes="Bold"/>
                 </StackLayout>
-                <StackLayout x:Name="StkContainer" HorizontalOptions="CenterAndExpand">
-
+                <StackLayout Orientation="Vertical" x:Name="StkDettaglio">
+                    
                 </StackLayout>
             </StackLayout>
 

@@ -111,7 +111,13 @@ namespace ViviCampomarino.ServizioNavetta {
                 DisplayAlert("Errore", "Prenotazione non registrata a causa di un problema di connessione!", "Ok");
             }
             if (SalvaOk==1) { Navigation.PopAsync(true); }
-            _=Task.Run(() => { EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Nuova prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione creata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}"); });
+            _=Task.Run(() => {
+                if (IdPrenotazione==0) {
+                    EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione creata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Giorno: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Posto: {Posto}, Nome: {TxtNome.Text}, Telefono: {TxtTelefono.Text}, Accompagnatore: {SwitchAccompagnatore.IsToggled} {TxtAccompagnatoreNome.Text + " " + TxtAccompagnatoreTelefono.Text}");
+                } else {
+                    EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione aggiornata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Giorno: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Posto: {Posto}, Nome: {TxtNome.Text}, Telefono: {TxtTelefono.Text}, Accompagnatore: {SwitchAccompagnatore.IsToggled} {TxtAccompagnatoreNome.Text + " " + TxtAccompagnatoreTelefono.Text}");
+                }
+            });
 
         }
 
@@ -128,7 +134,7 @@ namespace ViviCampomarino.ServizioNavetta {
             }
             await DisplayAlert("Prenotazione", "Prenotazione annullata con successo!", "Ok");
             await Navigation.PopAsync(true);
-            _=Task.Run(() => { EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Nuova prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione annullata: {Convert.ToDateTime(rowPrenotazione["Giorno"]).ToString("dd/MM/yyyy HH:mm")}"); });
+            _=Task.Run(() => { EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione annullata: {Convert.ToDateTime(rowPrenotazione["Giorno"]).ToString("dd/MM/yyyy HH:mm")}, Posto: {rowPrenotazione["Posto"]}, Nome: {rowPrenotazione["Nome"]}"); });
         }
     }
 }

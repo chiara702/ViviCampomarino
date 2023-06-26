@@ -120,6 +120,9 @@
     <EmbeddedResource Update="ServizioNavetta\PageAmministratoreCalendario.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="ServizioNavetta\PageAmministrazioneCalendarioDettaglio.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="ServizioNavetta\PageNavettaMappa.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

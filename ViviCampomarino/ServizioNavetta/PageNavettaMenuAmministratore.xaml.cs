@@ -25,7 +25,7 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private void BtnCalendario_Clicked(object sender, EventArgs e) {
-
+            Navigation.PushAsync(new PageAmministratoreCalendario());
         }
     }
 }
