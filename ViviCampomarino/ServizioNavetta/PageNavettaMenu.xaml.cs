@@ -13,7 +13,8 @@ namespace ViviCampomarino.ServizioNavetta {
     public partial class PageNavettaMenu : ContentPage {
         public PageNavettaMenu() {
             InitializeComponent();
-            if (Convert.ToBoolean(App.login["AdminNavetta"])==true || Debugger.IsAttached==true) BtnAmministratore.IsEnabled=true;
+            if (Debugger.IsAttached==true) BtnAmministratore.IsVisible=true;
+            if (App.login != null && Convert.ToBoolean(App.login["AdminNavetta"])==true) BtnAmministratore.IsVisible=true;
         }
 
         private async void BtnPrenota_Clicked(object sender, EventArgs e) {

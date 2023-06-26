@@ -63,7 +63,7 @@
                             </StackLayout>
                             <Button x:Name="BtnPrenota" Text="Prenota" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnPrenota_Clicked" />
                             <Button x:Name="BtnMappa" Text="Mappa" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnMappa_Clicked" />
-                            <Button x:Name="BtnAmministratore" IsEnabled="false" Text="Amministrazione" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAmministratore_Clicked" />
+                            <Button x:Name="BtnAmministratore" IsEnabled="false" Text="Amministrazione" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="24" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAmministratore_Clicked" IsVisible="true"/>
 
                         </StackLayout>
                     </ScrollView>
