@@ -61,7 +61,7 @@ namespace ViviCampomarino.ServizioNavetta {
             var id = Convert.ToInt16(((Button)sender).CommandParameter);
             string[] opzioni = { "Chiama","Chat Whats App", "Chiama Accompagnatore", "Chat Accompagnatore", "Naviga verso indirizzo presa", "Naviga verso indirizzo rilascio"};
             String opzioneSelezionata = await DisplayActionSheet("Opzioni", "annulla", null, opzioni);
-            if (!string.IsNullOrEmpty(opzioneSelezionata) && opzioneSelezionata != "annulla") return;
+            if (string.IsNullOrEmpty(opzioneSelezionata) || opzioneSelezionata == "annulla") return;
             var rowPrenotazione = Prenotazioni.Select("Id=" + id)[0];
             if (opzioneSelezionata==opzioni[0]) { Xamarin.Essentials.PhoneDialer.Open(rowPrenotazione["Telefono"].ToString()); }
             if (opzioneSelezionata==opzioni[1]) { await Launcher.OpenAsync(new Uri($"whatsapp://send?phone=+39{rowPrenotazione["Telefono"]}")); }
