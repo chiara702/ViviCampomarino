@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -90,6 +90,8 @@ namespace ViviCampomarino {
             App.Current.MainPage.Navigation.PushAsync(new PageRecuperaPass());
         }
 
- 
+        private void BtnPrivacy_Clicked(object sender, EventArgs e) {
+            Launcher.OpenAsync(new Uri("https://www.sinergydimaria.it/PrivacyViviCampomarino.html"));
+        }
     }
 }
