@@ -60,8 +60,8 @@
                         <Entry x:Name="TxtNote" Placeholder="Note varie" Style="{StaticResource EntryReg}" />
                         <Label FontSize="Small">* questi campi sono obbligatori.</Label>
                         <StackLayout Orientation="Horizontal" Margin="20,20,20,20" HorizontalOptions="Center">
-                            <Button x:Name="BtnAnnulla" Text="ANNULLA" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="Medium" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAnnulla_Clicked" />
-                            <Button x:Name="BtnConferma" Text="CONFERMA" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="Medium" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnConferma_Clicked" />
+                            <Button x:Name="BtnAnnulla" Text="ANNULLA" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="Medium" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAnnulla_Clicked" WidthRequest="120" />
+                            <Button x:Name="BtnConferma" Text="CONFERMA" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="White" FontSize="Medium" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnConferma_Clicked" WidthRequest="120" />
                         </StackLayout>
                         <Button x:Name="BtnAnnullaPrenotazione" Text="CANCELLA PRENOTAZIONE" IsVisible="false" TextTransform="Uppercase" HeightRequest="60" BackgroundColor="#FFBEBE" FontSize="Medium" TextColor="#3c3c3b" FontAttributes="Bold" CornerRadius="30" Clicked="BtnAnnullaPrenotazione_Clicked" />
                     </StackLayout>
