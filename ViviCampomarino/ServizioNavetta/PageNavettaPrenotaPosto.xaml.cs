@@ -24,8 +24,10 @@ namespace ViviCampomarino.ServizioNavetta {
         public void SetOccupatoLibero(Label lbl, Image img, Boolean Stato) {
             if (Stato==false) {
                 lbl.Text="Libero";
+                img.Source="postolibero.png";
             } else {
                 lbl.Text="Occupato";
+                img.Source="postooccupato.png";
             }
         }
         protected override void OnAppearing() {
@@ -50,12 +52,14 @@ namespace ViviCampomarino.ServizioNavetta {
             var Posto = Convert.ToInt16(((TappedEventArgs)e).Parameter);
             //Controllo se prenotazione già eseguita su altro posto
             var Db = new MySqlvc();
-            var rowP = Db.EseguiRow($"Select * from NavettaPrenotazioni where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}'");
+            var rowP = Db.EseguiRow($"Select * from NavettaPrenotazioni where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}' And Posto={Posto}");
             Db.CloseCommit();
             if (rowP !=null && (int)rowP["Posto"]!=Posto) {
-                DisplayAlert("Prenotazione", "Hai già prenotato con un altro posto!", "ok");
+                DisplayAlert("Prenotazione", "Hai già prenotato!", "ok");
                 return;
             }
+            
+            
             //
             var form = new PageNavettaRegistrazione(DataSelezionata, Posto);
             Navigation.PushAsync(form); 

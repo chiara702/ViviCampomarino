@@ -106,8 +106,8 @@ namespace ViviCampomarino.ServizioNavetta {
                 pallino.CornerRadius = 10;
                 pallino.WidthRequest=8;
                 pallino.HeightRequest=8;
-                pallino.BorderColor = Color.Black;
-                pallino.BackgroundColor=Color.FromHex("55b7a8");
+                //pallino.BorderColor = Color.Black;
+                pallino.BackgroundColor=Color.FromHex("white"); //55b7a8
                 grid.Children.Add(pallino, col, row);
                 //
                 var dayLabel = new Label();
@@ -119,7 +119,7 @@ namespace ViviCampomarino.ServizioNavetta {
                 grid.Children.Add(dayLabel, col, row);
                 //add event
                 if (RowGiorniMeseAbilitati.Where(row => row.Field<DateTime>("GiornoAbilitato").Day==currentDay).Count()>0) {
-                    dayLabel.TextDecorations=TextDecorations.Underline;
+                    //dayLabel.TextDecorations=TextDecorations.Underline;
                     dayLabel.FontAttributes=FontAttributes.Bold;
                     dayLabel.TextColor=Color.Red;
                     dayLabel.GestureRecognizers.Add(new TapGestureRecognizer() {
@@ -129,7 +129,11 @@ namespace ViviCampomarino.ServizioNavetta {
                 }
                 //Cambiamenti per giorno corrente
                 if (month==DateTime.Now.Month && currentDay==DateTime.Now.Day){
-                    pallino.BackgroundColor=Color.FromHex("ffffff");
+                    dayLabel.TextDecorations=TextDecorations.Underline;
+                    dayLabel.FontAttributes=FontAttributes.Bold;
+                    //pallino.CornerRadius=20;
+                    pallino.BorderColor=Color.FromHex("55b7a8");
+                    //pallino.BackgroundColor=Color.FromHex("ffffff");
                 }
 
                 

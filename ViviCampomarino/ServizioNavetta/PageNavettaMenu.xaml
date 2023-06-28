@@ -55,7 +55,7 @@
                                         <FormattedString>
                                             <Span Text="La sezione "/>
                                             <Span Text="MAPPA " FontAttributes="Bold"/>
-                                            <Span Text="permette la visualizzazione in tempo reale della posizione della nevetta."/>
+                                            <Span Text="permette la visualizzazione in tempo reale della posizione della navetta."/>
                                         </FormattedString>    
                                     </Label.FormattedText>
                                     

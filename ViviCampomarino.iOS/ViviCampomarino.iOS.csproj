@@ -337,4 +337,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\LogoAisa.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\postooccupato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\postolibero.png" />
+  </ItemGroup>
 </Project>
