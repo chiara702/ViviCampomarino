@@ -113,9 +113,9 @@ namespace ViviCampomarino.ServizioNavetta {
             if (SalvaOk==1) { Navigation.PopAsync(true); }
             _=Task.Run(() => {
                 if (IdPrenotazione==0) {
-                    EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione creata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Giorno: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Posto: {Posto}, Nome: {TxtNome.Text}, Telefono: {TxtTelefono.Text}, Accompagnatore: {SwitchAccompagnatore.IsToggled} {TxtAccompagnatoreNome.Text + " " + TxtAccompagnatoreTelefono.Text}");
+                    EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione creata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Posto: {Posto}, Nome: {TxtNome.Text}, Telefono: {TxtTelefono.Text}, Accompagnatore: {SwitchAccompagnatore.IsToggled} {TxtAccompagnatoreNome.Text + " " + TxtAccompagnatoreTelefono.Text}");
                 } else {
-                    EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione aggiornata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Giorno: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Posto: {Posto}, Nome: {TxtNome.Text}, Telefono: {TxtTelefono.Text}, Accompagnatore: {SwitchAccompagnatore.IsToggled} {TxtAccompagnatoreNome.Text + " " + TxtAccompagnatoreTelefono.Text}");
+                    EmailSender.SendEmail(NavettaImpostazioni.LeggiImpostazione("EmailInvioPrenotazioni"), "Prenotazione Navetta Disabili (da ViviCampomarino)", $"Prenotazione aggiornata: {DataSelezionata.ToString("dd/MM/yyyy HH:mm")}, Posto: {Posto}, Nome: {TxtNome.Text}, Telefono: {TxtTelefono.Text}, Accompagnatore: {SwitchAccompagnatore.IsToggled} {TxtAccompagnatoreNome.Text + " " + TxtAccompagnatoreTelefono.Text}");
                 }
             });
 
