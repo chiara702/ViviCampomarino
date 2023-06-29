@@ -18,6 +18,7 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private async void BtnPrenota_Clicked(object sender, EventArgs e) {
+            if (NavettaImpostazioni.LeggiImpostazione("Abilita")=="0") { await DisplayAlert("", "Al momento non disponibile", "Ok"); return; }
             await Navigation.PushAsync(new PageNavettaPrenotaCalendario());
         }
 
@@ -30,6 +31,7 @@ namespace ViviCampomarino.ServizioNavetta {
         }
 
         private async void BtnMappa_Clicked(object sender, EventArgs e) {
+            if (NavettaImpostazioni.LeggiImpostazione("Abilita")=="0") { await DisplayAlert("", "Al momento non disponibile", "Ok"); return; }
             await Navigation.PushAsync(new PageNavettaMappa());
         }
     }
