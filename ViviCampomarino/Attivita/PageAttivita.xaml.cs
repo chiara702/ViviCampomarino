@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViviCampomarino.Attivita;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -45,6 +46,7 @@ namespace ViviCampomarino {
             LblOrari.Text += "Sabato: " + Funzioni.Antinull(RowAttivita["OrarioSabato"]) + "\n\r";
             LblOrari.Text += "Domenica: " + Funzioni.Antinull(RowAttivita["OrarioDomenica"]);
 
+            
 
         }
         private void CaricaImage(Image Pic, Object data) {
@@ -89,6 +91,23 @@ namespace ViviCampomarino {
             } catch (Exception) {
                 await DisplayAlert("", "Non riesco a visualizzare l'indirizzo!", "OK");
             }
+        }
+
+        private void TapImg1_Tapped(object sender, EventArgs e) {
+            var page = new PageZoomImage(Img1.Source);
+            Navigation.PushAsync(page);
+        }
+        private void TapImg2_Tapped(object sender, EventArgs e) {
+            var page = new PageZoomImage(Img2.Source);
+            Navigation.PushAsync(page);
+        }
+        private void TapImg3_Tapped(object sender, EventArgs e) {
+            var page = new PageZoomImage(Img3.Source);
+            Navigation.PushAsync(page);
+        }
+        private void TapImg4_Tapped(object sender, EventArgs e) {
+            var page = new PageZoomImage(Img4.Source);
+            Navigation.PushAsync(page);
         }
     }
 }

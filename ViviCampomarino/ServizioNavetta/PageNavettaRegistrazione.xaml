@@ -53,9 +53,11 @@
                             <Entry x:Name="TxtAccompagnatoreTelefono"  Placeholder="Telefono" Style="{StaticResource EntryReg}" />
                         </StackLayout>
                         <Label Text="Indirizzo prelievo *" Style="{StaticResource LabReg}" />
-                        <Entry x:Name="TxtIndirizzoPrelievo" Placeholder="Indirizzo o zona di prelievo" Style="{StaticResource EntryReg}" />
+                        <!--<Entry x:Name="TxtIndirizzoPrelievo" Placeholder="Indirizzo o zona di prelievo" Style="{StaticResource EntryReg}" />-->
+                        <Picker x:Name="PickIndirizzoPrelievo" Style="{StaticResource EntryReg}"/>
                         <Label Text="Indirizzo destinazione *" Style="{StaticResource LabReg}" />
-                        <Entry x:Name="TxtIndirizzoDestinazione" Placeholder="Indirizzo o zona di destinazione" Style="{StaticResource EntryReg}" />
+                        <!--<Entry x:Name="TxtIndirizzoDestinazione" Placeholder="Indirizzo o zona di destinazione" Style="{StaticResource EntryReg}" />-->
+                        <Picker x:Name="PickIndirizzoDestinazione" Style="{StaticResource EntryReg}"/>
                         <Label Text="Note" Style="{StaticResource LabReg}" />
                         <Entry x:Name="TxtNote" Placeholder="Note varie" Style="{StaticResource EntryReg}" />
                         <Label FontSize="Small">* questi campi sono obbligatori.</Label>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pinch="clr-namespace:Xamarin.Forms.PinchZoomImage"
+             x:Class="ViviCampomarino.Attivita.PageZoomImage"
+             BackgroundImageSource="Sfondo2.png" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,30,0,20" />
+                        <On Platform="Android, WinPhone, Windows" Value="0,0,0,20" />
+                    </OnPlatform>
+                </Grid.Margin>
+
+                <ImageButton x:Name="BtnIndietro" Grid.Row="0" Grid.Column="0" Source="Back" BackgroundColor="transparent" Margin="5,20,5,15"  Clicked="BtnIndietro_Clicked"/>
+                <ContentView Grid.Row="0" Grid.Column="1">
+                    <Image Source="LogoViviCampomarino" HeightRequest="40" Margin="0,0,0,5"
+			        HorizontalOptions="Center" VerticalOptions="Center" />
+                </ContentView>
+
+
+
+            </Grid>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="15,0,15,0"  BackgroundColor="#55FFFFFF" Padding="5,5,5,5">
+                <ScrollView VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                    <pinch:PinchZoom>
+                        <pinch:PinchZoom.Content>
+                            <Image x:Name="Img1" />
+                        </pinch:PinchZoom.Content>
+                    </pinch:PinchZoom>
+                </ScrollView>
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

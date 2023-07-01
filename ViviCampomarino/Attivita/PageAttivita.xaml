@@ -83,10 +83,26 @@
                 </StackLayout>
                 <ScrollView Grid.Row="7" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,20">
                     <StackLayout Orientation="Horizontal">
-                        <Image x:Name="Img1" Source="Img1"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
-                        <Image x:Name="Img2" Source="Img2"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
-                        <Image x:Name="Img3" Source="Img3"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
-                        <Image x:Name="Img4" Source="Img4"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  />
+                        <Image x:Name="Img1" Source="Img1"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapImg1_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image x:Name="Img2" Source="Img2"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapImg2_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image x:Name="Img3" Source="Img3"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapImg3_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image x:Name="Img4" Source="Img4"  VerticalOptions="Center"  Margin="0,5,5,0" HeightRequest="300"  >ù
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Tapped="TapImg4_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </StackLayout>
                 </ScrollView>
 

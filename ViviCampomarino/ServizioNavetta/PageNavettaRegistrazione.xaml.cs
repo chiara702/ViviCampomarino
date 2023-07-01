@@ -16,6 +16,7 @@ namespace ViviCampomarino.ServizioNavetta {
         private DateTime DataSelezionata;
         private int Posto;
         private int IdPrenotazione = 0;
+        private Boolean isAndata = false;
         public PageNavettaRegistrazione(DateTime DataSelezionata, int Posto) {
             InitializeComponent();
             this.DataSelezionata=DataSelezionata;
@@ -23,6 +24,23 @@ namespace ViviCampomarino.ServizioNavetta {
             LblData.Text = DataSelezionata.ToString("dd/MM/yyyy HH:mm");
             var Db = new MySqlvc();
             var rowP = Db.EseguiRow($"Select * from NavettaPrenotazioni where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}' and Posto={Posto}");
+            var rowG = Db.EseguiRow($"Select * From NavettaGiorniAbilitati Where GiornoAbilitato='{DataSelezionata.ToString("yyyy-MM-dd")}'");
+            if (rowG["OrariAndata"].ToString().Split(",").Contains(DataSelezionata.ToString("HH:mm"))) isAndata=true;
+            var tableFermate = Db.EseguiQuery($"Select * From NavettaFermate Where Disabili=true order By Valore");
+            if (isAndata==false) {
+                tableFermate.DefaultView.Sort="Valore desc";
+                tableFermate=tableFermate.DefaultView.ToTable();
+            }
+            foreach (DataRow x in tableFermate.Rows) { 
+                if (isAndata==true) {
+                    if ((Convert.ToInt16(x["Valore"])<100)) PickIndirizzoPrelievo.Items.Add(x["FermataDescrizioneLunga"].ToString());
+                    if ((Convert.ToInt16(x["Valore"])>100)) PickIndirizzoDestinazione.Items.Add(x["FermataDescrizioneLunga"].ToString());
+                }
+                if (isAndata==false) {
+                    if ((Convert.ToInt16(x["Valore"])>100)) PickIndirizzoPrelievo.Items.Add(x["FermataDescrizioneLunga"].ToString());
+                    if ((Convert.ToInt16(x["Valore"])<100)) PickIndirizzoDestinazione.Items.Add(x["FermataDescrizioneLunga"].ToString());
+                }
+            }
             Db.CloseCommit();
             if (rowP != null) {
                 if (rowP["GuidDevice"].ToString()==App.Guid) {
@@ -34,8 +52,12 @@ namespace ViviCampomarino.ServizioNavetta {
                     SwitchAccompagnatore.IsToggled=Convert.ToBoolean(rowP["Accompagnatore"]);
                     TxtAccompagnatoreNome.Text=rowP["NomeAccompagnatore"].ToString();
                     TxtAccompagnatoreTelefono.Text=rowP["TelefonoAccompagnatore"].ToString();
-                    TxtIndirizzoPrelievo.Text=rowP["IndirizzoPresa"].ToString();
-                    TxtIndirizzoDestinazione.Text=rowP["IndirizzoRilascio"].ToString();
+                    //TxtIndirizzoPrelievo.Text=rowP["IndirizzoPresa"].ToString();
+                    //TxtIndirizzoDestinazione.Text=rowP["IndirizzoRilascio"].ToString();
+                    if (PickIndirizzoPrelievo.Items.Contains(rowP["IndirizzoPresa"].ToString())==false) PickIndirizzoPrelievo.Items.Add(rowP["IndirizzoPresa"].ToString());
+                    PickIndirizzoPrelievo.SelectedItem=rowP["IndirizzoPresa"].ToString();
+                    if (PickIndirizzoDestinazione.Items.Contains(rowP["IndirizzoRilascio"].ToString())==false) PickIndirizzoDestinazione.Items.Add(rowP["IndirizzoRilascio"].ToString());
+                    PickIndirizzoDestinazione.SelectedItem=rowP["IndirizzoRilascio"].ToString();
                     TxtNote.Text=rowP["Note"].ToString();
                 }
             }
@@ -59,11 +81,11 @@ namespace ViviCampomarino.ServizioNavetta {
                 DisplayAlert("Errore", "Occorre inserire il nome!", "ok");
                 return;
             }
-            if (String.IsNullOrEmpty(TxtIndirizzoPrelievo.Text)==true) {
+            if (String.IsNullOrEmpty(PickIndirizzoPrelievo.SelectedItem.ToString())==true) {
                 DisplayAlert("Errore", "Occorre inserire indirizzo di prelievo/partenza!", "ok");
                 return;
             }
-            if (String.IsNullOrEmpty(TxtIndirizzoDestinazione.Text)==true) {
+            if (String.IsNullOrEmpty(PickIndirizzoDestinazione.SelectedItem.ToString())==true) {
                 DisplayAlert("Errore", "Occorre inserire indirizzo di rilascio/destinazione!", "ok");
                 return;
             }
@@ -93,8 +115,8 @@ namespace ViviCampomarino.ServizioNavetta {
                 if (SwitchAccompagnatore.IsToggled==false) { TxtAccompagnatoreNome.Text=""; TxtAccompagnatoreTelefono.Text=""; }
                 bis.GetParam.AddWithValue("NomeAccompagnatore", Funzioni.Antinull(TxtAccompagnatoreNome.Text));
                 bis.GetParam.AddWithValue("TelefonoAccompagnatore", Funzioni.Antinull(TxtAccompagnatoreTelefono.Text));
-                bis.GetParam.AddWithValue("IndirizzoPresa", Funzioni.Antinull(TxtIndirizzoPrelievo.Text));
-                bis.GetParam.AddWithValue("IndirizzoRilascio", Funzioni.Antinull(TxtIndirizzoDestinazione.Text));
+                bis.GetParam.AddWithValue("IndirizzoPresa", Funzioni.Antinull(PickIndirizzoPrelievo.SelectedItem.ToString()));
+                bis.GetParam.AddWithValue("IndirizzoRilascio", Funzioni.Antinull(PickIndirizzoDestinazione.SelectedItem.ToString()));
                 bis.GetParam.AddWithValue("Note", Funzioni.Antinull(TxtNote.Text));
                 if (IdPrenotazione==0) {
                     bis.GetParam.AddWithValue("DataOraCreazione", DateTime.Now);
