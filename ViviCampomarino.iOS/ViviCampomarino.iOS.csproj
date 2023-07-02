@@ -31,11 +31,12 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>Apple Development: Fabio Di Maria (YS92343MB2)</CodesignKey>
-    <CodesignProvision>VS: com.companyname.ViviCampomarino Development</CodesignProvision>
+    <CodesignEntitlements></CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision>iOS Team Provisioning Profile: *</CodesignProvision>
     <MtouchFastDev>true</MtouchFastDev>
     <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchSdkVersion>16.4</MtouchSdkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -46,8 +47,8 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>Apple Development: Fabio Di Maria (YS92343MB2)</CodesignKey>
-    <CodesignProvision>VS: com.companyname.ViviCampomarino Development</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Fabio Di Maria (9HAAQ267G2)</CodesignKey>
+    <CodesignProvision>ViviCampomarino AppStore 02072023</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,9 +72,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>Apple Distribution: Fabio Di Maria (9HAAQ267G2)</CodesignKey>
+    <CodesignKey>iPhone Distribution: Fabio Di Maria (9HAAQ267G2)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>ViviCampomarino AppStore</CodesignProvision>
+    <CodesignProvision>ViviCampomarino AppStore 02072023</CodesignProvision>
     <MtouchLink>SdkOnly</MtouchLink>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
@@ -163,7 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Plugin.Firebase">
-      <Version>1.1.0</Version>
+      <Version>1.1.1</Version>
     </PackageReference>
     <PackageReference Include="Rox.Xamarin.Video">
       <Version>2.1.0</Version>
