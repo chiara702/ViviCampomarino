@@ -35,6 +35,8 @@
                             <StackLayout x:Name="StkLibriPresi"  Orientation="Vertical"  Margin="15,0,15,10">
                             </StackLayout>
 
+                            <Button x:Name="BtnCancellaIscrizione" Text="Cancella Iscrizione e Dati" Clicked="BtnCancellaIscrizione_Clicked"/>
+
                         </StackLayout>
                     </ScrollView>
                 </Frame>

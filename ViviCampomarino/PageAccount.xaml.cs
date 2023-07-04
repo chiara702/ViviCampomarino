@@ -72,7 +72,16 @@ namespace ViviCampomarino {
 
         }
 
+        private async void BtnCancellaIscrizione_Clicked(object sender, EventArgs e) {
+            bool result = await DisplayAlert("Conferma", "Sei sicuro di voler cancellare il tuo account?", "Si", "No");
 
-
+            if (result) {
+                // L'utente ha confermato
+                await DisplayAlert("Confermato", "Hai confermato!", "OK");
+            } else {
+                // L'utente ha annullato
+                await DisplayAlert("Annullato", "Hai annullato!", "OK");
+            }
+        }
     }
 }
