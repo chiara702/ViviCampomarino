@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViviCampomarino.Android", "ViviCampomarino.Android\ViviCampomarino.Android.csproj", "{5515D3E6-A51A-4E3A-9ECA-4C71FA2E4406}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViviCampomarino.iOS", "ViviCampomarino.iOS\ViviCampomarino.iOS.csproj", "{456B3965-DB61-466B-87DF-2A9AF6FBCC29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViviCampomarino", "ViviCampomarino\ViviCampomarino.csproj", "{E2DEA27F-F73D-44EA-B2F9-81E4B86E8373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViviCampomarino", "ViviCampomarino\ViviCampomarino.csproj", "{E2DEA27F-F73D-44EA-B2F9-81E4B86E8373}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

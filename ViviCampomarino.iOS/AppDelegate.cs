@@ -28,7 +28,7 @@ namespace ViviCampomarino.iOS
 
             Xamarin.FormsMaps.Init();
             Rox.VideoIos.Init();
-
+            
             
 
 

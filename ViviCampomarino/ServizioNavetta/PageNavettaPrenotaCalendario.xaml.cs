@@ -122,10 +122,12 @@ namespace ViviCampomarino.ServizioNavetta {
                     //dayLabel.TextDecorations=TextDecorations.Underline;
                     dayLabel.FontAttributes=FontAttributes.Bold;
                     dayLabel.TextColor=Color.Red;
-                    dayLabel.GestureRecognizers.Add(new TapGestureRecognizer() {
+                    var tap = new TapGestureRecognizer() {
                         Command=new Command(dayClick),
                         CommandParameter = dayLabel.Text
-                    });
+                    };
+                    pallino.GestureRecognizers.Add(tap);
+                    dayLabel.GestureRecognizers.Add(tap);
                 }
                 //Cambiamenti per giorno corrente
                 if (month==DateTime.Now.Month && currentDay==DateTime.Now.Day){
