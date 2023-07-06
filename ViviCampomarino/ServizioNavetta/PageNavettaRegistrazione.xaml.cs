@@ -17,6 +17,7 @@ namespace ViviCampomarino.ServizioNavetta {
         private int Posto;
         private int IdPrenotazione = 0;
         private Boolean isAndata = false;
+        private DataTable tableFermate;
         public PageNavettaRegistrazione(DateTime DataSelezionata, int Posto) {
             InitializeComponent();
             this.DataSelezionata=DataSelezionata;
@@ -26,20 +27,25 @@ namespace ViviCampomarino.ServizioNavetta {
             var rowP = Db.EseguiRow($"Select * from NavettaPrenotazioni where Giorno='{DataSelezionata.ToString("yyyy-MM-dd HH:mm")}' and Posto={Posto}");
             var rowG = Db.EseguiRow($"Select * From NavettaGiorniAbilitati Where GiornoAbilitato='{DataSelezionata.ToString("yyyy-MM-dd")}'");
             if (rowG["OrariAndata"].ToString().Split(",").Contains(DataSelezionata.ToString("HH:mm"))) isAndata=true;
-            var tableFermate = Db.EseguiQuery($"Select * From NavettaFermate Where Disabili=true order By Valore");
+            tableFermate = Db.EseguiQuery($"Select * From NavettaFermate Where Disabili=true order By Valore");
             if (isAndata==false) {
                 tableFermate.DefaultView.Sort="Valore desc";
                 tableFermate=tableFermate.DefaultView.ToTable();
             }
-            foreach (DataRow x in tableFermate.Rows) { 
-                if (isAndata==true) {
+            foreach (DataRow x in tableFermate.Rows) {
+                var orariValidi = Funzioni.Antinull(x["OrariValidi"]).Split(",");
+                if (orariValidi.Contains(DataSelezionata.ToString("HH:mm"))==true) {
+                    PickIndirizzoPrelievo.Items.Add(x["FermataDescrizioneLunga"].ToString());
+                    PickIndirizzoDestinazione.Items.Add(x["FermataDescrizioneLunga"].ToString());
+                }
+                /*if (isAndata==true) {
                     if ((Convert.ToInt16(x["Valore"])<100)) PickIndirizzoPrelievo.Items.Add(x["FermataDescrizioneLunga"].ToString());
                     if ((Convert.ToInt16(x["Valore"])>100)) PickIndirizzoDestinazione.Items.Add(x["FermataDescrizioneLunga"].ToString());
                 }
                 if (isAndata==false) {
                     if ((Convert.ToInt16(x["Valore"])>100)) PickIndirizzoPrelievo.Items.Add(x["FermataDescrizioneLunga"].ToString());
                     if ((Convert.ToInt16(x["Valore"])<100)) PickIndirizzoDestinazione.Items.Add(x["FermataDescrizioneLunga"].ToString());
-                }
+                }*/
             }
             Db.CloseCommit();
             if (rowP != null) {
@@ -87,6 +93,11 @@ namespace ViviCampomarino.ServizioNavetta {
             }
             if (String.IsNullOrEmpty(PickIndirizzoDestinazione.SelectedItem.ToString())==true) {
                 DisplayAlert("Errore", "Occorre inserire indirizzo di rilascio/destinazione!", "ok");
+                return;
+            }
+            //controllo Valore Fermata
+            if (Convert.ToInt16 ( tableFermate.Select($"FermataDescrizioneLunga='{PickIndirizzoPrelievo.SelectedItem.ToString()}'")[0]["Valore"])>=Convert.ToInt16(tableFermate.Select($"FermataDescrizioneLunga='{PickIndirizzoDestinazione.SelectedItem.ToString()}'")[0]["Valore"])) {
+                DisplayAlert("Errore", "Direzione corsa errata! Controllare indirizzo di rilascio/destinazione!", "ok");
                 return;
             }
             if (SwitchAccompagnatore.IsToggled==true && string.IsNullOrEmpty(TxtAccompagnatoreNome.Text)==true) {
