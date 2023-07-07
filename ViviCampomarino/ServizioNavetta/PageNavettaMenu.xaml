@@ -45,10 +45,10 @@
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="#A0ffffff" Padding="10,5,10,5">
                                 <Label HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center">SERVIZIO NAVETTA TRASPORTO DISABILI ESTATE 2023</Label>
                                 <Label LineBreakMode="WordWrap" HorizontalTextAlignment="Center">
-                                    Servizio di prenotazione navetta Campomarino-Campomarino Lido per disabili Estate 2023. Servizio offerto in collaborazione con l'associazizone AISA e con il Comune di Campomarino.
+                                    Servizio di prenotazione navetta Campomarino-Campomarino Lido per disabili Estate 2023. Servizio offerto dall'associazizone AISA con il patrocinio del Comune di Campomarino.
                                 </Label>
                                 <Label LineBreakMode="WordWrap" HorizontalTextAlignment="Center">
-                                    Questo servizio permette a una persona disabile, incluso un eventuale accompagnatore, di prenotare uno dei tre posti disponibili per carrozzine disabili per ogni corsa del pulmino. Sulla prenotazione è possibile indicare un numero di telefono di contatto che verrà usato in caso di necessità, un indirizzo o zona dove verrà effettuato il prelevamento, e un indirizzo/lido di destinazione. Il servizio è completamente gratuito per il disabile ed eventuale accompagnatore.
+                                    Questo servizio permette a una persona disabile, incluso un eventuale accompagnatore, di prenotare uno dei tre posti disponibili per carrozzine disabili con carrozzina per ogni corsa della navetta. Sulla prenotazione è possibile indicare un numero di telefono di contatto che verrà usato in caso di necessità, un indirizzo o zona dove verrà effettuato il prelevamento, e un indirizzo/lido di destinazione. Il servizio è completamente gratuito per il disabile ed eventuale accompagnatore.
                                 </Label>
                                 <Label>
                                     <Label.FormattedText>
