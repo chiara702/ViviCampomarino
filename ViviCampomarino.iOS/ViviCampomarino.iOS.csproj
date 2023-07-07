@@ -354,4 +354,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\postolibero.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\disabile.png" />
+  </ItemGroup>
 </Project>

@@ -22,15 +22,22 @@ namespace ViviCampomarino.ServizioNavetta{
 				}
 			}
 			ListaOrariValidi=ListaOrariValidi.Distinct().ToList();
+			ListaOrariValidi.Add(ListaOrariValidi[0]);
+			ListaOrariValidi.RemoveAt(0);
+
 			foreach (string x in ListaOrariValidi) {
-				Lbl1.Text+=$"<b>Corsa delle: {x} <br>";
+				Lbl1.Text+=$"<span style='color:red'>Corsa delle: {x} <b>{tableFermate.Select($"OrariValidi like '%{x}%'")[0]["TitoloCorsa"]}</b></span><br>";
 				foreach (DataRow y in tableFermate.Select($"OrariValidi like '%{x}%'")) {
-					Lbl1.Text+=$"{y["FermataDescrizioneLunga"]} {y["OrarioFermata"]} <br>";
+					Lbl1.Text+=$"{y["FermataDescrizioneLunga"]} {y["OrarioFermata"]} ";
+					if (Convert.ToBoolean(y["Disabili"])==true) Lbl1.Text+=$"*";
+					Lbl1.Text+="<br>";
                 }
 				Lbl1.Text+=$"<br><br>";
 
             }
+			Lbl1.Text+="* Fermate disabili con carrozzina";
         }
+		
 
         private async void BtnIndietro_Clicked(object sender, EventArgs e) {
 			await Navigation.PopAsync();

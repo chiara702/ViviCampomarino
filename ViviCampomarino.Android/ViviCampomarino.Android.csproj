@@ -277,5 +277,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Coupon5p.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\disabile.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

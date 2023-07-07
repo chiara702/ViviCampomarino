@@ -29,7 +29,7 @@
 
 
 
-            <StackLayout Grid.Row="1" Grid.ColumnSpan="3" Margin="15,0,15,0" VerticalOptions="FillAndExpand"  BackgroundColor="#55FFFFFF" Padding="5,5,5,5">
+            <StackLayout Grid.Row="1" Grid.ColumnSpan="3" Margin="15,0,15,0" VerticalOptions="FillAndExpand"  BackgroundColor="#88FFFFFF" Padding="5,5,5,5">
                 <ScrollView Orientation="Vertical">
                     <StackLayout x:Name="StkCont">
                         <Label TextType="Html" x:Name="Lbl1"/>
