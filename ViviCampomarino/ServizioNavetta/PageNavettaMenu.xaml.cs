@@ -34,5 +34,10 @@ namespace ViviCampomarino.ServizioNavetta {
             if (NavettaImpostazioni.LeggiImpostazione("Abilita")=="0") { await DisplayAlert("", "Al momento non disponibile", "Ok"); return; }
             await Navigation.PushAsync(new PageNavettaMappa());
         }
+
+        private async void BtnOrari_Clicked(object sender, EventArgs e) {
+            var f = new PageNavettaOrari();
+            await Navigation.PushAsync(f);
+        }
     }
 }
